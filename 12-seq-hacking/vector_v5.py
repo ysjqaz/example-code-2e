@@ -1,8 +1,8 @@
 # tag::VECTOR_V5[]
 """
-A multidimensional ``Vector`` class, take 5
+多维 ``Vector`` 类，第 5 版
 
-A ``Vector`` is built from an iterable of numbers::
+``Vector`` 由一个数字可迭代对象（iterable）构建::
 
     >>> Vector([3.1, 4.2])
     Vector([3.1, 4.2])
@@ -12,7 +12,7 @@ A ``Vector`` is built from an iterable of numbers::
     Vector([0.0, 1.0, 2.0, 3.0, 4.0, ...])
 
 
-Tests with two dimensions (same results as ``vector2d_v1.py``)::
+二维测试（结果与 ``vector2d_v1.py`` 相同）::
 
     >>> v1 = Vector([3, 4])
     >>> x, y = v1
@@ -34,7 +34,7 @@ Tests with two dimensions (same results as ``vector2d_v1.py``)::
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法测试：
 
     >>> v1_clone = Vector.frombytes(bytes(v1))
     >>> v1_clone
@@ -43,7 +43,7 @@ Test of ``.frombytes()`` class method:
     True
 
 
-Tests with three dimensions::
+三维测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> x, y, z = v1
@@ -62,7 +62,7 @@ Tests with three dimensions::
     (True, False)
 
 
-Tests with many dimensions::
+多维测试::
 
     >>> v7 = Vector(range(7))
     >>> v7
@@ -71,7 +71,7 @@ Tests with many dimensions::
     9.53939201...
 
 
-Test of ``.__bytes__`` and ``.frombytes()`` methods::
+``.__bytes__`` 和 ``.frombytes()`` 方法测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> v1_clone = Vector.frombytes(bytes(v1))
@@ -81,7 +81,7 @@ Test of ``.__bytes__`` and ``.frombytes()`` methods::
     True
 
 
-Tests of sequence behavior::
+序列（sequence）行为测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> len(v1)
@@ -90,7 +90,7 @@ Tests of sequence behavior::
     (3.0, 5.0, 5.0)
 
 
-Test of slicing::
+切片（slicing）测试::
 
     >>> v7 = Vector(range(7))
     >>> v7[-1]
@@ -105,7 +105,7 @@ Test of slicing::
     TypeError: 'tuple' object cannot be interpreted as an integer
 
 
-Tests of dynamic attribute access::
+动态属性（attribute）访问测试::
 
     >>> v7 = Vector(range(10))
     >>> v7.x
@@ -113,7 +113,7 @@ Tests of dynamic attribute access::
     >>> v7.y, v7.z, v7.t
     (1.0, 2.0, 3.0)
 
-Dynamic attribute lookup failures::
+动态属性查找失败::
 
     >>> v7.k
     Traceback (most recent call last):
@@ -130,7 +130,7 @@ Dynamic attribute lookup failures::
     AttributeError: 'Vector' object has no attribute 'spam'
 
 
-Tests of hashing::
+哈希（hashing）测试::
 
     >>> v1 = Vector([3, 4])
     >>> v2 = Vector([3.1, 4.2])
@@ -140,14 +140,14 @@ Tests of hashing::
     (7, 2, 1)
 
 
-Most hash codes of non-integers vary from a 32-bit to 64-bit CPython build::
+非整数的大多数哈希码在 32 位与 64 位 CPython 构建之间有所不同::
 
     >>> import sys
     >>> hash(v2) == (384307168202284039 if sys.maxsize > 2**32 else 357915986)
     True
 
 
-Tests of ``format()`` with Cartesian coordinates in 2D::
+二维直角坐标下 ``format()`` 测试::
 
     >>> v1 = Vector([3, 4])
     >>> format(v1)
@@ -158,7 +158,7 @@ Tests of ``format()`` with Cartesian coordinates in 2D::
     '(3.000e+00, 4.000e+00)'
 
 
-Tests of ``format()`` with Cartesian coordinates in 3D and 7D::
+三维和七维直角坐标下 ``format()`` 测试::
 
     >>> v3 = Vector([3, 4, 5])
     >>> format(v3)
@@ -167,7 +167,7 @@ Tests of ``format()`` with Cartesian coordinates in 3D and 7D::
     '(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0)'
 
 
-Tests of ``format()`` with spherical coordinates in 2D, 3D and 4D::
+二维、三维和四维球面坐标下 ``format()`` 测试::
 
     >>> format(Vector([1, 1]), 'h')  # doctest:+ELLIPSIS
     '<1.414213..., 0.785398...>'
@@ -267,7 +267,7 @@ class Vector:
         return (self.angle(n) for n in range(1, len(self)))
 
     def __format__(self, fmt_spec=''):
-        if fmt_spec.endswith('h'):  # hyperspherical coordinates
+        if fmt_spec.endswith('h'):  # 超球面坐标
             fmt_spec = fmt_spec[:-1]
             coords = itertools.chain([abs(self)],
                                      self.angles())  # <4>

@@ -1,7 +1,7 @@
 """
-A multi-dimensional ``Vector`` class, take 2
+多维 ``Vector`` 类，第 2 版
 
-A ``Vector`` is built from an iterable of numbers::
+``Vector`` 由一个数字可迭代对象（iterable）构建::
 
     >>> Vector([3.1, 4.2])
     Vector([3.1, 4.2])
@@ -11,7 +11,7 @@ A ``Vector`` is built from an iterable of numbers::
     Vector([0.0, 1.0, 2.0, 3.0, 4.0, ...])
 
 
-Tests with 2-dimensions (same results as ``vector2d_v1.py``)::
+二维测试（结果与 ``vector2d_v1.py`` 相同）::
 
     >>> v1 = Vector([3, 4])
     >>> x, y = v1
@@ -33,7 +33,7 @@ Tests with 2-dimensions (same results as ``vector2d_v1.py``)::
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法测试：
 
     >>> v1_clone = Vector.frombytes(bytes(v1))
     >>> v1_clone
@@ -42,7 +42,7 @@ Test of ``.frombytes()`` class method:
     True
 
 
-Tests with 3-dimensions::
+三维测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> x, y, z = v1
@@ -61,7 +61,7 @@ Tests with 3-dimensions::
     (True, False)
 
 
-Tests with many dimensions::
+多维测试::
 
     >>> v7 = Vector(range(7))
     >>> v7
@@ -70,7 +70,7 @@ Tests with many dimensions::
     9.53939201...
 
 
-Test of ``.__bytes__`` and ``.frombytes()`` methods::
+``.__bytes__`` 和 ``.frombytes()`` 方法测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> v1_clone = Vector.frombytes(bytes(v1))
@@ -80,7 +80,7 @@ Test of ``.__bytes__`` and ``.frombytes()`` methods::
     True
 
 
-Tests of sequence behavior::
+序列（sequence）行为测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> len(v1)
@@ -89,7 +89,7 @@ Tests of sequence behavior::
     (3.0, 5.0, 5.0)
 
 
-Test of slicing::
+切片（slicing）测试::
 
 # tag::VECTOR_V2_DEMO[]
 

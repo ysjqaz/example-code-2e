@@ -2,15 +2,15 @@ from typing import TypeVar, Generic
 
 
 class Beverage:
-    """Any beverage."""
+    """任意饮料。"""
 
 
 class Juice(Beverage):
-    """Any fruit juice."""
+    """任意果汁。"""
 
 
 class OrangeJuice(Juice):
-    """Delicious juice from Brazilian oranges."""
+    """用巴西橙子做的美味果汁。"""
 
 
 # tag::BEVERAGE_TYPES[]
@@ -25,10 +25,10 @@ class BeverageDispenser(Generic[T_co]):  # <2>
         return self.beverage
 
 def install(dispenser: BeverageDispenser[Juice]) -> None:  # <3>
-    """Install a fruit juice dispenser."""
+    """安装一个果汁分配器。"""
 # end::BEVERAGE_TYPES[]
 
-################################################ covariant dispenser
+################################################ 协变的分配器
 
 # tag::INSTALL_JUICE_DISPENSERS[]
 juice_dispenser = BeverageDispenser(Juice())
@@ -38,12 +38,12 @@ orange_juice_dispenser = BeverageDispenser(OrangeJuice())
 install(orange_juice_dispenser)
 # end::INSTALL_JUICE_DISPENSERS[]
 
-################################################ more general dispenser
+################################################ 更泛化的分配器
 
 # tag::INSTALL_BEVERAGE_DISPENSER[]
 beverage_dispenser = BeverageDispenser(Beverage())
 install(beverage_dispenser)
-## mypy: Argument 1 to "install" has
-## incompatible type "BeverageDispenser[Beverage]"
-##          expected "BeverageDispenser[Juice]"
+## mypy: 传给 "install" 的第 1 个参数
+## 类型不兼容："BeverageDispenser[Beverage]"
+##          期望 "BeverageDispenser[Juice]"
 # end::INSTALL_BEVERAGE_DISPENSER[]

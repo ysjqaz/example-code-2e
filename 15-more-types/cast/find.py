@@ -3,7 +3,7 @@ from typing import cast
 
 def find_first_str(a: list[object]) -> str:
     index = next(i for i, x in enumerate(a) if isinstance(x, str))
-    # We only get here if there's at least one string
+    # 只有当列表中至少有一个字符串时，才会执行到这里
     return cast(str, a[index])
 # end::CAST[]
 

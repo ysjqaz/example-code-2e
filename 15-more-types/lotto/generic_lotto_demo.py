@@ -20,9 +20,9 @@ print('remain:', remain)
 
 if TYPE_CHECKING:
     reveal_type(first)
-    # Revealed type is 'builtins.int*'
+    # 推断出的类型为 'builtins.int*'
 if TYPE_CHECKING:
     reveal_type(remain)
-    # Revealed type is 'builtins.tuple[builtins.int*]'
+    # 推断出的类型为 'builtins.tuple[builtins.int*]'
 
 

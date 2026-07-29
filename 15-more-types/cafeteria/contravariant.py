@@ -2,26 +2,26 @@
 from typing import TypeVar, Generic
 
 class Refuse:  # <1>
-    """Any refuse."""
+    """任意废弃物。"""
 
 class Biodegradable(Refuse):
-    """Biodegradable refuse."""
+    """可生物降解的废弃物。"""
 
 class Compostable(Biodegradable):
-    """Compostable refuse."""
+    """可堆肥的废弃物。"""
 
 T_contra = TypeVar('T_contra', contravariant=True)  # <2>
 
 class TrashCan(Generic[T_contra]):  # <3>
     def put(self, refuse: T_contra) -> None:
-        """Store trash until dumped."""
+        """存放垃圾直到倾倒。"""
 
 def deploy(trash_can: TrashCan[Biodegradable]):
-    """Deploy a trash can for biodegradable refuse."""
+    """部署一个用于可生物降解废弃物的垃圾桶。"""
 # end::TRASH_TYPES[]
 
 
-################################################ contravariant trash can
+################################################ 逆变的垃圾桶
 
 
 # tag::DEPLOY_TRASH_CANS[]
@@ -33,12 +33,12 @@ deploy(trash_can)
 # end::DEPLOY_TRASH_CANS[]
 
 
-################################################ more specific trash can
+################################################ 更具体的垃圾桶
 
 # tag::DEPLOY_NOT_VALID[]
 compost_can: TrashCan[Compostable] = TrashCan()
 deploy(compost_can)
-## mypy: Argument 1 to "deploy" has
-## incompatible type "TrashCan[Compostable]"
-##          expected "TrashCan[Biodegradable]"
+## mypy: 传给 "deploy" 的第 1 个参数
+## 类型不兼容："TrashCan[Compostable]"
+##          期望 "TrashCan[Biodegradable]"
 # end::DEPLOY_NOT_VALID[]

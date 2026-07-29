@@ -19,8 +19,8 @@
 
 # tag::CLIP_ANNOT[]
 def clip(text: str, max_len: int = 80) -> str:
-    """Return new ``str`` clipped at last space before or after ``max_len``.
-       Return full ``text`` if no space found.
+    """返回在 ``max_len`` 之前或之后最后一个空格处截断的新 ``str``。
+       如果找不到空格，则返回完整的 ``text``。
     """
     end = None
     if len(text) > max_len:

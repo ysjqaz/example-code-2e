@@ -4,13 +4,13 @@ col_int: Collection[int]
 
 seq_int: Sequence[int] = (1, 2, 3)
 
-## Incompatible types in assignment
-##   expression has type "Collection[int]"
-##     variable has type "Sequence[int]"
+## 赋值时类型不兼容
+##   表达式类型为 "Collection[int]"
+##     变量类型为 "Sequence[int]"
 # seq_int = col_int
 
 col_int = seq_int
 
-## List item 0 has incompatible type "float"
-##   expected "int"
+## 列表第 0 项类型不兼容："float"
+##   期望 "int"
 # col_int = [1.1]

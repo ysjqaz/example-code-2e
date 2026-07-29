@@ -1,13 +1,13 @@
 """
-In ``Generator[YieldType, SendType, ReturnType]``,
-``SendType`` is contravariant.
-The other type variables are covariant.
+在 ``Generator[YieldType, SendType, ReturnType]`` 中，
+``SendType`` 是逆变（contravariant）的。
+其他类型变量是协变（covariant）的。
 
-This is how ``typing.Generator`` is declared::
+``typing.Generator`` 的声明如下::
 
     class Generator(Iterator[T_co], Generic[T_co, T_contra, V_co]):
 
-(from https://docs.python.org/3/library/typing.html#typing.Generator)
+（来自 https://docs.python.org/3/library/typing.html#typing.Generator）
 
 """
 
@@ -42,9 +42,9 @@ g0: Generator[float, float, str] = gen_float_take_float()
 
 g1: Generator[complex, float, str] = gen_float_take_float()
 
-## Incompatible types in assignment
-##   expression has type "Generator[float, float, str]"
-##     variable has type "Generator[int, float, str]")
+## 赋值时类型不兼容
+##   表达式类型为 "Generator[float, float, str]"
+##     变量类型为 "Generator[int, float, str]")
 # g2: Generator[int, float, str] = gen_float_take_float()
 
 
@@ -52,8 +52,8 @@ g1: Generator[complex, float, str] = gen_float_take_float()
 
 g3: Generator[float, int, str] = gen_float_take_float()
 
-## Incompatible types in assignment
-##   expression has type "Generator[float, float, str]"
-##     variable has type "Generator[float, complex, str]")
+## 赋值时类型不兼容
+##   表达式类型为 "Generator[float, float, str]"
+##     变量类型为 "Generator[float, complex, str]")
 ## g4: Generator[float, complex, str] = gen_float_take_float()
 

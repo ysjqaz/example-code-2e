@@ -1,5 +1,5 @@
 r"""
-htmlize(): generic function example
+htmlize()：泛型函数（generic function）示例
 
 # tag::HTMLIZE_DEMO[]
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-import httpx  # make httpx classes available to .__subclasses__()
+import httpx  # 让 httpx 的类对 .__subclasses__() 可见
 
 
 def tree(cls, level=0, last_sibling=True):
     yield cls, level, last_sibling
 
-    # get RuntimeError and exceptions defined in httpx
+    # 取出 RuntimeError 和 httpx 中定义的异常
     subclasses = [sub for sub in cls.__subclasses__()
                   if sub is RuntimeError or sub.__module__ == 'httpx']
     if subclasses:

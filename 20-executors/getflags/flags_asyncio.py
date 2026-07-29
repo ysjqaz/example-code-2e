@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Download flags of top 20 countries by population
+"""下载按人口排名前 20 位国家的国旗
 
-asyncio + aiottp version
+asyncio + aiottp 版本
 
-Sample run::
+示例运行::
 
     $ python3 flags_asyncio.py
     EG VN IN TR RU ID US DE CN MX JP BD NG ET FR BR PH PK CD IR

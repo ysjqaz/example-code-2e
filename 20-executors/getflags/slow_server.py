@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
-"""Slow HTTP server class.
+"""慢速 HTTP 服务器类。
 
-This module implements a ThreadingHTTPServer using a custom
-SimpleHTTPRequestHandler subclass that introduces delays to all
-GET responses, and optionally returns errors to a fraction of
-the requests if given the --error_rate command-line argument.
+本模块实现了一个 ThreadingHTTPServer，使用自定义的
+SimpleHTTPRequestHandler 子类，对所有 GET 响应引入延迟，
+并在传入 --error_rate 命令行参数时按比例返回错误响应。
 """
 
 import contextlib
@@ -17,17 +16,16 @@ from http import server, HTTPStatus
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
 from random import random, uniform
 
-MIN_DELAY = 0.5  # minimum delay for do_GET (seconds)
-MAX_DELAY = 5.0  # maximum delay for do_GET (seconds)
+MIN_DELAY = 0.5  # do_GET 的最短延迟（秒）
+MAX_DELAY = 5.0  # do_GET 的最长延迟（秒）
 
 class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):
-    """SlowHTTPRequestHandler adds delays and errors to test HTTP clients.
+    """SlowHTTPRequestHandler 为测试 HTTP 客户端而加入延迟和错误。
 
-    The optional error_rate argument determines how often GET requests
-    receive a 418 status code, "I'm a teapot".
-    If error_rate is .15, there's a 15% probability of each GET request
-    getting that error.
-    When the server believes it is a teapot, it refuses requests to serve files.
+    可选的 error_rate 参数决定 GET 请求收到 418 状态码
+    "I'm a teapot" 的频率。
+    例如 error_rate 为 .15 时，每个 GET 请求有 15% 的概率收到该错误。
+    当服务器认为自己是茶壶时，会拒绝提供文件服务。
 
     See: https://tools.ietf.org/html/rfc2324#section-2.3.2
     """
@@ -37,13 +35,13 @@ class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):
         super().__init__(*args, **kwargs)
 
     def do_GET(self):
-        """Serve a GET request."""
+        """处理一个 GET 请求。"""
         delay = uniform(MIN_DELAY, MAX_DELAY)
         cc = self.path[-6:-4].upper()
         print(f'{cc} delay: {delay:0.2}s')
         time.sleep(delay)
         if random() < self.error_rate:
-            # HTTPStatus.IM_A_TEAPOT requires Python >= 3.9
+            # HTTPStatus.IM_A_TEAPOT 需要 Python >= 3.9
             try:
                 self.send_error(HTTPStatus.IM_A_TEAPOT, "I'm a Teapot")
             except BrokenPipeError as exc:
@@ -58,8 +56,8 @@ class SlowHTTPRequestHandler(SimpleHTTPRequestHandler):
                 finally:
                     f.close()
 
-# The code in the `if` block below, including comments, was copied
-# and adapted from the `http.server` module of Python 3.9
+# 下面 if 块中的代码（包括注释）复制自 Python 3.9 的
+# `http.server` 模块并作了少量改动
 # https://github.com/python/cpython/blob/master/Lib/http/server.py
 
 if __name__ == '__main__':
@@ -85,16 +83,16 @@ if __name__ == '__main__':
                             directory=args.directory,
                             error_rate=args.error_rate)
 
-    # ensure dual-stack is not disabled; ref #38907
+    # 确保不禁用双栈；参考 #38907
     class DualStackServer(ThreadingHTTPServer):
         def server_bind(self):
-            # suppress exception when protocol is IPv4
+            # 协议为 IPv4 时抑制异常
             with contextlib.suppress(Exception):
                 self.socket.setsockopt(
                     socket.IPPROTO_IPV6, socket.IPV6_V6ONLY, 0)
             return super().server_bind()
 
-    # test is a top-level function in http.server omitted from __all__
+    # test 是 http.server 中的顶层函数，未列入 __all__
     server.test(  # type: ignore
         HandlerClass=handler_class,
         ServerClass=DualStackServer,

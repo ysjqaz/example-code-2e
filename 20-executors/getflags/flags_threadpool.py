@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Download flags of top 20 countries by population
+"""下载按人口排名前 20 位国家的国旗
 
-ThreadPoolExecutor version
+ThreadPoolExecutor 版本
 
-Sample run::
+示例运行::
 
     $ python3 flags_threadpool.py
     DE FR BD CN EG RU IN TR VN ID JP BR NG MX PK ET PH CD US IR

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-proc_pool.py: a version of the proc.py example from chapter 20,
-but using `concurrent.futures.ProcessPoolExecutor`.
+proc_pool.py：第 20 章 proc.py 示例的一个变体，
+改用 `concurrent.futures.ProcessPoolExecutor`。
 """
 
 # tag::PRIMES_POOL[]

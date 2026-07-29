@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-"""Download flags of top 20 countries by population
+"""下载按人口排名前 20 位国家的国旗
 
-ThreadPoolExecutor example with ``as_completed``.
+使用 ``as_completed`` 的 ThreadPoolExecutor 示例。
 """
 from concurrent import futures
 

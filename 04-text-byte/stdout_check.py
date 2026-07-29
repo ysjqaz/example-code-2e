@@ -8,9 +8,9 @@ print('sys.stdout.encoding:', sys.stdout.encoding)
 print()
 
 test_chars = [
-    '\N{HORIZONTAL ELLIPSIS}',       # exists in cp1252, not in cp437
-    '\N{INFINITY}',                  # exists in cp437, not in cp1252
-    '\N{CIRCLED NUMBER FORTY TWO}',  # not in cp437 or in cp1252
+    '\N{HORIZONTAL ELLIPSIS}',       # cp1252 中有，cp437 中没有
+    '\N{INFINITY}',                  # cp437 中有，cp1252 中没有
+    '\N{CIRCLED NUMBER FORTY TWO}',  # cp437 和 cp1252 中都没有
 ]
 
 for char in test_chars:

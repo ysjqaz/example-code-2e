@@ -1,8 +1,8 @@
 
 """
-Radical folding and diacritic mark removal.
+激进折叠与变音符号（diacritic mark）移除。
 
-Handling a string with `cp1252` symbols:
+处理包含 `cp1252` 符号的字符串：
 
     >>> order = '“Herr Voß: • ½ cup of Œtker™ caffè latte • bowl of açaí.”'
     >>> shave_marks(order)
@@ -14,7 +14,7 @@ Handling a string with `cp1252` symbols:
     >>> asciize(order)
     '"Herr Voss: - 1⁄2 cup of OEtker(TM) caffe latte - bowl of acai."'
 
-Handling a string with Greek and Latin accented characters:
+处理包含希腊语和拉丁语带重音字符的字符串：
 
     >>> greek = 'Ζέφυρος, Zéfiro'
     >>> shave_marks(greek)
@@ -34,7 +34,7 @@ import string
 
 
 def shave_marks(txt):
-    """Remove all diacritic marks"""
+    """移除所有变音符号"""
     norm_txt = unicodedata.normalize('NFD', txt)  # <1>
     shaved = ''.join(c for c in norm_txt
                      if not unicodedata.combining(c))  # <2>
@@ -43,15 +43,15 @@ def shave_marks(txt):
 
 # tag::SHAVE_MARKS_LATIN[]
 def shave_marks_latin(txt):
-    """Remove all diacritic marks from Latin base characters"""
+    """移除拉丁语基础字符上的所有变音符号"""
     norm_txt = unicodedata.normalize('NFD', txt)  # <1>
     latin_base = False
     preserve = []
     for c in norm_txt:
         if unicodedata.combining(c) and latin_base:   # <2>
-            continue  # ignore diacritic on Latin base char
+            continue  # 忽略拉丁语基础字符上的变音符号
         preserve.append(c)                            # <3>
-        # if it isn't a combining char, it's a new base char
+        # 如果不是组合字符，那就是一个新的基础字符
         if not unicodedata.combining(c):              # <4>
             latin_base = c in string.ascii_letters
     shaved = ''.join(preserve)
@@ -79,7 +79,7 @@ multi_map.update(single_map)  # <3>
 
 
 def dewinize(txt):
-    """Replace Win1252 symbols with ASCII chars or sequences"""
+    """将 Win1252 符号替换为 ASCII 字符或字符序列"""
     return txt.translate(multi_map)  # <4>
 
 

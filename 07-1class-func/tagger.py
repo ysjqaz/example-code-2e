@@ -25,7 +25,7 @@
 
 # tag::TAG_FUNC[]
 def tag(name, *content, class_=None, **attrs):
-    """Generate one or more HTML tags"""
+    """生成一个或多个 HTML 标签"""
     if class_ is not None:
         attrs['class'] = class_
     attr_pairs = (f' {attr}="{value}"' for attr, value

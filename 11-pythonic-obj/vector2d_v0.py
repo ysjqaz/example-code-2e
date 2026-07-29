@@ -1,5 +1,5 @@
 """
-A 2-dimensional vector class
+一个二维向量类
 
 # tag::VECTOR2D_V0_DEMO[]
 

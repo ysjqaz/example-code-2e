@@ -1,5 +1,5 @@
 """
-A 2-dimensional vector class
+一个二维向量类
 
     >>> v1 = Vector2d(3, 4)
     >>> print(v1.x, v1.y)

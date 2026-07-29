@@ -1,5 +1,5 @@
 """
-A 2-dimensional vector class
+一个二维向量类
 
     >>> v1 = Vector2d(3, 4)
     >>> print(v1.x, v1.y)
@@ -23,7 +23,7 @@ A 2-dimensional vector class
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法的测试：
 
     >>> v1_clone = Vector2d.frombytes(bytes(v1))
     >>> v1_clone

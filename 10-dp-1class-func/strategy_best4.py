@@ -1,7 +1,6 @@
 # strategy_best4.py
-# Strategy pattern -- function-based implementation
-# selecting best promotion from list of functions
-# registered by a decorator
+# 策略模式（Strategy pattern）—— 基于函数的实现
+# 从由装饰器（decorator）注册的函数列表中选择最佳促销
 
 """
     >>> from decimal import Decimal
@@ -57,13 +56,13 @@ def promotion(promo: Promotion) -> Promotion:  # <2>
 
 
 def best_promo(order: Order) -> Decimal:
-    """Compute the best discount available"""
+    """计算可用的最佳折扣"""
     return max(promo(order) for promo in promos)  # <3>
 
 
 @promotion  # <4>
 def fidelity(order: Order) -> Decimal:
-    """5% discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供 5% 折扣"""
     if order.customer.fidelity >= 1000:
         return order.total() * Decimal('0.05')
     return Decimal(0)
@@ -71,7 +70,7 @@ def fidelity(order: Order) -> Decimal:
 
 @promotion
 def bulk_item(order: Order) -> Decimal:
-    """10% discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
     discount = Decimal(0)
     for item in order.cart:
         if item.quantity >= 20:
@@ -81,7 +80,7 @@ def bulk_item(order: Order) -> Decimal:
 
 @promotion
 def large_order(order: Order) -> Decimal:
-    """7% discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供 7% 折扣"""
     distinct_items = {item.product for item in order.cart}
     if len(distinct_items) >= 10:
         return order.total() * Decimal('0.07')

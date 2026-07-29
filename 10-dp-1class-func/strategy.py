@@ -1,5 +1,5 @@
 # strategy.py
-# Strategy pattern -- function-based implementation
+# 策略模式（Strategy pattern）—— 基于函数的实现
 
 """
 # tag::STRATEGY_TESTS[]
@@ -48,7 +48,7 @@ class LineItem(NamedTuple):
         return self.price * self.quantity
 
 @dataclass(frozen=True)
-class Order:  # the Context
+class Order:  # 上下文（Context）
     customer: Customer
     cart: Sequence[LineItem]
     promotion: Optional[Callable[['Order'], Decimal]] = None  # <1>
@@ -72,14 +72,14 @@ class Order:  # the Context
 
 
 def fidelity_promo(order: Order) -> Decimal:  # <4>
-    """5% discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供 5% 折扣"""
     if order.customer.fidelity >= 1000:
         return order.total() * Decimal('0.05')
     return Decimal(0)
 
 
 def bulk_item_promo(order: Order) -> Decimal:
-    """10% discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
     discount = Decimal(0)
     for item in order.cart:
         if item.quantity >= 20:
@@ -88,7 +88,7 @@ def bulk_item_promo(order: Order) -> Decimal:
 
 
 def large_order_promo(order: Order) -> Decimal:
-    """7% discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供 7% 折扣"""
     distinct_items = {item.product for item in order.cart}
     if len(distinct_items) >= 10:
         return order.total() * Decimal('0.07')

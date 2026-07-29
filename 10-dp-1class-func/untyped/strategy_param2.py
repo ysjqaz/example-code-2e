@@ -1,5 +1,5 @@
 # strategy_param2.py
-# Strategy pattern — parametrized with callable
+# 策略模式（Strategy pattern）—— 用可调用对象（callable）参数化
 
 """
     >>> joe = Customer('John Doe', 0)
@@ -40,7 +40,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
@@ -64,7 +64,7 @@ class Order:  # the Context
 
 
 class Promotion:
-    """compute discount for order"""
+    """计算订单折扣"""
 
     def __init__(self, percent):
         self.percent = percent
@@ -74,7 +74,7 @@ class Promotion:
 
 
 class FidelityPromo(Promotion):
-    """discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供折扣"""
 
     def __call__(self, order):
         if order.customer.fidelity >= 1000:
@@ -83,7 +83,7 @@ class FidelityPromo(Promotion):
 
 
 class BulkItemPromo(Promotion):
-    """discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供折扣"""
 
     def __call__(self, order):
         discount = 0
@@ -94,7 +94,7 @@ class BulkItemPromo(Promotion):
 
 
 class LargeOrderPromo(Promotion):
-    """discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供折扣"""
 
     def __call__(self, order):
         distinct_items = {item.product for item in order.cart}

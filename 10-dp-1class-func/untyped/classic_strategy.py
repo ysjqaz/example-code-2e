@@ -1,5 +1,5 @@
 # classic_strategy.py
-# Strategy pattern -- classic implementation
+# 策略模式（Strategy pattern）—— 经典实现
 
 """
 # tag::CLASSIC_STRATEGY_TESTS[]
@@ -45,7 +45,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
@@ -68,22 +68,22 @@ class Order:  # the Context
         return f'<Order total: {self.total():.2f} due: {self.due():.2f}>'
 
 
-class Promotion(ABC):  # the Strategy: an abstract base class
+class Promotion(ABC):  # 策略（Strategy）：一个抽象基类（abstract base class）
 
     @abstractmethod
     def discount(self, order):
-        """Return discount as a positive dollar amount"""
+        """返回折扣金额（正数，以美元计）"""
 
 
-class FidelityPromo(Promotion):  # first Concrete Strategy
-    """5% discount for customers with 1000 or more fidelity points"""
+class FidelityPromo(Promotion):  # 第一个具体策略（Concrete Strategy）
+    """为积分达到 1000 及以上的顾客提供 5% 折扣"""
 
     def discount(self, order):
         return order.total() * .05 if order.customer.fidelity >= 1000 else 0
 
 
-class BulkItemPromo(Promotion):  # second Concrete Strategy
-    """10% discount for each LineItem with 20 or more units"""
+class BulkItemPromo(Promotion):  # 第二个具体策略
+    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
 
     def discount(self, order):
         discount = 0
@@ -93,8 +93,8 @@ class BulkItemPromo(Promotion):  # second Concrete Strategy
         return discount
 
 
-class LargeOrderPromo(Promotion):  # third Concrete Strategy
-    """7% discount for orders with 10 or more distinct items"""
+class LargeOrderPromo(Promotion):  # 第三个具体策略
+    """为含 10 个及以上不同商品的订单提供 7% 折扣"""
 
     def discount(self, order):
         distinct_items = {item.product for item in order.cart}

@@ -1,6 +1,6 @@
 # strategy_best3.py
-# Strategy pattern -- function-based implementation
-# selecting best promotion from imported module
+# 策略模式（Strategy pattern）—— 基于函数的实现
+# 从导入的模块中选择最佳促销
 
 """
     >>> from promotions import *
@@ -55,7 +55,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
@@ -83,9 +83,8 @@ promos = [func for name, func in
                 inspect.getmembers(promotions, inspect.isfunction)]
 
 def best_promo(order):
-    """Select best discount available
+    """选择可用的最佳折扣
     """
     return max(promo(order) for promo in promos)
 
 # end::STRATEGY_BEST3[]
-

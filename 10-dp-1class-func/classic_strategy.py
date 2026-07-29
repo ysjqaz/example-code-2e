@@ -1,5 +1,5 @@
 # classic_strategy.py
-# Strategy pattern -- classic implementation
+# 策略模式（Strategy pattern）—— 经典实现
 
 """
 # tag::CLASSIC_STRATEGY_TESTS[]
@@ -48,7 +48,7 @@ class LineItem(NamedTuple):
         return self.price * self.quantity
 
 
-class Order(NamedTuple):  # the Context
+class Order(NamedTuple):  # 上下文（Context）
     customer: Customer
     cart: Sequence[LineItem]
     promotion: Optional['Promotion'] = None
@@ -84,8 +84,8 @@ class FidelityPromo(Promotion):  # first Concrete Strategy
         return Decimal(0)
 
 
-class BulkItemPromo(Promotion):  # second Concrete Strategy
-    """10% discount for each LineItem with 20 or more units"""
+class BulkItemPromo(Promotion):  # 第二个具体策略
+    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
 
     def discount(self, order: Order) -> Decimal:
         discount = Decimal(0)

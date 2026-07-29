@@ -1,5 +1,5 @@
 # strategy_param.py
-# Strategy pattern -- parametrized with closure
+# 策略模式（Strategy pattern）—— 用闭包（closure）参数化
 
 """
     >>> joe = Customer('John Doe', 0)
@@ -40,7 +40,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
@@ -64,13 +64,13 @@ class Order:  # the Context
 
 
 def fidelity_promo(percent):
-    """discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供折扣"""
     return lambda order: (order.total() * percent / 100
                           if order.customer.fidelity >= 1000 else 0)
 
 
 def bulk_item_promo(percent):
-    """discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供折扣"""
     def discounter(order):
         discount = 0
         for item in order.cart:
@@ -81,7 +81,7 @@ def bulk_item_promo(percent):
 
 
 def large_order_promo(percent):
-    """discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供折扣"""
     def discounter(order):
         distinct_items = {item.product for item in order.cart}
         if len(distinct_items) >= 10:

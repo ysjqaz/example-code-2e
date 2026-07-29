@@ -1,6 +1,6 @@
 # strategy_best3.py
-# Strategy pattern -- function-based implementation
-# selecting best promotion from imported module
+# 策略模式（Strategy pattern）—— 基于函数的实现
+# 从导入的模块中选择最佳促销
 
 """
     >>> from decimal import Decimal
@@ -51,7 +51,7 @@ promos = [func for _, func in inspect.getmembers(promotions, inspect.isfunction)
 
 
 def best_promo(order: Order) -> Decimal:
-    """Compute the best discount available"""
+    """计算可用的最佳折扣"""
     return max(promo(order) for promo in promos)
 
 # end::STRATEGY_BEST3[]

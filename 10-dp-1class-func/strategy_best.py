@@ -1,6 +1,6 @@
 # strategy_best.py
-# Strategy pattern -- function-based implementation
-# selecting best promotion from static list of functions
+# 策略模式（Strategy pattern）—— 基于函数的实现
+# 从静态函数列表中选择最佳促销
 
 """
     >>> from strategy import Customer, LineItem
@@ -37,7 +37,7 @@ promos = [fidelity_promo, bulk_item_promo, large_order_promo]  # <1>
 
 
 def best_promo(order: Order) -> Decimal:  # <2>
-    """Compute the best discount available"""
+    """计算可用的最佳折扣"""
     return max(promo(order) for promo in promos)  # <3>
 
 

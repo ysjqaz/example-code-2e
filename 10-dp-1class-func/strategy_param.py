@@ -1,5 +1,5 @@
 # strategy_param.py
-# Strategy pattern -- parametrized with closure
+# 策略模式（Strategy pattern）—— 用闭包（closure）参数化
 
 """
     >>> joe = Customer('John Doe', 0)
@@ -22,7 +22,7 @@
     >>> Order(joe, cart, LargeOrderPromo(7))
     <Order total: 42.00 due: 42.00>
 
-Using ``partial`` to build a parametrized discounter on the fly::
+使用 ``partial`` 即时构建一个参数化的折扣器::
 
     >>> from functools import partial
     >>> Order(joe, cart, partial(general_discount, 5))
@@ -49,7 +49,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
     def __init__(
         self,
         customer: Customer,
@@ -82,14 +82,14 @@ Promotion = Callable[[Order], float]  # <2>
 
 
 def fidelity_promo(percent: float) -> Promotion:
-    """discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供折扣"""
     return lambda order: (
         order.total() * percent / 100 if order.customer.fidelity >= 1000 else 0
     )
 
 
 def bulk_item_promo(percent: float) -> Promotion:
-    """discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供折扣"""
 
     def discounter(order: Order) -> float:
         discount = 0
@@ -102,7 +102,7 @@ def bulk_item_promo(percent: float) -> Promotion:
 
 
 class LargeOrderPromo:
-    """discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供折扣"""
 
     def __init__(self, percent: float):
         self.percent = percent
@@ -115,7 +115,7 @@ class LargeOrderPromo:
 
 
 def general_discount(percent: float, order: Order) -> float:
-    """unrestricted discount; usage: ``partial(general_discount, 5)``"""
+    """无限制折扣；用法：``partial(general_discount, 5)``"""
     return order.total() * percent / 100
 
 

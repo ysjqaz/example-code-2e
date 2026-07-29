@@ -1,6 +1,6 @@
 # strategy_best2.py
-# Strategy pattern -- function-based implementation
-# selecting best promotion from current module globals
+# 策略模式（Strategy pattern）—— 基于函数的实现
+# 从当前模块的全局变量中选择最佳促销
 
 """
     >>> joe = Customer('John Doe', 0)
@@ -51,7 +51,7 @@ class LineItem:
         return self.price * self.quantity
 
 
-class Order:  # the Context
+class Order:  # 上下文（Context）
 
     def __init__(self, customer, cart, promotion=None):
         self.customer = customer
@@ -75,12 +75,12 @@ class Order:  # the Context
 
 
 def fidelity_promo(order):
-    """5% discount for customers with 1000 or more fidelity points"""
+    """为积分达到 1000 及以上的顾客提供 5% 折扣"""
     return order.total() * .05 if order.customer.fidelity >= 1000 else 0
 
 
 def bulk_item_promo(order):
-    """10% discount for each LineItem with 20 or more units"""
+    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
     discount = 0
     for item in order.cart:
         if item.quantity >= 20:
@@ -89,7 +89,7 @@ def bulk_item_promo(order):
 
 
 def large_order_promo(order):
-    """7% discount for orders with 10 or more distinct items"""
+    """为含 10 个及以上不同商品的订单提供 7% 折扣"""
     distinct_items = {item.product for item in order.cart}
     if len(distinct_items) >= 10:
         return order.total() * .07
@@ -102,7 +102,7 @@ promos = [globals()[name] for name in globals()  # <1>
             and name != 'best_promo']   # <3>
 
 def best_promo(order):
-    """Select best discount available
+    """选择可用的最佳折扣
     """
     return max(promo(order) for promo in promos)  # <4>
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Testing ``WilyDict``::
+测试 ``WilyDict``::
 
     >>> from autoconst import WilyDict
     >>> wd = WilyDict()
@@ -24,7 +24,7 @@ Testing ``WilyDict``::
       ...
     KeyError: '__magic__'
 
-Testing ``AutoConst``::
+测试 ``AutoConst``::
 
     >>> from autoconst import AutoConst
 

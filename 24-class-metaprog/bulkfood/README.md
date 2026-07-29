@@ -1,34 +1,35 @@
 # Legacy Class Descriptor and Metaclass Examples
 
-Examples from _Fluent Python, First Edition_—Chapter 21, _Class Metaprogramming_,
-that are mentioned in _Fluent Python, Second Edition_—Chapter 25, _Class Metaprogramming_.
+# 遗留的类描述符与元类示例
 
-These examples were developed with Python 3.4.
-They run correctly in Python 3.9, but now it is easier to fullfill the same requirements
-without resorting to class decorators or metaclasses.
+这些示例取自《Fluent Python》第一版第 21 章「Class Metaprogramming」，
+在《Fluent Python》第二版第 25 章「Class Metaprogramming」中也有提及。
 
-I have preserved them here as examples of class metaprogramming techniques
-that you may find in legacy code, and that can be refactored to simpler code
-using a base class with `__init_subclass__` and decorators implementing `__set_name__`.
+这些示例是用 Python 3.4 开发的。
+它们在 Python 3.9 下能正确运行，但如今不依赖类装饰器（decorator）或元类（metaclass）
+也能更轻松地满足同样的需求。
 
-## Suggested Exercise
+这里保留它们，作为你可能在中遗留代码里见到的类元编程技术示例；
+这类代码可以用实现了 `__set_name__` 的基类配合 `__init_subclass__` 与装饰器
+重构为更简洁的形式。
 
-If you'd like to practice the concepts presented in chapters 24 and 25 of
-_Fluent Python, Second Edition_,
-you may to refactor the most advanced example, `model_v8.py` with these changes:
+## 建议练习
 
-1. Simplify the `AutoStorage` descriptor by implementing `__set_name__`.
-This will allow you to simplify the `EntityMeta` metaclass as well.
+如果你想练习《Fluent Python》第二版第 24 章和第 25 章介绍的概念，
+可以对最进阶的示例 `model_v8.py` 做如下改造：
 
-2. Rewrite the `Entity` class to use `__init_subclass__` instead of the `EntityMeta` metaclass—which you can then delete.
+1. 通过实现 `__set_name__` 来简化 `AutoStorage` 描述符（descriptor）。
+   这样你也能简化 `EntityMeta` 元类。
 
-Nothing should change in the `bulkfood_v8.py` code, and its doctests should still pass.
+2. 重写 `Entity` 类，用 `__init_subclass__` 取代 `EntityMeta` 元类——之后你就可以把 `EntityMeta` 删掉了。
 
-To run the doctests while refactoring, it's often convenient to pass the `-f` option,
-to exit the test runner on the first failing test.
+`bulkfood_v8.py` 的代码无需改动，其中的 doctest 仍应通过。
+
+重构时为了便于跑 doctest，常方便地加上 `-f` 选项，
+让测试运行器在第一个失败的测试处即退出：
 
 ```
 $ python3 -m doctest -f bulkfood_v8.py
 ```
 
-Enjoy!
+祝你玩得开心！

@@ -1,5 +1,5 @@
 """
-record_factory: create simple classes just for holding data fields
+record_factory：创建仅用于保存数据字段的简单类（class）
 
 # tag::RECORD_FACTORY_DEMO[]
     >>> Dog = record_factory('Dog', 'name weight owner')  # <1>
@@ -19,7 +19,7 @@ record_factory: create simple classes just for holding data fields
 
 # end::RECORD_FACTORY_DEMO[]
 
-The factory also accepts a list or tuple of identifiers:
+该工厂也接受标识符的列表或元组：
 
     >>> Dog = record_factory('Dog', ['name', 'weight', 'owner'])
     >>> Dog.__slots__

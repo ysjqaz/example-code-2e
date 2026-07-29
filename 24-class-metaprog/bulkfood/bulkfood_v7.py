@@ -1,31 +1,30 @@
 """
 
-A line item for a bulk food order has description, weight and price fields::
+散装食品订单中的一个明细项（line item）包含 description、weight 和 price 字段::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> raisins.weight, raisins.description, raisins.price
     (10, 'Golden raisins', 6.95)
 
-A ``subtotal`` method gives the total price for that line item::
+``subtotal`` 方法返回该明细项的总价::
 
     >>> raisins.subtotal()
     69.5
 
-The weight of a ``LineItem`` must be greater than 0::
+``LineItem`` 的 weight 必须大于 0::
 
     >>> raisins.weight = -20
     Traceback (most recent call last):
         ...
     ValueError: value must be > 0
 
-No change was made::
+没有发生改变::
 
     >>> raisins.weight
     10
 
-The value of the attributes managed by the descriptors are stored in
-alternate attributes, created by the descriptors in each ``LineItem``
-instance::
+由描述符（descriptor）管理的属性，其值存放在备选属性里；
+这些备选属性由描述符在每个 ``LineItem`` 实例（instance）上创建::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> dir(raisins)[:3]
@@ -37,8 +36,7 @@ instance::
     >>> getattr(raisins, '_NonBlank#description')
     'Golden raisins'
 
-If the descriptor is accessed in the class, the descriptor object is
-returned:
+如果在类上访问描述符，返回的是描述符对象本身：
 
     >>> LineItem.weight  # doctest: +ELLIPSIS
     <model_v7.Quantity object at 0x...>
@@ -46,8 +44,7 @@ returned:
     '_Quantity#weight'
 
 
-The `NonBlank` descriptor prevents empty or blank strings to be used
-for the description:
+`NonBlank` 描述符禁止把空字符串或全空白字符串用作 description：
 
     >>> br_nuts = LineItem('Brazil Nuts', 10, 34.95)
     >>> br_nuts.description = ' '

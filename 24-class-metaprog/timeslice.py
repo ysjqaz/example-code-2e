@@ -1,6 +1,6 @@
 
 """
-Could this be valid Python?
+这可能是合法的 Python 代码吗？
 
     if now >= T[4:20:PM]: chill()
 

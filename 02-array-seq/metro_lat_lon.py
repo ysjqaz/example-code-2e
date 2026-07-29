@@ -1,7 +1,7 @@
 """
 metro_lat_lon.py
 
-Demonstration of nested tuple unpacking::
+嵌套元组（tuple）解包的演示::
 
     >>> main()
                     |  latitude | longitude

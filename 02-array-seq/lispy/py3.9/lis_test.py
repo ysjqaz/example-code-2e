@@ -4,14 +4,14 @@ from pytest import mark, fixture
 
 from lis import parse, evaluate, Expression, Environment, standard_env
 
-############################################################# tests for parse
+############################################################# parse 的测试
 
 @mark.parametrize( 'source, expected', [
     ('7', 7),
     ('x', 'x'),
     ('(sum 1 2 3)', ['sum', 1, 2, 3]),
     ('(+ (* 2 100) (* 1 10))', ['+', ['*', 2, 100], ['*', 1, 10]]),
-    ('99 100', 99),  # parse stops at the first complete expression
+    ('99 100', 99),  # parse 在第一个完整表达式处停止
     ('(a)(b)', ['a']),
 ])
 def test_parse(source: str, expected: Expression) -> None:
@@ -19,10 +19,10 @@ def test_parse(source: str, expected: Expression) -> None:
     assert got == expected
 
 
-########################################################## tests for evaluate
+########################################################## evaluate 的测试
 
-# Norvig's tests are not isolated: they assume the
-# same environment from first to last test.
+# Norvig 的测试不是隔离的：它们假设
+# 从第一个到最后一个测试都使用同一个环境。
 global_env_for_first_test = standard_env()
 
 @mark.parametrize( 'source, expected', [
@@ -73,7 +73,7 @@ def test_evaluate(source: str, expected: Optional[Expression]) -> None:
 def std_env() -> Environment:
     return standard_env()
 
-# tests for cases in evaluate
+# evaluate 各分支的测试
 
 def test_evaluate_variable() -> None:
     env = Environment({'x': 10})

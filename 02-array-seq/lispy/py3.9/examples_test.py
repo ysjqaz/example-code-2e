@@ -1,5 +1,5 @@
 """
-Doctests for `parse`
+`parse` 的 doctest
 --------------------
 
 # tag::PARSE[]
@@ -19,7 +19,7 @@ Doctests for `parse`
 
 # end::PARSE[]
 
-Doctest for `Environment`
+`Environment` 的 doctest
 -------------------------
 
 # tag::ENVIRONMENT[]
@@ -37,7 +37,7 @@ Environment({'a': 111, 'c': 222}, {'a': 0, 'b': 333})
 
 # end::ENVIRONMENT[]
 
-Doctests for `evaluate`
+`evaluate` 的 doctest
 -----------------------
 
 # tag::EVAL_NUMBER[]
@@ -107,7 +107,7 @@ KeyError: 'ni!'
 
 # end::EVAL_DEFUN[]
 
-function call:
+函数调用：
 
 # tag::EVAL_CALL[]
 >>> evaluate(parse('(% (* 12 14) (- 500 100))'), global_env)

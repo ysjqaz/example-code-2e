@@ -1,7 +1,7 @@
 """
 bisect_demo.py
 
-Demonstration of ``bisect.bisect``::
+``bisect.bisect`` 的演示::
 
     >>> import bisect
     >>> demo(bisect.bisect)
@@ -18,7 +18,7 @@ Demonstration of ``bisect.bisect``::
      0 @  0    0
 
 
-Demonstration of ``bisect.bisect_left``::
+``bisect.bisect_left`` 的演示::
 
     >>> demo(bisect.bisect_left)
     31 @ 14      |  |  |  |  |  |  |  |  |  |  |  |  |  |31

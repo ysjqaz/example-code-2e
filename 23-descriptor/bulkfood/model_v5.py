@@ -12,12 +12,12 @@ class Validated(abc.ABC):
 
     @abc.abstractmethod
     def validate(self, name, value):  # <3>
-        """return validated value or raise ValueError"""
+        """返回校验后的值，或抛出 ValueError"""
 # end::MODEL_V5_VALIDATED_ABC[]
 
 # tag::MODEL_V5_VALIDATED_SUB[]
 class Quantity(Validated):
-    """a number greater than zero"""
+    """一个大于零的数"""
 
     def validate(self, name, value):  # <1>
         if value <= 0:
@@ -26,7 +26,7 @@ class Quantity(Validated):
 
 
 class NonBlank(Validated):
-    """a string with at least one non-space character"""
+    """一个至少包含一个非空白字符的字符串"""
 
     def validate(self, name, value):
         value = value.strip()

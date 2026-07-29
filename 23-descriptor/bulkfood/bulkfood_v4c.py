@@ -1,37 +1,36 @@
 """
 
-A line item for a bulk food order has description, weight and price fields::
+散装食品订单中的一个行项目有 description、weight 和 price 字段::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> raisins.weight, raisins.description, raisins.price
     (10, 'Golden raisins', 6.95)
 
-A ``subtotal`` method gives the total price for that line item::
+``subtotal`` 方法给出该行项目的总价::
 
     >>> raisins.subtotal()
     69.5
 
-The weight of a ``LineItem`` must be greater than 0::
+``LineItem`` 的 weight 必须大于 0::
 
     >>> raisins.weight = -20
     Traceback (most recent call last):
         ...
     ValueError: weight must be > 0
 
-No change was made::
+未做任何更改::
 
     >>> raisins.weight
     10
 
-Negative or 0 price is not acceptable either::
+价格为负数或 0 同样不可接受::
 
     >>> truffle = LineItem('White truffle', 100, 0)
     Traceback (most recent call last):
         ...
     ValueError: price must be > 0
 
-If the descriptor is accessed in the class, the descriptor object is
-returned:
+如果在类上访问该描述符，会返回描述符对象本身:
 
     >>> LineItem.weight  # doctest: +ELLIPSIS
     <model_v4c.Quantity object at 0x...>

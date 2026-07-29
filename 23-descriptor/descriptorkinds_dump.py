@@ -1,7 +1,7 @@
 
 
 """
-Overriding descriptor (a.k.a. data descriptor or enforced descriptor):
+覆盖型描述符（overriding descriptor，又称数据描述符（data descriptor）或强制描述符（enforced descriptor））：
 
     >>> obj = Model()
     >>> obj.over  # doctest: +ELLIPSIS
@@ -16,7 +16,7 @@ Overriding descriptor (a.k.a. data descriptor or enforced descriptor):
         owner    = <class 'descriptorkinds.Model'>
 
 
-An overriding descriptor cannot be shadowed by assigning to an instance:
+覆盖型描述符无法通过对实例赋值来遮蔽：
 
     >>> obj = Model()
     >>> obj.over = 7  # doctest: +ELLIPSIS
@@ -31,7 +31,7 @@ An overriding descriptor cannot be shadowed by assigning to an instance:
         owner    = <class 'descriptorkinds.Model'>
 
 
-Not even by poking the attribute into the instance ``__dict__``:
+即使把属性塞进实例的 ``__dict__`` 也无法遮蔽：
 
     >>> obj.__dict__['over'] = 8
     >>> obj.over  # doctest: +ELLIPSIS
@@ -42,7 +42,7 @@ Not even by poking the attribute into the instance ``__dict__``:
     >>> vars(obj)
     {'over': 8}
 
-Overriding descriptor without ``__get__``:
+没有 ``__get__`` 的覆盖型描述符：
 
     >>> obj.over_no_get  # doctest: +ELLIPSIS
     <descriptorkinds.OverridingNoGet object at 0x...>
@@ -57,8 +57,8 @@ Overriding descriptor without ``__get__``:
     <descriptorkinds.OverridingNoGet object at 0x...>
 
 
-Poking the attribute into the instance ``__dict__`` means you can read the new
-value for the attribute, but setting it still triggers ``__set__``:
+把属性塞进实例的 ``__dict__`` 意味着你可以读到该属性的新值，
+但对它赋值仍然会触发 ``__set__``：
 
     >>> obj.__dict__['over_no_get'] = 9
     >>> obj.over_no_get
@@ -72,7 +72,7 @@ value for the attribute, but setting it still triggers ``__set__``:
     9
 
 
-Non-overriding descriptor (a.k.a. non-data descriptor or shadowable descriptor):
+非覆盖型描述符（non-overriding descriptor，又称非数据描述符（non-data descriptor）或可遮蔽描述符（shadowable descriptor））：
 
     >>> obj = Model()
     >>> obj.non_over  # doctest: +ELLIPSIS
@@ -87,14 +87,14 @@ Non-overriding descriptor (a.k.a. non-data descriptor or shadowable descriptor):
         owner    = <class 'descriptorkinds.Model'>
 
 
-A non-overriding descriptor can be shadowed by assigning to an instance:
+非覆盖型描述符可以通过对实例赋值来遮蔽：
 
     >>> obj.non_over = 7
     >>> obj.non_over
     7
 
 
-Methods are non-over descriptors:
+方法是非覆盖型描述符：
 
     >>> obj.spam  # doctest: +ELLIPSIS
     <bound method Model.spam of <descriptorkinds.Model object at 0x...>>
@@ -108,7 +108,7 @@ Methods are non-over descriptors:
     7
 
 
-No descriptor type survives being overwritten on the class itself:
+任何类型的描述符都经不住在类本身上被覆盖：
 
     >>> Model.over = 1
     >>> obj.over
@@ -134,7 +134,7 @@ def print_args(name, *args):  # <1>
 
 
 class Overriding:  # <2>
-    """a.k.a. data descriptor or enforced descriptor"""
+    """又称数据描述符（data descriptor）或强制描述符（enforced descriptor）"""
 
     def __get__(self, instance, owner):
         print_args('get', self, instance, owner)  # <3>
@@ -144,14 +144,14 @@ class Overriding:  # <2>
 
 
 class OverridingNoGet:  # <4>
-    """an overriding descriptor without ``__get__``"""
+    """一个没有 ``__get__`` 的覆盖型描述符"""
 
     def __set__(self, instance, value):
         print_args('set', self, instance, value)
 
 
 class NonOverriding:  # <5>
-    """a.k.a. non-data or shadowable descriptor"""
+    """又称非数据描述符（non-data descriptor）或可遮蔽描述符（shadowable descriptor）"""
 
     def __get__(self, instance, owner):
         print_args('get', self, instance, owner)

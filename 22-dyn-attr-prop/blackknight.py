@@ -1,8 +1,7 @@
 """
-This class is inspired by the Black Knight scene in the movie
-"Monty Python and the Holy Grail", where King Arthur fights the
-Black Knight, slicing off his arms and legs, but the knight
-refuses to concede defeat.
+本类的灵感来自电影《巨蟒与圣杯》（Monty Python and the Holy Grail）中的
+「黑骑士」一幕：亚瑟王与黑骑士搏斗，砍掉了他的双臂双腿，
+但黑骑士拒绝认输。
 
 # tag::BLACK_KNIGHT_DEMO[]
     >>> knight = BlackKnight()

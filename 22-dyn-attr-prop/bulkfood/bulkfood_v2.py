@@ -1,37 +1,36 @@
 """
 
-A line item for a bulk food order has description, weight and price fields::
+散装食品订单中的一个明细项（line item），包含 description、weight 和 price 字段::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> raisins.weight, raisins.description, raisins.price
     (10, 'Golden raisins', 6.95)
 
-A ``subtotal`` method gives the total price for that line item::
+``subtotal`` 方法返回该明细项的总价::
 
     >>> raisins.subtotal()
     69.5
 
-The weight of a ``LineItem`` must be greater than 0::
+``LineItem`` 的 weight 必须大于 0::
 
     >>> raisins.weight = -20
     Traceback (most recent call last):
         ...
     ValueError: value must be > 0
 
-No change was made::
+未做任何修改::
 
     >>> raisins.weight
     10
 
-The check is also performed on instantiation::
+实例化时也会执行该校验::
 
     >>> walnuts = LineItem('walnuts', 0, 10.00)
     Traceback (most recent call last):
         ...
     ValueError: value must be > 0
 
-The proteced attribute can still be accessed if needed for some reason, such as
-white box testing)::
+如有需要——例如白盒测试——仍然可以访问这个受保护属性（protected attribute）::
 
     >>> raisins._LineItem__weight
     10

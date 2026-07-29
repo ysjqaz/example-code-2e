@@ -1,6 +1,6 @@
 """
-A line item for a bulk food order has description, weight and price fields.
-A ``subtotal`` method gives the total price for that line item::
+散装食品订单中的一个明细项（line item），包含 description、weight 和 price 字段。
+``subtotal`` 方法返回该明细项的总价::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> raisins.weight, raisins.description, raisins.price
@@ -8,7 +8,7 @@ A ``subtotal`` method gives the total price for that line item::
     >>> raisins.subtotal()
     69.5
 
-But, without validation, these public attributes can cause trouble::
+但是，没有校验的话，这些公开属性（attribute）可能惹出麻烦::
 
 # tag::LINEITEM_PROBLEM_V1[]
 

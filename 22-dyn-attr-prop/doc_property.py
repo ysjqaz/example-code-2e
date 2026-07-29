@@ -1,5 +1,5 @@
 """
-Example of property documentation
+特性（property）文档化的示例
 
     >>> f = Foo()
     >>> f.bar = 77

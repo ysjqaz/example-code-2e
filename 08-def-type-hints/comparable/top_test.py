@@ -34,7 +34,7 @@ def test_top_tuples() -> None:
         reveal_type(result)
     assert result == expected
 
-# intentional type error
+# 故意的类型错误
 def test_top_objects_error() -> None:
     series = [object() for _ in range(4)]
     if TYPE_CHECKING:

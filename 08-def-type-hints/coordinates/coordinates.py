@@ -1,4 +1,4 @@
-# This example uses the geolib library:
+# 本示例使用 geolib 库：
 # https://pypi.org/project/geolib/
 
 """

@@ -1,5 +1,5 @@
 """
-``zip_replace`` replaces multiple calls to ``str.replace``::
+``zip_replace`` 替代对 ``str.replace`` 的多次调用::
 
     >>> changes = [
     ...     ('(', ' ( '),

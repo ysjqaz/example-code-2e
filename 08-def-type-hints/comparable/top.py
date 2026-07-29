@@ -1,6 +1,6 @@
 """
-``top(it, n)`` returns the "greatest" ``n`` elements of the iterable ``t``.
-Example:
+``top(it, n)`` 返回可迭代对象 ``t`` 中“最大”的 ``n`` 个元素。
+示例：
 
 # tag::TOP_DOCTEST[]
 >>> top([4, 1, 5, 2, 6, 7, 3], 3)

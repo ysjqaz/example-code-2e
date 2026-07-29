@@ -1,6 +1,6 @@
 """
-``name_index`` builds an inverted index mapping words to sets of Unicode
-characters which contain that word in their names. For example::
+``name_index`` 构建一个倒排索引（inverted index），将单词映射到名称中包含该单词的
+Unicode 字符集合。例如::
 
     >>> index = name_index(32, 65)
     >>> sorted(index['SIGN'])
@@ -21,7 +21,7 @@ RE_WORD = re.compile(r'\w+')
 STOP_CODE = sys.maxunicode + 1
 
 def tokenize(text: str) -> Iterator[str]:  # <1>
-    """return iterable of uppercased words"""
+    """返回大写单词的可迭代对象"""
     for match in RE_WORD.finditer(text):
         yield match.group().upper()
 

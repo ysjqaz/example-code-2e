@@ -4,7 +4,7 @@ values_map = [
 ]
 
 def to_roman(arabic: int) -> str:
-    """ Convert an integer to a Roman numeral. """
+    """ 将整数转换为罗马数字。 """
     if not 0 < arabic < 4000:
         raise ValueError('Argument must be between 1 and 3999')
 

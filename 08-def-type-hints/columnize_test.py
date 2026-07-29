@@ -47,8 +47,8 @@ def test_columnize_8_in_3():
 
 
 def test_columnize_8_in_5():
-    # Not the right number of columns, but the right number of rows.
-    # This actually looks better, so it's OK!
+    # 列数不对，但行数是对的。
+    # 这样其实更好看，所以没问题！
     sequence = 'ABCDEFGH'
     expected = [
         ('A', 'C', 'E', 'G'),
@@ -59,8 +59,8 @@ def test_columnize_8_in_5():
 
 
 def test_columnize_7_in_5():
-    # Not the right number of columns, but the right number of rows.
-    # This actually looks better, so it's OK!
+    # 列数不对，但行数是对的。
+    # 这样其实更好看，所以没问题！
     sequence = 'ABCDEFG'
     expected = [
         ('A', 'C', 'E', 'G'),

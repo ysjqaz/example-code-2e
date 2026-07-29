@@ -1,4 +1,4 @@
-# This example requires the geolib library:
+# 本示例需要 geolib 库：
 # https://pypi.org/project/geolib/
 
 

@@ -1,26 +1,26 @@
 # tag::DOCTESTS[]
 """
-``HackerClubMember`` objects can be created with a ``name`` and an optional ``handle``::
+``HackerClubMember`` 对象可用 ``name`` 和一个可选的 ``handle`` 参数来创建::
 
     >>> anna = HackerClubMember('Anna Ravenscroft', handle='AnnaRaven')
     >>> anna
     HackerClubMember(name='Anna Ravenscroft', guests=[], handle='AnnaRaven')
 
-If ``handle`` is omitted, it's set to the first part of the member's name::
+如果省略 ``handle``，则取成员名的第一部分作为其值::
 
     >>> leo = HackerClubMember('Leo Rochael')
     >>> leo
     HackerClubMember(name='Leo Rochael', guests=[], handle='Leo')
 
-Members must have a unique handle. This ``leo2`` will not be created,
-because its ``handle`` would be 'Leo', which was taken by ``leo``::
+成员必须拥有唯一的 handle。下面的 ``leo2`` 将无法被创建，
+因为它的 ``handle`` 会是 'Leo'，而该值已被 ``leo`` 占用::
 
     >>> leo2 = HackerClubMember('Leo DaVinci')
     Traceback (most recent call last):
       ...
     ValueError: handle 'Leo' already exists.
 
-To fix, ``leo2`` must be created with an explicit ``handle``::
+要解决此问题，必须为 ``leo2`` 显式指定一个 ``handle``::
 
     >>> leo2 = HackerClubMember('Leo DaVinci', handle='Neo')
     >>> leo2

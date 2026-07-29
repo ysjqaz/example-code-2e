@@ -1,5 +1,5 @@
 """
-``Coordinate``: a simple ``NamedTuple`` subclass with a custom ``__str__``::
+``Coordinate``：一个带自定义 ``__str__`` 的简单 ``NamedTuple``（具名元组）子类::
 
     >>> moscow = Coordinate(55.756, 37.617)
     >>> print(moscow)

@@ -1,5 +1,5 @@
 """
-``Coordinate``: a simple class with a custom ``__str__``::
+``Coordinate``：一个带自定义 ``__str__`` 的简单类（class）::
 
     >>> moscow = Coordinate(55.756, 37.617)
     >>> print(moscow)  # doctest:+ELLIPSIS

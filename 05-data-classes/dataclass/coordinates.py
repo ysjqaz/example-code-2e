@@ -1,5 +1,5 @@
 """
-``Coordinate``: simple class decorated with ``dataclass`` and a custom ``__str__``::
+``Coordinate``：用 ``dataclass`` 装饰、并带自定义 ``__str__`` 的简单类（class）::
 
     >>> moscow = Coordinate(55.756, 37.617)
     >>> print(moscow)

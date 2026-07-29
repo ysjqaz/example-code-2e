@@ -1,7 +1,7 @@
 """
-Media resource description class with subset of the Dublin Core fields.
+媒体资源描述类，包含 Dublin Core 字段的一个子集。
 
-Default field values:
+默认字段值：
 
     >>> r = Resource('0')
     >>> r  # doctest: +NORMALIZE_WHITESPACE
@@ -16,7 +16,7 @@ Default field values:
         subjects = [],
     )
 
-A complete resource record:
+一条完整的资源记录：
 
     >>> description = 'Improving the design of existing code'
     >>> book = Resource('978-0-13-475759-9', 'Refactoring, 2nd Edition',
@@ -54,7 +54,7 @@ class ResourceType(Enum):
 
 @dataclass
 class Resource:
-    """Media resource description."""
+    """媒体资源描述。"""
     identifier: str
     title: str = '<untitled>'
     creators: list[str] = field(default_factory=list)

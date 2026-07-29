@@ -1,7 +1,7 @@
 """
-``Coordinate``: a simple ``NamedTuple`` subclass
+``Coordinate``：一个简单的 ``NamedTuple``（具名元组）子类
 
-This version has a field with a default value::
+本版本包含一个带默认值的字段::
 
     >>> moscow = Coordinate(55.756, 37.617)
     >>> moscow

@@ -17,8 +17,8 @@ async def finder(index: InvertedIndex,          # <2>
                  writer: asyncio.StreamWriter) -> None:
     client = writer.get_extra_info('peername')  # <3>
     while True:  # <4>
-        writer.write(PROMPT)  # can't await!  # <5>
-        await writer.drain()  # must await!  # <6>
+        writer.write(PROMPT)  # 不能 await！  # <5>
+        await writer.drain()  # 必须 await！  # <6>
         data = await reader.readline()  # <7>
         if not data:  # <8>
             break

@@ -33,4 +33,4 @@ async def search(q: str):  # <7>
 def form():  # <9>
     return app.state.form
 
-# no main funcion  # <10>
+# 无 main 函数  # <10>

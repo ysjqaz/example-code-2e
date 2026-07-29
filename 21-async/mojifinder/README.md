@@ -1,41 +1,43 @@
 # Mojifinder: Unicode character search examples
 
-Examples from _Fluent Python, Second Edition_—Chapter 22, _Asynchronous Programming_.
+# Mojifinder：Unicode 字符搜索示例
 
-## How to run `web_mojifinder.py`
+摘自《Fluent Python, Second Edition》第 22 章「异步编程（Asynchronous Programming）」。
 
-`web_mojifinder.py` is a Web application built with _[FastAPI](https://fastapi.tiangolo.com/)_.
-To run it, first install _FastAPI_ and an ASGI server.
-The application was tested with _[Uvicorn](https://www.uvicorn.org/)_.
+## 如何运行 `web_mojifinder.py`
+
+`web_mojifinder.py` 是一个用 _[FastAPI](https://fastapi.tiangolo.com/)_ 构建的 Web 应用。
+运行它之前，先安装 _FastAPI_ 和一个 ASGI 服务器。
+本应用使用 _[Uvicorn](https://www.uvicorn.org/)_ 做过测试。
 
 ```
 $ pip install fastapi uvicorn
 ```
 
-Now you can use `uvicorn` to run the app.
+现在可以用 `uvicorn` 启动应用了。
 
 ```
 $ uvicorn web_mojifinder:app
 ```
 
-Finally, visit http://127.0.0.1:8000/ with your browser to see the search form.
+最后，用浏览器访问 http://127.0.0.1:8000/ 即可看到搜索表单。
 
 
-## Directory contents
+## 目录内容
 
-These files can be run as scripts directly from the command line:
+下列文件可作为脚本直接从命令行运行：
 
-- `charindex.py`: libray used by the Mojifinder examples. Also works as CLI search script.
-- `tcp_mojifinder.py`: TCP/IP Unicode search server. Depends only on the Python 3.9 standard library. Use a telnet application as client.
-- `web_mojifinder_bottle.py`: Unicode Web service. Depends on `bottle.py` and `static/form.html`. Use an HTTP browser as client.
+- `charindex.py`：Mojifinder 示例使用的库。也可作为命令行搜索脚本使用。
+- `tcp_mojifinder.py`：TCP/IP Unicode 搜索服务器。仅依赖 Python 3.9 标准库。使用 telnet 应用作为客户端。
+- `web_mojifinder_bottle.py`：Unicode Web 服务。依赖 `bottle.py` 和 `static/form.html`。使用 HTTP 浏览器作为客户端。
 
-This program requires an ASGI server to run it:
+下列程序需要 ASGI 服务器才能运行：
 
-- `web_mojifinder.py`: Unicode Web service. Depends on _[FastAPI](https://fastapi.tiangolo.com/)_ and `static/form.html`.
+- `web_mojifinder.py`：Unicode Web 服务。依赖 _[FastAPI](https://fastapi.tiangolo.com/)_ 和 `static/form.html`。
 
-Support files:
+辅助文件：
 
-- `bottle.py`: local copy of the single-file _[Bottle](https://bottlepy.org/)_ Web framework.
-- `requirements.txt`: list of dependencies for `web_mojifinder.py`.
-- `static/form.html`: HTML form used by the `web_*` examples.
-- `README.md`: this file 🤓
+- `bottle.py`：单文件 _[Bottle](https://bottlepy.org/)_ Web 框架的本地副本。
+- `requirements.txt`：`web_mojifinder.py` 的依赖列表。
+- `static/form.html`：`web_*` 系列示例使用的 HTML 表单。
+- `README.md`：本文件 🤓

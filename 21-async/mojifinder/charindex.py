@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 
 """
-Class ``InvertedIndex`` builds an inverted index mapping each word to
-the set of Unicode characters which contain that word in their names.
+``InvertedIndex`` 类构建一个倒排索引（inverted index），将每个单词
+映射到名字中包含该单词的 Unicode 字符集合。
 
-Optional arguments to the constructor are ``first`` and ``last+1``
-character codes to index, to make testing easier. In the examples
-below, only the ASCII range was indexed.
+构造函数的可选参数 ``first`` 和 ``last+1`` 是要建立索引的字符代码
+起止位置，这是为了方便测试。在下面的示例中，只对 ASCII 范围建立了索引。
 
-The `entries` attribute is a `defaultdict` with uppercased single
-words as keys::
+`entries` 属性是一个 `defaultdict`，以大写的单个单词作为键::
 
     >>> idx = InvertedIndex(32, 128)
     >>> idx.entries['DOLLAR']
@@ -21,8 +19,8 @@ words as keys::
     >>> idx.entries['BRILLIG']
     set()
 
-The `.search()` method takes a string, uppercases it, splits it into
-words, and returns the intersection of the entries for each word::
+`.search()` 方法接收一个字符串，将其大写、拆分为单词，
+并返回各单词对应条目的交集::
 
     >>> idx.search('capital a')
     {'A'}
@@ -41,7 +39,7 @@ Index = defaultdict[str, set[Char]]
 
 
 def tokenize(text: str) -> Iterator[str]:
-    """return iterator of uppercased words"""
+    """返回大写单词的迭代器"""
     for word in text.upper().replace('-', ' ').split():
         yield word
 
@@ -76,7 +74,7 @@ def format_results(chars: set[Char]) -> Iterator[str]:
 def main(words: list[str]) -> None:
     if not words:
         print('Please give one or more words to search.')
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     index = InvertedIndex()
     chars = index.search(' '.join(words))
     for line in format_results(chars):

@@ -1,21 +1,21 @@
 """
-Example adapted from `Atomic Kotlin` by Bruce Eckel & Svetlana Isakova,
-chapter `Creating Generics`, section `Variance`.
+示例改编自 Bruce Eckel 与 Svetlana Isakova 所著 `Atomic Kotlin`，
+`Creating Generics` 章的 `Variance` 节。
 """
 
 from typing import TypeVar, Generic, Any
 
 
 class Pet:
-    """Domestic animal kept for companionship."""
+    """作为伴侣饲养的家养动物。"""
 
 
 class Cat(Pet):
-    """Felis catus"""
+    """Felis catus（猫）"""
 
 
 class Siamese(Cat):
-    """Cat breed from Thailand"""
+    """原产泰国的猫品种"""
 
 
 T = TypeVar('T')

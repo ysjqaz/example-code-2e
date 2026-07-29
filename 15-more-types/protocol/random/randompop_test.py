@@ -20,5 +20,5 @@ def test_isinstance() -> None:
     popper: RandomPopper = SimplePopper([1])
     if TYPE_CHECKING:
         reveal_type(popper)
-        # Revealed type is 'randompop.RandomPopper'
+        # 推断出的类型为 'randompop.RandomPopper'
     assert isinstance(popper, RandomPopper)

@@ -23,7 +23,7 @@ def test_isinstance() -> None:
     popper: RandomPicker = LottoPicker[int]([1])
     if TYPE_CHECKING:
         reveal_type(popper)
-        # Revealed type is '???'
+        # 推断出的类型为 '???'
     assert isinstance(popper, LottoPicker)
 
 
@@ -34,4 +34,4 @@ def test_pick_type() -> None:
     assert pick in balls
     if TYPE_CHECKING:
         reveal_type(pick)
-        # Revealed type is '???'
+        # 推断出的类型为 '???'

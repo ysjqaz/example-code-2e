@@ -9,7 +9,7 @@ class Vector2d(NamedTuple):
         return math.hypot(self.x, self.y)
 
 def is_unit(v: SupportsAbs[float]) -> bool:  # <2>
-    """'True' if the magnitude of 'v' is close to 1."""
+    """如果 'v' 的模长接近 1，则返回 'True'。"""
     return math.isclose(abs(v), 1.0)  # <3>
 
 assert issubclass(Vector2d, SupportsAbs)  # <4>

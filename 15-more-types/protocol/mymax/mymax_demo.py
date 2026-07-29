@@ -92,10 +92,10 @@ def demo_different_key_none() -> None:
         reveal_type(expected)
         reveal_type(result)
 
-###################################### intentional type errors
+###################################### 故意触发的类型错误
 
 def error_reported_bug() -> None:
-    # example from https://github.com/python/typeshed/issues/4051
+    # 示例来自 https://github.com/python/typeshed/issues/4051
     top: Optional[int] = None
     try:
         my.max(5, top)
@@ -116,7 +116,7 @@ def error_single_arg_not_iterable() -> None:
     except TypeError as exc:
         print(exc)
 
-###################################### run demo and error functions
+###################################### 运行 demo 与 error 函数
 
 def main():
     for name, val in globals().items():

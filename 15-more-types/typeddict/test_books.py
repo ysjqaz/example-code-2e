@@ -14,7 +14,7 @@ XML_SAMPLE = """
 """.strip()
 
 
-# using plain dicts
+# 使用普通字典
 
 def test_1() -> None:
     xml = to_xml({
@@ -50,7 +50,7 @@ def test_6() -> None:
         authors=['Martin Fowler', 'Kent Beck'],
         pagecount=478
     )
-    xml = to_xml(cast(BookDict, book_data))  # cast needed
+    xml = to_xml(cast(BookDict, book_data))  # 需要 cast 转换
     assert xml == XML_SAMPLE
 
 def test_4() -> None:
@@ -89,7 +89,7 @@ BOOK_JSON = """
 """
 
 def test_load_book_0() -> None:
-    book_data: BookDict = json.loads(BOOK_JSON)  # typed var
+    book_data: BookDict = json.loads(BOOK_JSON)  # 带类型的变量
     xml = to_xml(book_data)
     assert xml == XML_SAMPLE
 
@@ -107,6 +107,6 @@ NOT_BOOK_JSON = """
 """
 
 def test_load_not_book() -> None:
-    book_data: BookDict = json.loads(BOOK_JSON)  # typed var
+    book_data: BookDict = json.loads(BOOK_JSON)  # 带类型的变量
     xml = to_xml(book_data)
     assert xml == XML_SAMPLE

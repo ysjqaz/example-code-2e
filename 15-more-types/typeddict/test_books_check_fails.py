@@ -11,7 +11,7 @@ XML_SAMPLE = """
 """.strip()
 
 def test_3() -> None:
-    xml = to_xml(BookDict(dict([  # Expected keyword arguments, {...}, or dict(...) in TypedDict constructor
+    xml = to_xml(BookDict(dict([  # 期望在 TypedDict 构造函数中使用关键字参数、{...} 或 dict(...) 形式
         ('isbn', '0134757599'),
         ('title', 'Refactoring, 2e'),
         ('authors', ['Martin Fowler', 'Kent Beck']),

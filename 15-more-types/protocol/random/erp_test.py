@@ -10,10 +10,10 @@ def test_issubclass() -> None:
 
 def test_isinstance_untyped_items_argument() -> None:
     items = [1, 2, 3]
-    popper = EnterpriserRandomPopper(items)  # [int] is not required
+    popper = EnterpriserRandomPopper(items)  # 不需要写 [int]
     if TYPE_CHECKING:
         reveal_type(popper)
-        # Revealed type is 'erp.EnterpriserRandomPopper[builtins.int*]'
+        # 推断出的类型为 'erp.EnterpriserRandomPopper[builtins.int*]'
     assert isinstance(popper, randompop.RandomPopper)
 
 
@@ -22,15 +22,15 @@ def test_isinstance_untyped_items_in_var_type() -> None:
     popper: EnterpriserRandomPopper = EnterpriserRandomPopper[int](items)
     if TYPE_CHECKING:
         reveal_type(popper)
-        # Revealed type is 'erp.EnterpriserRandomPopper[Any]'
+        # 推断出的类型为 'erp.EnterpriserRandomPopper[Any]'
     assert isinstance(popper, randompop.RandomPopper)
 
 
 def test_isinstance_item() -> None:
     items = [1, 2, 3]
-    popper = EnterpriserRandomPopper[int](items)  # [int] is not required
+    popper = EnterpriserRandomPopper[int](items)  # 不需要写 [int]
     popped = popper.pop_random()
     if TYPE_CHECKING:
         reveal_type(popped)
-        # Revealed type is 'builtins.int*'
+        # 推断出的类型为 'builtins.int*'
     assert isinstance(popped, int)

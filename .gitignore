@@ -74,3 +74,8 @@ target/
 
 # PyCharm
 .idea/
+
+.trae/
+
+pyproject.toml
+uv.lock

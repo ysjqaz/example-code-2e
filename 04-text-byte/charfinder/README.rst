@@ -2,11 +2,13 @@
 Character Finder Utility
 ========================
 
-Usage tips
-==========
+字符查找工具（Character Finder Utility）
 
-`cf.py` works as an executable on Unix-like systems,
-if you have `python3` on your `$PATH`::
+使用技巧
+========
+
+在类 Unix 系统上，如果 `$PATH` 中有 `python3`，
+`cf.py` 可以作为可执行文件运行::
 
     $ chmod +x cf.py
     $ ./cf.py cat eyes
@@ -14,12 +16,12 @@ if you have `python3` on your `$PATH`::
     U+1F63B	😻	SMILING CAT FACE WITH HEART-SHAPED EYES
     U+1F63D	😽	KISSING CAT FACE WITH CLOSED EYES
 
-Use `wc -l` to count the number of hits::
+用 `wc -l` 统计命中数量::
 
     $ ./cf.py hieroglyph | wc -l
     1663
 
-With `tee` you can get the output and the count::
+用 `tee` 可以同时得到输出和计数::
 
     $ ./cf.py trigram | tee >(wc -l)
     U+2630	☰	TRIGRAM FOR HEAVEN
@@ -33,40 +35,40 @@ With `tee` you can get the output and the count::
     8
 
 
-Running the tests
-=================
+运行测试
+========
 
-Run the ``doctest`` module from the command line on 
-this README.rst file (using ``-v`` to make tests visible)::
+在命令行中对本 README.rst 文件运行 ``doctest`` 模块
+（使用 ``-v`` 让测试过程可见）::
 
     $ python3 -m doctest README.rst -v
 
-That's what the ``test.sh`` script does.
+这正是 ``test.sh`` 脚本所做的事情。
 
 
-Tests
------
+测试
+----
 
-Import functions for testing::
+导入需要测试的函数::
 
     >>> from cf import find, main
 
-Test ``find`` with single result::
+测试 ``find`` 返回单个结果::
 
     >>> find('sign', 'registered')  # doctest:+NORMALIZE_WHITESPACE
     U+00AE	®	REGISTERED SIGN
 
-Test ``find`` with two results::
+测试 ``find`` 返回两个结果::
 
     >>> find('chess', 'queen', end=0xFFFF)  # doctest:+NORMALIZE_WHITESPACE
     U+2655	♕	WHITE CHESS QUEEN
     U+265B	♛	BLACK CHESS QUEEN
 
-Test ``find`` with no results::
+测试 ``find`` 无结果::
 
     >>> find('no_such_character')
 
-Test ``main`` with no words::
+测试 ``main`` 不传单词::
 
     >>> main([])
     Please provide words to find.

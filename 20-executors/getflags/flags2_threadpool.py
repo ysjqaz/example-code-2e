@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Download flags of countries (with error handling).
+"""下载国家国旗（带错误处理）。
 
-ThreadPool version
+线程池版本（ThreadPool）
 
-Sample run::
+示例运行::
 
     $ python3 flags2_threadpool.py -s ERROR -e
     ERROR site: http://localhost:8003/flags

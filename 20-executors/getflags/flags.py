@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Download flags of top 20 countries by population
+"""下载按人口排名前 20 位国家的国旗
 
-Sequential version
+顺序版本（sequential）
 
-Sample runs (first with new domain, so no caching ever)::
+示例运行（第一次用新域名，所以完全没有缓存）::
 
     $ ./flags.py
     BD BR CD CN DE EG ET FR ID IN IR JP MX NG PH PK RU TR US VN

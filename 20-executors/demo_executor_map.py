@@ -1,5 +1,5 @@
 """
-Experiment with ``ThreadPoolExecutor.map``
+试验 ``ThreadPoolExecutor.map``
 """
 # tag::EXECUTOR_MAP[]
 from time import sleep, strftime

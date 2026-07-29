@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-"""Download flags of countries (with error handling).
+"""下载国家国旗（带错误处理）。
 
-Sequential version
+顺序版本（sequential）
 
-Sample run::
+示例运行::
 
     $ python3 flags2_sequential.py -s DELAY b
     DELAY site: http://localhost:8002/flags

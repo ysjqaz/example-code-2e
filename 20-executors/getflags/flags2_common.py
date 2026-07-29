@@ -1,4 +1,4 @@
-"""Utilities for second set of flag examples.
+"""第二组国旗示例的公用工具。
 """
 
 import argparse
@@ -119,25 +119,25 @@ def process_args(default_concur_req):
     if args.max_req < 1:
         print('*** Usage error: --max_req CONCURRENT must be >= 1')
         parser.print_usage()
-        # "standard" exit status codes:
+        # "标准" 退出状态码：
         # https://stackoverflow.com/questions/1101957/are-there-any-standard-exit-status-codes-in-linux/40484670#40484670
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     if args.limit < 1:
         print('*** Usage error: --limit N must be >= 1')
         parser.print_usage()
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     args.server = args.server.upper()
     if args.server not in SERVERS:
         print(f'*** Usage error: --server LABEL '
               f'must be one of {server_options}')
         parser.print_usage()
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     try:
         cc_list = expand_cc_args(args.every, args.all, args.cc, args.limit)
     except ValueError as exc:
         print(exc.args[0])
         parser.print_usage()
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
 
     if not cc_list:
         cc_list = sorted(POP20_CC)[:args.limit]

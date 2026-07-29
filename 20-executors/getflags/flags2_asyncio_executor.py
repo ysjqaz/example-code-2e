@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-"""Download flags of countries (with error handling).
+"""下载国家国旗（带错误处理）。
 
-asyncio async/await version
+asyncio async/await 版本
 
 """
 # tag::FLAGS2_ASYNCIO_TOP[]
@@ -16,8 +16,8 @@ import tqdm  # type: ignore
 
 from flags2_common import main, DownloadStatus, save_flag
 
-# default set low to avoid errors from remote site, such as
-# 503 - Service Temporarily Unavailable
+# 默认值设低，避免远端站点返回
+# 503 - Service Temporarily Unavailable 等错误
 DEFAULT_CONCUR_REQ = 5
 MAX_CONCUR_REQ = 1000
 

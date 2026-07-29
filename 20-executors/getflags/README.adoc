@@ -1,60 +1,62 @@
 = Experimenting with the `flags2*` examples
 
-The `flags2*` examples enhance the `flags*` examples with error handling and reporting.
-Therefore, we need a server that generates errors and delays to experiment with them.
+= 试验 `flags2*` 示例
 
-The main reason for these instructions is to document how to configure one such server
-in your machine, and how to tell the `flags2*` clients to access it.
-The other reason is to alert of an installation step that MacOS users sometimes overlook.
+`flags2*` 示例在 `flags*` 示例基础上增加了错误处理与报告。
+因此我们需要一台会生成错误和延迟的服务器来试验这些示例。
 
-Contents:
+写这份说明的主要目的是记录如何在你的机器上配置这样一台服务器，
+以及如何让 `flags2*` 客户端去访问它。
+另一个目的是提醒 MacOS 用户注意一个时常被忽略的安装步骤。
+
+目录：
 
 * <<server_setup>>
 * <<client_setup>>
 * <<macos_certificates>>
 
 [[server_setup]]
-== Setting up test servers
+== 设置测试服务器
 
-If you don't already have a local HTTP server for testing,
-here are the steps to experiment with the `flags2*` examples
-using just the Python ≥ 3.9 distribution:
+如果你还没有可用的本地 HTTP 服务器用于测试，
+下面这套流程只需 Python ≥ 3.9 发行版就能跑通 `flags2*` 示例：
 
-. Clone or download the https://github.com/fluentpython/example-code-2e[_Fluent Python 2e_ code repository] (this repo!).
-. Open your shell and go to the _20-futures/getflags/_ directory of your local copy of the repository (this directory!)
-. Unzip the _flags.zip_ file, creating a _flags_ directory at _20-futures/getflags/flags/_.
-. Open a second shell, go to the _20-futures/getflags/_ directory and run `python3 -m http.server`. This will start a `ThreadingHTTPServer` listening to port 8000, serving the local files. If you open the URL http://localhost:8000/flags/[http://localhost:8000/flags/] with your browser, you'll see a long list of directories named with two-letter country codes from `ad/` to `zw/`.
-. Now you can go back to the first shell and run the _flags2*.py_ examples with the default `--server LOCAL` option.
-. To test with the `--server DELAY` option, go to _20-futures/getflags/_ and run `python3 slow_server.py`. This binds to port 8001 by default. It will add a random delay of .5s to 5s before each response.
-. To test with the `--server ERROR` option, go to _20-futures/getflags/_ and run `python3 slow_server.py 8002 --error-rate .25`.
-Each request will have a 25% probability of getting a
-https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418[418 I'm a teapot] response,
-and all responses will be delayed .5s.
+. 克隆或下载 https://github.com/fluentpython/example-code-2e[_Fluent Python 2e_ 代码仓库]（就是本仓库！）。
+. 打开你的 shell，进入本地仓库副本的 _20-futures/getflags/_ 目录（就是当前目录！）。
+. 解压 _flags.zip_ 文件，会在 _20-futures/getflags/_ 下创建一个 _flags_ 目录（即 _20-futures/getflags/flags/_）。
+. 再开一个 shell，进入 _20-futures/getflags/_ 目录并运行 `python3 -m http.server`。这会启动一个 `ThreadingHTTPServer` 监听 8000 端口，提供本地文件的 HTTP 服务。用浏览器打开 http://localhost:8000/flags/[http://localhost:8000/flags/]，你会看到一长串以两国国家代码命名的目录，从 `ad/` 到 `zw/`。
+. 现在回到第一个 shell，用默认的 `--server LOCAL` 选项运行 _flags2*.py_ 示例。
+. 想用 `--server DELAY` 选项测试的话，进入 _20-futures/getflags/_ 并运行 `python3 slow_server.py`。默认会监听 8001 端口。它会在每次响应前加上 .5s 到 5s 之间的随机延迟。
+. 想用 `--server ERROR` 选项测试的话，进入 _20-futures/getflags/_ 并运行 `python3 slow_server.py 8002 --error-rate .25`。
+每个请求都有 25% 的概率收到一个
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/418[418 I'm a teapot] 响应，
+并且所有响应都会有 .5s 的延迟。
 
-I wrote _slow_server.py_ reusing code from Python's
-https://github.com/python/cpython/blob/917eca700aa341f8544ace43b75d41b477e98b72/Lib/http/server.py[`http.server`] standard library module,
-which "is not recommended for production"—according to the
-https://docs.python.org/3/library/http.server.html[documentation].
+_slow_server.py_ 复用了 Python 标准库
+https://github.com/python/cpython/blob/917eca700aa341f8544ace43b75d41b477e98b72/Lib/http/server.py[`http.server`]
+模块的代码——根据
+https://docs.python.org/3/library/http.server.html[官方文档]，
+该模块"不建议用于生产环境"。
 
 [NOTE]
 ====
-This is a simple testing environment that does not require any external libraries or
-tools—apart from the libraries used in the `flags2*` scripts themselves, as discussed in the book.
+这是一个简单的测试环境，除了 `flags2*` 脚本本身用到的库（书中已讨论）以外，
+不需要任何外部库或工具。
 
-For a more robust testing environment, I recommend configuring
-https://www.nginx.com/[NGINX] and
-https://github.com/shopify/toxiproxy[Toxiproxy] with equivalent parameters.
+如果想要更健壮的测试环境，我推荐配置
+https://www.nginx.com/[NGINX] 和
+https://github.com/shopify/toxiproxy[Toxiproxy]，并用等效的参数运行。
 ====
 
 [[client_setup]]
-== Running a `flags2*` script
+== 运行 `flags2*` 脚本
 
-The `flags2*` examples provide a command-line interface.
-All three scripts accept the same options,
-and you can see them by running any of the scripts with the `-h` option:
+`flags2*` 示例提供了一个命令行接口。
+三个脚本都接受相同的选项，
+你可以用任意一个脚本加上 `-h` 选项查看：
 
 [[flags2_help_demo]]
-.Help screen for the scripts in the flags2 series
+.flags2 系列脚本的帮助画面
 ====
 [source, text]
 ----
@@ -83,38 +85,38 @@ optional arguments:
 ----
 ====
 
-All arguments are optional. The most important arguments are discussed next.
+所有参数都是可选的。下面讨论几个最关键的参数。
 
-One option you can't ignore is `-s/--server`: it lets you choose which HTTP server and base URL will be used in the test.
-You can pass one of four labels to determine where the script will look for the flags (the labels are case-insensitive):
+`-s/--server` 是不能忽略的选项：它决定测试时使用哪个 HTTP 服务器以及基 URL。
+可以传下面四个标签之一来指定脚本去哪里找国旗（标签不区分大小写）：
 
-`LOCAL`:: Use `http://localhost:8000/flags`; this is the default.
-You should configure a local HTTP server to answer at port 8000. See <<server_setup>> for instructions.
-Feel free to hit this as hard as you can. It's your machine!
+`LOCAL`:: 使用 `http://localhost:8000/flags`；这是默认值。
+你应当配置一个本地 HTTP 服务器在 8000 端口响应。配置方法见 <<server_setup>>。
+使劲儿压它都没关系，反正是你自己的机器！
 
-`REMOTE`:: Use `http://fluentpython.com/data/flags`; that is a public website owned by me, hosted on a shared server.
-Please do not hit it with too many concurrent requests.
-The `fluentpython.com` domain is handled by the http://www.cloudflare.com/[Cloudflare] CDN (Content Delivery Network)
-so you may notice that the first downloads are slower, but they get faster when the CDN cache warms
-up.footnote:[Before configuring Cloudflare, I got HTTP 503 errors--Service Temporarily Unavailable--when
-testing the scripts with a few dozen concurrent requests on my inexpensive shared host account. Now those errors are gone.]
+`REMOTE`:: 使用 `http://fluentpython.com/data/flags`；这是我维护的公共网站，托管在一台共享服务器上。
+请不要用太多并发请求去压它。
+`fluentpython.com` 域名由 http://www.cloudflare.com/[Cloudflare] CDN（内容分发网络）接管，
+所以你会发现头几次下载会慢一些，CDN 缓存预热之后会变快。footnote:[在配置 Cloudflare 之前，
+用几十个并发请求在我那便宜的共享主机账号上测试脚本时会频繁出现 HTTP 503 错误——Service Temporarily Unavailable。
+配置之后这些错误就消失了。]
 
-`DELAY`:: Use `http://localhost:8001/flags`; a server delaying HTTP responses should be listening to port 8001.
-I wrote _slow_server.py_ to make it easier to experiment. See <<server_setup>> for instructions.
+`DELAY`:: 使用 `http://localhost:8001/flags`；需要一台会延迟 HTTP 响应的服务器监听 8001 端口。
+我写了 _slow_server.py_ 方便做这个实验。配置方法见 <<server_setup>>。
 
-`ERROR`:: Use `http://localhost:8002/flags`; a server introducing HTTP errors and delaying responses should be installed at port 8002.
-Running _slow_server.py_ is an easy way to do it. See <<server_setup>>.
+`ERROR`:: 使用 `http://localhost:8002/flags`；需要一台会引入 HTTP 错误并延迟响应的服务器监听 8002 端口。
+运行 _slow_server.py_ 是最简单的办法。见 <<server_setup>>。
 
 [[macos_certificates]]
-== Install SSL Certificates (for MacOS)
+== 安装 SSL 证书（MacOS 用户）
 
-On Macos, depending on how you installed Python you may need to manually run a command
-after Python's installer finishes, to install the SSL certificates Python uses to make HTTPS connections.
+在 MacOS 上，根据你安装 Python 的方式不同，Python 安装器跑完之后你可能需要手动执行一条命令，
+为 Python 安装它用来发起 HTTPS 连接的 SSL 证书。
 
-Using the Finder, open the `Python 3.X` folder inside `/Applications` folder
-and double-click "Install Certificates" or "Install Certificates.command".
+用 Finder 打开 `/Applications` 文件夹下的 `Python 3.X` 文件夹，
+双击 "Install Certificates" 或 "Install Certificates.command"。
 
-Using the terminal, you can type for example:
+在终端里，你也可以输入例如：
 
 [source, text]
 ----

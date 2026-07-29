@@ -10,8 +10,8 @@ zwg_sample = """
 1F469 200D 2764 FE0F 200D 1F48B 200D 1F469 |kiss: woman, woman  |E2.0
 """
 
-markers = {'\u200D': 'ZWG',  # ZERO WIDTH JOINER
-           '\uFE0F': 'V16',  # VARIATION SELECTOR-16
+markers = {'\u200D': 'ZWG',  # 零宽连接符（ZERO WIDTH JOINER）
+           '\uFE0F': 'V16',  # 变体选择符-16（VARIATION SELECTOR-16）
            }
 
 for line in zwg_sample.strip().split('\n'):

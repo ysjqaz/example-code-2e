@@ -1,7 +1,7 @@
 """
-Variation of ``tombola.Tombola`` implementing ``__subclasshook__``.
+``tombola.Tombola`` 的一个变体，实现了 ``__subclasshook__``。
 
-Tests with simple classes::
+用简单类做测试::
 
     >>> Tombola.__subclasshook__(object)
     NotImplemented
@@ -26,17 +26,17 @@ class Tombola(ABC):  # <1>
 
     @abstractmethod
     def __init__(self, iterable):  # <2>
-        """New instance is loaded from an iterable."""
+        """新实例从一个可迭代对象加载而来。"""
 
     @abstractmethod
     def load(self, iterable):
-        """Add items from an iterable."""
+        """从一个可迭代对象中加载元素。"""
 
     @abstractmethod
     def pick(self):  # <3>
-        """Remove item at random, returning it.
+        """随机移除一个元素并返回它。
 
-        This method should raise `LookupError` when the instance is empty.
+        当实例为空时，本方法应抛出 `LookupError`。
         """
 
     def loaded(self):  # <4>
@@ -45,7 +45,7 @@ class Tombola(ABC):  # <1>
         except LookupError:
             return False
         else:
-            self.load([item])  # put it back
+            self.load([item])  # 把它放回去
             return True
 
     @classmethod

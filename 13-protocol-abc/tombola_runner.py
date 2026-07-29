@@ -4,7 +4,7 @@ import doctest
 
 from tombola import Tombola
 
-# modules to test
+# 待测试的模块
 import bingo, lotto, tombolist, drum  # <1>
 
 TEST_FILE = 'tombola_tests.rst'

@@ -1,11 +1,11 @@
 ==============
-Tombola tests
+Tombola 测试
 ==============
 
-Every concrete subclass of Tombola should pass these tests.
+Tombola 的每个具体子类都应通过这些测试。
 
 
-Create and load instance from iterable::
+从可迭代对象创建并加载实例::
 
     >>> balls = list(range(3))
     >>> globe = ConcreteTombola(balls)
@@ -15,7 +15,7 @@ Create and load instance from iterable::
     [0, 1, 2]
 
 
-Pick and collect balls::
+抽取并收集球::
 
     >>> picks = []
     >>> picks.append(globe.pick())
@@ -23,7 +23,7 @@ Pick and collect balls::
     >>> picks.append(globe.pick())
 
 
-Check state and results::
+检查状态和结果::
 
     >>> globe.loaded()
     False
@@ -31,7 +31,7 @@ Check state and results::
     True
 
 
-Reload::
+重新加载::
 
     >>> globe.load(balls)
     >>> globe.loaded()
@@ -41,8 +41,7 @@ Reload::
     False
 
 
-Check that `LookupError` (or a subclass) is the exception
-thrown when the device is empty::
+检查当设备为空时抛出的是 `LookupError`（或其子类）异常::
 
     >>> globe = ConcreteTombola([])
     >>> try:
@@ -52,7 +51,7 @@ thrown when the device is empty::
     OK
 
 
-Load and pick 100 balls to verify that they all come out::
+加载并抽取 100 个球，验证它们全部被抽出::
 
     >>> balls = list(range(100))
     >>> globe = ConcreteTombola(balls)
@@ -65,18 +64,16 @@ Load and pick 100 balls to verify that they all come out::
     True
 
 
-Check that the order has changed and is not simply reversed::
+检查顺序已改变，而非简单反转::
 
     >>> picks != balls
     True
     >>> picks[::-1] != balls
     True
 
-Note: the previous 2 tests have a *very* small chance of failing
-even if the implementation is OK. The probability of the 100
-balls coming out, by chance, in the order they were inspect is
-1/100!, or approximately 1.07e-158. It's much easier to win the
-Lotto or to become a billionaire working as a programmer.
+注：即使实现正确，上面 2 个测试也有*极小*的概率失败。100 个球
+恰好按 inspect 时的顺序被抽出的概率是 1/100!，约为
+1.07e-158。这比中彩票或者靠写程序成为亿万富翁还要容易得多。
 
-THE END
+全文完
 

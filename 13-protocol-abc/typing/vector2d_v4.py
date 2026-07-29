@@ -1,5 +1,5 @@
 """
-A two-dimensional vector class
+一个二维向量类
 
     >>> v1 = Vector2d(3, 4)
     >>> print(v1.x, v1.y)
@@ -23,7 +23,7 @@ A two-dimensional vector class
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法的测试：
 
     >>> v1_clone = Vector2d.frombytes(bytes(v1))
     >>> v1_clone
@@ -32,7 +32,7 @@ Test of ``.frombytes()`` class method:
     True
 
 
-Tests of ``format()`` with Cartesian coordinates:
+``format()`` 在笛卡尔坐标下的测试：
 
     >>> format(v1)
     '(3.0, 4.0)'
@@ -42,7 +42,7 @@ Tests of ``format()`` with Cartesian coordinates:
     '(3.000e+00, 4.000e+00)'
 
 
-Tests of the ``angle`` method::
+``angle`` 方法的测试::
 
     >>> Vector2d(0, 0).angle()
     0.0
@@ -55,7 +55,7 @@ Tests of the ``angle`` method::
     True
 
 
-Tests of ``format()`` with polar coordinates:
+``format()`` 在极坐标下的测试：
 
     >>> format(Vector2d(1, 1), 'p')  # doctest:+ELLIPSIS
     '<1.414213..., 0.785398...>'
@@ -65,7 +65,7 @@ Tests of ``format()`` with polar coordinates:
     '<1.41421, 0.78540>'
 
 
-Tests of ``x`` and ``y`` read-only properties:
+``x`` 和 ``y`` 只读特性的测试：
 
     >>> v1.x, v1.y
     (3.0, 4.0)
@@ -75,7 +75,7 @@ Tests of ``x`` and ``y`` read-only properties:
     AttributeError: can't set attribute
 
 
-Tests of hashing:
+哈希测试：
 
     >>> v1 = Vector2d(3, 4)
     >>> v2 = Vector2d(3.1, 4.2)
@@ -84,7 +84,7 @@ Tests of hashing:
     >>> len(set([v1, v2]))
     2
 
-Converting to/from a ``complex``:
+与 ``complex`` 互相转换：
 # tag::VECTOR2D_V4_DEMO[]
     >>> from typing import SupportsComplex
     >>> v3 = Vector2d(1.5, 2.5)

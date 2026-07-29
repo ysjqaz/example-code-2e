@@ -1,5 +1,5 @@
 """
-Overriding descriptor (a.k.a. data descriptor or enforced descriptor):
+覆盖型描述符（overriding descriptor，又称数据描述符（data descriptor）或强制描述符（enforced descriptor））：
 
 # tag::DESCR_KINDS_DEMO1[]
 
@@ -20,10 +20,10 @@ Overriding descriptor (a.k.a. data descriptor or enforced descriptor):
 
 # end::DESCR_KINDS_DEMO1[]
 
-Overriding descriptor without ``__get__``:
+没有 ``__get__`` 的覆盖型描述符：
 
-(these tests are reproduced below without +ELLIPSIS directives for inclusion in the book;
-look for DESCR_KINDS_DEMO2)
+（这些测试在下方以不带 +ELLIPSIS 指令的形式重新给出，以便在书中收录；
+参见 DESCR_KINDS_DEMO2）
 
     >>> obj.over_no_get  # doctest: +ELLIPSIS
     <descriptorkinds.OverridingNoGet object at 0x...>
@@ -41,7 +41,7 @@ look for DESCR_KINDS_DEMO2)
     >>> obj.over_no_get
     9
 
-Non-overriding descriptor (a.k.a. non-data descriptor or shadowable descriptor):
+非覆盖型描述符（non-overriding descriptor，又称非数据描述符（non-data descriptor）或可遮蔽描述符（shadowable descriptor））：
 
 # tag::DESCR_KINDS_DEMO3[]
 
@@ -59,7 +59,7 @@ Non-overriding descriptor (a.k.a. non-data descriptor or shadowable descriptor):
 
 # end::DESCR_KINDS_DEMO3[]
 
-No descriptor type survives being overwritten on the class itself:
+任何类型的描述符都经不住在类本身上被覆盖：
 
 # tag::DESCR_KINDS_DEMO4[]
 
@@ -72,7 +72,7 @@ No descriptor type survives being overwritten on the class itself:
 
 # end::DESCR_KINDS_DEMO4[]
 
-Methods are non-overriding descriptors:
+方法是非覆盖型描述符：
 
     >>> obj.spam  # doctest: +ELLIPSIS
     <bound method Managed.spam of <descriptorkinds.Managed object at 0x...>>
@@ -98,8 +98,8 @@ Methods are non-overriding descriptors:
 """
 
 """
-NOTE: These tests are here because I can't add callouts after +ELLIPSIS
-directives and if doctest runs them without +ELLIPSIS I get test failures.
+注意：这些测试放在这里，是因为我无法在 +ELLIPSIS 指令之后添加 callout（标注），
+而如果 doctest 不带 +ELLIPSIS 运行它们，会导致测试失败。
 
 # tag::DESCR_KINDS_DEMO2[]
 
@@ -121,7 +121,7 @@ directives and if doctest runs them without +ELLIPSIS I get test failures.
 
 # end::DESCR_KINDS_DEMO2[]
 
-Methods are non-overriding descriptors:
+方法是非覆盖型描述符：
 
 # tag::DESCR_KINDS_DEMO5[]
 
@@ -140,7 +140,7 @@ Methods are non-overriding descriptors:
 
 # tag::DESCR_KINDS[]
 
-### auxiliary functions for display only ###
+### 仅用于显示的辅助函数 ###
 
 def cls_name(obj_or_cls):
     cls = type(obj_or_cls)
@@ -162,7 +162,7 @@ def print_args(name, *args):
     print(f'-> {cls_name(args[0])}.__{name}__({pseudo_args})')
 
 
-### essential classes for this example ###
+### 本示例的核心类 ###
 
 class Overriding:  # <1>
     """a.k.a. data descriptor or enforced descriptor"""

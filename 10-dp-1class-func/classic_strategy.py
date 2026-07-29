@@ -68,14 +68,14 @@ class Order(NamedTuple):  # 上下文（Context）
         return f'<Order total: {self.total():.2f} due: {self.due():.2f}>'
 
 
-class Promotion(ABC):  # the Strategy: an abstract base class
+class Promotion(ABC):  # 策略（Strategy）：抽象基类（abstract base class）
     @abstractmethod
     def discount(self, order: Order) -> Decimal:
-        """Return discount as a positive dollar amount"""
+        """返回折扣金额（正数表示）"""
 
 
-class FidelityPromo(Promotion):  # first Concrete Strategy
-    """5% discount for customers with 1000 or more fidelity points"""
+class FidelityPromo(Promotion):  # 第一个具体策略（Concrete Strategy）
+    """为积分 1000 及以上的顾客提供 5% 折扣"""
 
     def discount(self, order: Order) -> Decimal:
         rate = Decimal('0.05')
@@ -85,7 +85,7 @@ class FidelityPromo(Promotion):  # first Concrete Strategy
 
 
 class BulkItemPromo(Promotion):  # 第二个具体策略
-    """为单项数量达到 20 及以上的 LineItem 提供 10% 折扣"""
+    """为单项数量达 20 及以上的 LineItem 提供 10% 折扣"""
 
     def discount(self, order: Order) -> Decimal:
         discount = Decimal(0)
@@ -95,8 +95,8 @@ class BulkItemPromo(Promotion):  # 第二个具体策略
         return discount
 
 
-class LargeOrderPromo(Promotion):  # third Concrete Strategy
-    """7% discount for orders with 10 or more distinct items"""
+class LargeOrderPromo(Promotion):  # 第三个具体策略
+    """为含 10 种及以上不同商品的订单提供 7% 折扣"""
 
     def discount(self, order: Order) -> Decimal:
         distinct_items = {item.product for item in order.cart}

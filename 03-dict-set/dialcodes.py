@@ -1,5 +1,5 @@
 # tag::DIALCODES[]
-# dial codes of the top 10 most populous countries
+# 人口最多的 10 个国家的区号
 DIAL_CODES = [
         (86, 'China'),
         (91, 'India'),

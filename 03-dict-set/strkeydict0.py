@@ -1,8 +1,8 @@
-"""StrKeyDict0 converts non-string keys to `str` on lookup
+"""StrKeyDict0 在查找时将非字符串键转换为 `str`
 
 # tag::STRKEYDICT0_TESTS[]
 
-Tests for item retrieval using `d[key]` notation::
+使用 `d[key]` 表示法获取元素的测试::
 
     >>> d = StrKeyDict0([('2', 'two'), ('4', 'four')])
     >>> d['2']
@@ -14,7 +14,7 @@ Tests for item retrieval using `d[key]` notation::
       ...
     KeyError: '1'
 
-Tests for item retrieval using `d.get(key)` notation::
+使用 `d.get(key)` 表示法获取元素的测试::
 
     >>> d.get('2')
     'two'
@@ -24,7 +24,7 @@ Tests for item retrieval using `d.get(key)` notation::
     'N/A'
 
 
-Tests for the `in` operator::
+`in` 运算符的测试::
 
     >>> 2 in d
     True

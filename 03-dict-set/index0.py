@@ -1,9 +1,9 @@
-# adapted from Alex Martelli's example in "Re-learning Python"
+# 改编自 Alex Martelli 在「Re-learning Python」中的示例
 # http://www.aleax.it/Python/accu04_Relearn_Python_alex.pdf
-# (slide 41) Ex: lines-by-word file index
+# （第 41 页）练习：按单词建文件索引
 
 # tag::INDEX0[]
-"""Build an index mapping word -> list of occurrences"""
+"""构建一个索引：单词 -> 出现位置列表"""
 
 import re
 import sys
@@ -17,12 +17,12 @@ with open(sys.argv[1], encoding='utf-8') as fp:
             word = match.group()
             column_no = match.start() + 1
             location = (line_no, column_no)
-            # this is ugly; coded like this to make a point
+            # 这样写很丑；如此编码是为了说明问题
             occurrences = index.get(word, [])  # <1>
             occurrences.append(location)       # <2>
             index[word] = occurrences          # <3>
 
-# display in alphabetical order
+# 按字母顺序显示
 for word in sorted(index, key=str.upper):  # <4>
     print(word, index[word])
 # end::INDEX0[]

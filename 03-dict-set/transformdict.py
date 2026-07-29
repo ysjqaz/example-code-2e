@@ -1,11 +1,6 @@
-"""Transformdict: a mapping that transforms keys on lookup
+"""Transformdict：在查找时转换键的映射
 
-This module and ``test_transformdict.py`` were extracted from a
-patch contributed to Python by Antoine Pitrou implementing his
-PEP 455 -- Adding a key-transforming dictionary to collections.
-That PEP was rejected, and the patch was never merged to CPython.
-The original code is in ``transformdict3.patch``, part of
-issue #18986: Add a case-insensitive case-preserving dict.
+本模块和 ``test_transformdict.py`` 提取自 Antoine Pitrou 向 Python 贡献的一个补丁，该补丁实现了他的 PEP 455——向 collections 添加一个键转换字典。该 PEP 被拒绝，补丁也从未合并到 CPython。原始代码在 ``transformdict3.patch`` 中，属于 issue #18986：添加一个不区分大小写但保留大小写的字典。
 
 http://bugs.python.org/issue18986
 """
@@ -17,8 +12,7 @@ _sentinel = object()
 
 
 class TransformDict(MutableMapping):
-    """Dictionary that calls a transformation function when looking
-    up keys, but preserves the original keys.
+    """在查找键时调用转换函数、但保留原始键的字典。
 
     >>> d = TransformDict(str.lower)
     >>> d['Foo'] = 5
@@ -31,15 +25,14 @@ class TransformDict(MutableMapping):
     __slots__ = ('_transform', '_original', '_data')
 
     def __init__(self, transform, init_dict=None, **kwargs):
-        """Create a new TransformDict with the given *transform* function.
-        *init_dict* and *kwargs* are optional initializers, as in the
-        dict constructor.
+        """用给定的 *transform* 函数创建一个新的 TransformDict。
+        *init_dict* 和 *kwargs* 是可选的初始化器，用法与 dict 构造器相同。
         """
         if not callable(transform):
             raise TypeError(
                 f'expected a callable, got {transform.__class__!r}')
         self._transform = transform
-        # transformed => original
+        # 转换后的键 => 原始键
         self._original = {}
         self._data = {}
         if init_dict:
@@ -48,7 +41,7 @@ class TransformDict(MutableMapping):
             self.update(kwargs)
 
     def getitem(self, key):
-        """D.getitem(key) -> (stored key, value)"""
+        """D.getitem(key) -> (存储的键, 值)"""
         transformed = self._transform(key)
         original = self._original[transformed]
         value = self._data[transformed]
@@ -56,10 +49,10 @@ class TransformDict(MutableMapping):
 
     @property
     def transform_func(self):
-        """This is TransformDict's transformation function"""
+        """这是 TransformDict 的转换函数"""
         return self._transform
 
-    # Minimum set of methods required for MutableMapping
+    # MutableMapping 要求的最小方法集
 
     def __len__(self):
         return len(self._data)
@@ -80,10 +73,10 @@ class TransformDict(MutableMapping):
         del self._data[transformed]
         del self._original[transformed]
 
-    # Methods overridden to mitigate the performance overhead.
+    # 为减轻性能开销而覆盖的方法。
 
     def clear(self):
-        """D.clear() -> None.  Remove all items from D."""
+        """D.clear() -> None.  移除 D 中的所有元素。"""
         self._data.clear()
         self._original.clear()
 
@@ -91,13 +84,13 @@ class TransformDict(MutableMapping):
         return self._transform(key) in self._data
 
     def get(self, key, default=None):
-        """D.get(k[,d]) -> D[k] if k in D, else d.  d defaults to None."""
+        """D.get(k[,d]) -> 如果 k 在 D 中则返回 D[k]，否则返回 d。d 默认为 None。"""
         return self._data.get(self._transform(key), default)
 
     def pop(self, key, default=_sentinel):
-        """D.pop(k[,d]) -> v, remove key and return corresponding value.
-           If key is not found, d is returned if given, otherwise
-           KeyError is raised.
+        """D.pop(k[,d]) -> v，移除键并返回对应的值。
+           如果找不到键，则返回 d（如果给定），否则
+           抛出 KeyError。
         """
         transformed = self._transform(key)
         if default is _sentinel:
@@ -108,16 +101,16 @@ class TransformDict(MutableMapping):
             return self._data.pop(transformed, default)
 
     def popitem(self):
-        """D.popitem() -> (k, v), remove and return some (key, value) pair
-           as a 2-tuple; but raise KeyError if D is empty.
+        """D.popitem() -> (k, v)，移除并返回某个 (键, 值) 对
+           作为二元组；但如果 D 为空则抛出 KeyError。
         """
         transformed, value = self._data.popitem()
         return self._original.pop(transformed), value
 
-    # Other methods
+    # 其他方法
 
     def copy(self):
-        """D.copy() -> a shallow copy of D"""
+        """D.copy() -> D 的浅拷贝"""
         other = self.__class__(self._transform)
         other._original = self._original.copy()
         other._data = self._data.copy()
@@ -135,6 +128,6 @@ class TransformDict(MutableMapping):
         try:
             equiv = dict(self)
         except TypeError:
-            # Some keys are unhashable, fall back on .items()
+            # 某些键不可哈希，回退到 .items()
             equiv = list(self.items())
         return f'{self.__class__.__name__}({self._transform!r}, {equiv!r})'

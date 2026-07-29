@@ -1,5 +1,5 @@
 """
-Pattern matching with mapping—requires Python ≥ 3.10
+映射（mapping）的模式匹配——需要 Python ≥ 3.10
 
 # tag::DICT_MATCH_TEST[]
 >>> b1 = dict(api=1, author='Douglas Hofstadter',

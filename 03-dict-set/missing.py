@@ -1,9 +1,9 @@
 """
-Semantics of ``__missing__`` across mappings.
+``__missing__`` 在各种映射（mapping）中的语义。
 
-✅ = indicates ``__missing__`` was called
+✅ = 表示调用了 ``__missing__``
 
-Subclass of ``dict``::
+``dict`` 的子类::
 
     >>> d = DictSub(A = 'letter A')
     >>> d['a']  # ✅
@@ -13,7 +13,7 @@ Subclass of ``dict``::
     >>> 'a' in d
     False
 
-Subclass of ``UserDict``::
+``UserDict`` 的子类::
 
     >>> ud = UserDictSub(A = 'letter A')
     >>> ud['a']  # ✅
@@ -24,7 +24,7 @@ Subclass of ``UserDict``::
     False
 
 
-Simple subclass of ``abc.Mapping``::
+``abc.Mapping`` 的简单子类::
 
     >>> sms = SimpleMappingSub(A = 'letter A')
     >>> sms['a']
@@ -37,7 +37,7 @@ Simple subclass of ``abc.Mapping``::
     False
 
 
-Subclass of ``abc.Mapping`` with support for ``__missing__``::
+支持 ``__missing__`` 的 ``abc.Mapping`` 子类::
 
     >>> mms = MappingMissingSub(A = 'letter A')
     >>> mms['a']  # ✅
@@ -47,7 +47,7 @@ Subclass of ``abc.Mapping`` with support for ``__missing__``::
     >>> 'a' in mms  # ✅
     True
 
-Subclass of ``abc.Mapping`` with support for ``__missing__``::
+支持 ``__missing__`` 的 ``abc.Mapping`` 子类::
 
     >>> dms = DictLikeMappingSub(A = 'letter A')
     >>> dms['a']  # ✅
@@ -85,7 +85,7 @@ class SimpleMappingSub(abc.Mapping):
     def __init__(self, *args, **kwargs):
         self._data = dict(*args, **kwargs)
 
-    # next three methods: abstract in ABC
+    # 接下来三个方法：在 ABC 中是抽象方法
     def __getitem__(self, key):
         return self._data[key]
 
@@ -95,7 +95,7 @@ class SimpleMappingSub(abc.Mapping):
     def __iter__(self):
         return iter(self._data)
 
-    # never called by instances of this class
+    # 永远不会被此类的实例调用
     def __missing__(self, key):
         return self[_upper(key)]
 

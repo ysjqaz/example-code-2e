@@ -1,21 +1,23 @@
 # Dictionaries and Sets
 
-Sample code for Chapter 3 of _Fluent Python 2e_ by Luciano Ramalho (O'Reilly, 2020)
+# 第三章 — 字典与集合
 
-## Running the tests
+《Fluent Python 2e》第 3 章示例代码，作者 Luciano Ramalho（O'Reilly, 2020）
 
-### Doctests
+## 运行测试
 
-Use Python's standard ``doctest`` module, for example:
+### Doctest
+
+使用 Python 标准库的 ``doctest`` 模块，例如：
 
     $ python3 -m doctest bisect_demo.py -v
 
 ### Jupyter Notebook
 
-Install ``pytest`` and the ``nbval`` plugin:
+安装 ``pytest`` 和 ``nbval`` 插件：
 
     $ pip install pytest nbval
 
-Run:
+运行：
 
     $ pytest --nbval

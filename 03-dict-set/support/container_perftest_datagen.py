@@ -1,5 +1,5 @@
 """
-Generate data for container performance test
+为容器性能测试生成数据
 """
 
 import array
@@ -15,7 +15,7 @@ needles = array.array('d')
 sample = {1 / random.random() for i in range(SAMPLE_LEN)}
 print(f'initial sample: {len(sample)} elements')
 
-# complete sample, in case duplicate random numbers were discarded
+# 补全样本，以防重复的随机数被丢弃
 while len(sample) < SAMPLE_LEN:
     sample.add(1 / random.random())
 

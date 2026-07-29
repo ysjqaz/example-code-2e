@@ -1,5 +1,5 @@
 """
-explore1.py: Script to explore the OSCON schedule feed
+explore1.py：用于探索 OSCON 日程数据的脚本
 
     >>> import json
     >>> raw_feed = json.load(open('data/osconfeed.json'))
@@ -29,7 +29,7 @@ explore1.py: Script to explore the OSCON schedule feed
       ...
     KeyError: 'flavor'
 
-Handle keywords by appending a `_`.
+通过追加一个 `_` 来处理关键字。
 
 # tag::EXPLORE1_DEMO[]
 
@@ -48,8 +48,8 @@ import keyword
 
 
 class FrozenJSON:
-    """A read-only façade for navigating a JSON-like object
-       using attribute notation
+    """一个只读门面（façade），用于以属性（attribute）记法
+       在类 JSON 对象中导航
     """
 
 # tag::EXPLORE1[]

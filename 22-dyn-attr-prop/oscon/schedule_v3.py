@@ -1,5 +1,5 @@
 """
-schedule_v3.py: property to get list of event speakers
+schedule_v3.py：用特性（property）获取事件演讲者列表
 
     >>> event = Record.fetch('event.33950')
     >>> event

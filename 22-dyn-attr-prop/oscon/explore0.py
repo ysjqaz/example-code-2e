@@ -1,5 +1,5 @@
 """
-explore0.py: Script to explore the OSCON schedule feed
+explore0.py：用于探索 OSCON 日程数据的脚本
 
 # tag::EXPLORE0_DEMO[]
     >>> import json
@@ -41,8 +41,8 @@ from collections import abc
 
 
 class FrozenJSON:
-    """A read-only façade for navigating a JSON-like object
-       using attribute notation
+    """一个只读门面（façade），用于以属性（attribute）记法
+       在类 JSON 对象中导航
     """
 
     def __init__(self, mapping):

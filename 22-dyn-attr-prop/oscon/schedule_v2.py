@@ -1,5 +1,5 @@
 """
-schedule_v2.py: property to get venue linked to an event
+schedule_v2.py：用特性（property）获取与事件关联的场馆
 
 # tag::SCHEDULE2_DEMO[]
     >>> event = Record.fetch('event.33950')  # <1>

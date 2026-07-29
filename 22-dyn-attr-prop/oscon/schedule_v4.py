@@ -1,5 +1,5 @@
 """
-schedule_v4.py: homegrown cached property for speakers
+schedule_v4.py：手写的演讲者缓存特性（cached property）
 
     >>> event = Record.fetch('event.33950')
 

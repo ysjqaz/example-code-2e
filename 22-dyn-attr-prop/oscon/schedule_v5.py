@@ -1,5 +1,5 @@
 """
-schedule_v5.py: cached properties using functools
+schedule_v5.py：使用 functools 实现的缓存特性（cached property）
 
     >>> event = Record.fetch('event.33950')
     >>> event

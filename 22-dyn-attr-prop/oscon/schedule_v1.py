@@ -1,5 +1,5 @@
 """
-schedule_v1.py: traversing OSCON schedule data
+schedule_v1.py：遍历 OSCON 日程数据
 
 # tag::SCHEDULE1_DEMO[]
     >>> records = load(JSON_PATH)  # <1>

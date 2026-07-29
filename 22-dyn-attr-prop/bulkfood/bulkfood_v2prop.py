@@ -1,30 +1,30 @@
 """
 
-A line item for a bulk food order has description, weight and price fields::
+散装食品订单中的一个明细项（line item），包含 description、weight 和 price 字段::
 
     >>> raisins = LineItem('Golden raisins', 10, 6.95)
     >>> raisins.weight, raisins.description, raisins.price
     (10, 'Golden raisins', 6.95)
 
-A ``subtotal`` method gives the total price for that line item::
+``subtotal`` 方法返回该明细项的总价::
 
     >>> raisins.subtotal()
     69.5
 
-The weight of a ``LineItem`` must be greater than 0::
+``LineItem`` 的 weight 必须大于 0::
 
     >>> raisins.weight = -20
     Traceback (most recent call last):
         ...
     ValueError: value must be > 0
 
-No change was made::
+未做任何修改::
 
     >>> raisins.weight
     10
 
-The value of the attributes managed by the properties are stored in
-instance attributes, created in each ``LineItem`` instance::
+由特性（property）所管理的属性值，存储在每个 ``LineItem`` 实例
+中创建的实例属性里::
 
 # tag::LINEITEM_V2_PROP_DEMO[]
     >>> nutmeg = LineItem('Moluccan nutmeg', 8, 13.95)

@@ -1,7 +1,7 @@
 """
-A multi-dimensional ``Vector`` class, take 8: operator ``==``
+多维 ``Vector`` 类，第 8 版：``==`` 运算符
 
-A ``Vector`` is built from an iterable of numbers::
+``Vector`` 由一个数字的可迭代对象（iterable）构建::
 
     >>> Vector([3.1, 4.2])
     Vector([3.1, 4.2])
@@ -11,7 +11,7 @@ A ``Vector`` is built from an iterable of numbers::
     Vector([0.0, 1.0, 2.0, 3.0, 4.0, ...])
 
 
-Tests with 2-dimensions (same results as ``vector2d_v1.py``)::
+二维测试（与 ``vector2d_v1.py`` 结果相同）::
 
     >>> v1 = Vector([3, 4])
     >>> x, y = v1
@@ -33,7 +33,7 @@ Tests with 2-dimensions (same results as ``vector2d_v1.py``)::
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法的测试：
 
     >>> v1_clone = Vector.frombytes(bytes(v1))
     >>> v1_clone
@@ -42,7 +42,7 @@ Test of ``.frombytes()`` class method:
     True
 
 
-Tests with 3-dimensions::
+三维测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> x, y, z = v1
@@ -61,7 +61,7 @@ Tests with 3-dimensions::
     (True, False)
 
 
-Tests with many dimensions::
+多维测试::
 
     >>> v7 = Vector(range(7))
     >>> v7
@@ -70,7 +70,7 @@ Tests with many dimensions::
     9.53939201...
 
 
-Test of ``.__bytes__`` and ``.frombytes()`` methods::
+``.__bytes__`` 和 ``.frombytes()`` 方法的测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> v1_clone = Vector.frombytes(bytes(v1))
@@ -80,7 +80,7 @@ Test of ``.__bytes__`` and ``.frombytes()`` methods::
     True
 
 
-Tests of sequence behavior::
+序列（sequence）行为的测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> len(v1)
@@ -89,7 +89,7 @@ Tests of sequence behavior::
     (3.0, 5.0, 5.0)
 
 
-Test of slicing::
+切片（slicing）的测试::
 
     >>> v7 = Vector(range(7))
     >>> v7[-1]
@@ -104,7 +104,7 @@ Test of slicing::
     TypeError: 'tuple' object cannot be interpreted as an integer
 
 
-Tests of dynamic attribute access::
+动态属性（attribute）访问的测试::
 
     >>> v7 = Vector(range(10))
     >>> v7.x
@@ -112,7 +112,7 @@ Tests of dynamic attribute access::
     >>> v7.y, v7.z, v7.t
     (1.0, 2.0, 3.0)
 
-Dynamic attribute lookup failures::
+动态属性查找失败的测试::
 
     >>> v7.k
     Traceback (most recent call last):
@@ -129,7 +129,7 @@ Dynamic attribute lookup failures::
     AttributeError: 'Vector' object has no attribute 'spam'
 
 
-Tests of hashing::
+哈希（hashing）的测试::
 
     >>> v1 = Vector([3, 4])
     >>> v2 = Vector([3.1, 4.2])
@@ -139,14 +139,14 @@ Tests of hashing::
     (7, 2, 1)
 
 
-Most hash codes of non-integers vary from a 32-bit to 64-bit Python build::
+非整数的哈希码大多在 32 位与 64 位 Python 构建之间有所不同::
 
     >>> import sys
     >>> hash(v2) == (384307168202284039 if sys.maxsize > 2**32 else 357915986)
     True
 
 
-Tests of ``format()`` with Cartesian coordinates in 2D::
+``format()`` 在二维笛卡尔坐标下的测试::
 
     >>> v1 = Vector([3, 4])
     >>> format(v1)
@@ -157,7 +157,7 @@ Tests of ``format()`` with Cartesian coordinates in 2D::
     '(3.000e+00, 4.000e+00)'
 
 
-Tests of ``format()`` with Cartesian coordinates in 3D and 7D::
+``format()`` 在三维和七维笛卡尔坐标下的测试::
 
     >>> v3 = Vector([3, 4, 5])
     >>> format(v3)
@@ -166,7 +166,7 @@ Tests of ``format()`` with Cartesian coordinates in 3D and 7D::
     '(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0)'
 
 
-Tests of ``format()`` with spherical coordinates in 2D, 3D and 4D::
+``format()`` 在二维、三维和四维球面坐标（spherical coordinates）下的测试::
 
     >>> format(Vector([1, 1]), 'h')  # doctest:+ELLIPSIS
     '<1.414213..., 0.785398...>'
@@ -188,7 +188,7 @@ Tests of ``format()`` with spherical coordinates in 2D, 3D and 4D::
     '<1.00000, 1.57080, 0.00000, 0.00000>'
 
 
-Unary operator tests::
+一元运算符的测试::
 
     >>> v1 = Vector([3, 4])
     >>> abs(v1)
@@ -199,7 +199,7 @@ Unary operator tests::
     Vector([3.0, 4.0])
 
 
-Basic tests of operator ``+``::
+``+`` 运算符的基本测试::
 
     >>> v1 = Vector([3, 4, 5])
     >>> v2 = Vector([6, 7, 8])
@@ -212,7 +212,7 @@ Basic tests of operator ``+``::
     Vector([4.0, 6.0, 5.0])
 
 
-Tests of ``+`` with mixed types::
+``+`` 混合类型的测试::
 
     >>> v1 + (10, 20, 30)
     Vector([13.0, 24.0, 35.0])
@@ -222,7 +222,7 @@ Tests of ``+`` with mixed types::
     Vector([4.0, 6.0, 5.0])
 
 
-Tests of ``+`` with mixed types, swapped operands::
+``+`` 混合类型、交换操作数的测试::
 
     >>> (10, 20, 30) + v1
     Vector([13.0, 24.0, 35.0])
@@ -232,7 +232,7 @@ Tests of ``+`` with mixed types, swapped operands::
     Vector([4.0, 6.0, 5.0])
 
 
-Tests of ``+`` with an unsuitable operand:
+``+`` 不合适操作数的测试：
 
     >>> v1 + 1
     Traceback (most recent call last):
@@ -244,7 +244,7 @@ Tests of ``+`` with an unsuitable operand:
     TypeError: unsupported operand type(s) for +: 'Vector' and 'str'
 
 
-Basic tests of operator ``*``::
+``*`` 运算符的基本测试::
 
     >>> v1 = Vector([1, 2, 3])
     >>> v1 * 10
@@ -253,7 +253,7 @@ Basic tests of operator ``*``::
     Vector([10.0, 20.0, 30.0])
 
 
-Tests of ``*`` with unusual but valid operands::
+``*`` 不常见但合法操作数的测试::
 
     >>> v1 * True
     Vector([1.0, 2.0, 3.0])
@@ -262,7 +262,7 @@ Tests of ``*`` with unusual but valid operands::
     Vector([0.3333..., 0.6666..., 1.0])
 
 
-Tests of ``*`` with unsuitable operands::
+``*`` 不合适操作数的测试::
 
     >>> v1 * (1, 2)
     Traceback (most recent call last):
@@ -270,7 +270,7 @@ Tests of ``*`` with unsuitable operands::
     TypeError: can't multiply sequence by non-int of type 'Vector'
 
 
-Tests of operator `==`::
+`==` 运算符的测试::
 
     >>> va = Vector(range(1, 4))
     >>> vb = Vector([1.0, 2.0, 3.0])
@@ -285,7 +285,7 @@ Tests of operator `==`::
     False
 
 
-Tests of operator `!=`::
+`!=` 运算符的测试::
 
     >>> va != vb
     False
@@ -386,7 +386,7 @@ class Vector:
         return (self.angle(n) for n in range(1, len(self)))
 
     def __format__(self, fmt_spec=''):
-        if fmt_spec.endswith('h'):  # hyperspherical coordinates
+        if fmt_spec.endswith('h'):  # 超球面坐标
             fmt_spec = fmt_spec[:-1]
             coords = itertools.chain([abs(self)],
                                      self.angles())

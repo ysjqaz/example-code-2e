@@ -1,10 +1,10 @@
 """
 ======================
-AddableBingoCage tests
+AddableBingoCage 测试
 ======================
 
 
-Tests for __add__:
+``__add__`` 的测试：
 
 # tag::ADDABLE_BINGO_ADD_DEMO[]
 
@@ -28,7 +28,7 @@ Tests for __add__:
 
 # end::ADDABLE_BINGO_ADD_DEMO[]
 
-Tests for __iadd__:
+``__iadd__`` 的测试：
 
 # tag::ADDABLE_BINGO_IADD_DEMO[]
 

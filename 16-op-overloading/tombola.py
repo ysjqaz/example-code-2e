@@ -6,21 +6,21 @@ class Tombola(abc.ABC):  # <1>
 
     @abc.abstractmethod
     def load(self, iterable):  # <2>
-        """Add items from an iterable."""
+        """从可迭代对象（iterable）中加载元素。"""
 
     @abc.abstractmethod
     def pick(self):  # <3>
-        """Remove item at random, returning it.
+        """随机移除一个元素并返回它。
 
-        This method should raise `LookupError` when the instance is empty.
+        当实例为空时，本方法应抛出 `LookupError`。
         """
 
     def loaded(self):  # <4>
-        """Return `True` if there's at least 1 item, `False` otherwise."""
+        """如果至少有 1 个元素则返回 `True`，否则返回 `False`。"""
         return bool(self.inspect())  # <5>
 
     def inspect(self):
-        """Return a sorted tuple with the items currently inside."""
+        """返回一个按排序后的元组，包含当前内部的所有元素。"""
         items = []
         while True:  # <6>
             try:

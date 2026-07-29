@@ -23,7 +23,7 @@
     (True, False)
 
 
-Test of ``.frombytes()`` class method:
+``.frombytes()`` 类方法的测试：
 
     >>> v1_clone = Vector2d.frombytes(bytes(v1))
     >>> v1_clone
@@ -32,7 +32,7 @@ Test of ``.frombytes()`` class method:
     True
 
 
-Tests of ``format()`` with Cartesian coordinates:
+使用笛卡尔坐标的 ``format()`` 测试：
 
     >>> format(v1)
     '(3.0, 4.0)'
@@ -42,7 +42,7 @@ Tests of ``format()`` with Cartesian coordinates:
     '(3.000e+00, 4.000e+00)'
 
 
-Tests of the ``angle`` method::
+``angle`` 方法的测试::
 
     >>> Vector2d(0, 0).angle()
     0.0

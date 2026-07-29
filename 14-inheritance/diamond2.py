@@ -1,9 +1,9 @@
 """
-unrelated.py: examples with ``super()`` in a sibling class.
+unrelated.py：在兄弟类（sibling class）中使用 ``super()`` 的示例。
 
-``U`` is unrelated (does not subclass ``Root``)
+``U`` 是无关的（不是 ``Root`` 的子类）
 
-Calling ``ping`` on an instance of ``U`` fails::
+对 ``U`` 的实例调用 ``ping`` 会失败::
 
 # tag::UNRELATED_DEMO_1[]
     >>> u = U()
@@ -15,8 +15,8 @@ Calling ``ping`` on an instance of ``U`` fails::
 # end::UNRELATED_DEMO_1[]
 
 
-But if ``U`` is part of a cooperative arrangement of base classes,
-its ``ping`` method works::
+但如果 ``U`` 是基类的协作安排（cooperative arrangement）的一部分，
+其 ``ping`` 方法就能正常工作::
 
 # tag::UNRELATED_DEMO_2[]
 
@@ -33,7 +33,7 @@ its ``ping`` method works::
 # end::UNRELATED_DEMO_2[]
 
 
-Here ``U.ping`` is never called because ``Root.ping`` does not call ``super``.
+这里 ``U.ping`` 永远不会被调用，因为 ``Root.ping`` 不调用 ``super``。
 
     >>> o6 = LeafAU()
     >>> o6.ping()

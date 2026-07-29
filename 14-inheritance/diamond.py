@@ -1,5 +1,5 @@
 """
-diamond1.py: Demo of diamond-shaped class graph.
+diamond1.py：菱形类图（diamond-shaped class graph）演示。
 
 # tag::LEAF_MRO[]
 >>> Leaf.__mro__  # doctest:+NORMALIZE_WHITESPACE

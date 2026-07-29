@@ -1,5 +1,5 @@
 """
-Doctests for `parse`
+`parse` 的 doctest
 --------------------
 
 # tag::PARSE[]
@@ -19,7 +19,7 @@ Doctests for `parse`
 
 # end::PARSE[]
 
-Doctest for `Environment`
+`Environment` 的 doctest
 -------------------------
 
 # tag::ENVIRONMENT[]
@@ -37,7 +37,7 @@ Environment({'a': 111, 'c': 222}, {'a': 0, 'b': 333})
 
 # end::ENVIRONMENT[]
 
-Doctests for `evaluate`
+`evaluate` 的 doctest
 -----------------------
 
 # tag::EVAL_NUMBER[]
@@ -107,7 +107,7 @@ KeyError: 'ni!'
 
 # end::EVAL_DEFUN[]
 
-function call:
+函数调用：
 
 # tag::EVAL_CALL[]
 >>> evaluate(parse('(% (* 12 14) (- 500 100))'), global_env)
@@ -122,7 +122,6 @@ Traceback (most recent call last):
 SyntaxError: (lambda is not like this)
 
 # end::EVAL_SYNTAX_ERROR[]
-
 """
 
 import math
@@ -183,7 +182,7 @@ def test_quicksort():
     assert got == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
-# Example from Structure and Interpretation of Computer Programs
+# 示例来自《计算机程序的构造和解释》（SICP）
 # https://mitpress.mit.edu/sites/default/files/sicp/full-text/sicp/book/node12.html
 
 newton_src = """

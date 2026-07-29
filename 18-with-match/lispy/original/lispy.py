@@ -1,15 +1,15 @@
-################ Scheme Interpreter in Python
+################ Python 中的 Scheme 解释器
 
-## (c) Peter Norvig, 2010; See http://norvig.com/lispy2.html
+## (c) Peter Norvig, 2010；参见 http://norvig.com/lispy2.html
 
-################ Symbol, Procedure, classes
+################ Symbol、Procedure 等类
 
 import re, sys, io
 
 class Symbol(str): pass
 
 def Sym(s, symbol_table={}):
-    "Find or create unique Symbol entry for str s in symbol table."
+    "为字符串 s 在符号表中查找或创建唯一的 Symbol 条目。"
     if s not in symbol_table: symbol_table[s] = Symbol(s)
     return symbol_table[s]
 
@@ -20,29 +20,29 @@ _quasiquote, _unquote, _unquotesplicing = map(Sym,
 "quasiquote   unquote   unquote-splicing".split())
 
 class Procedure:
-    "A user-defined Scheme procedure."
+    "一个用户定义的 Scheme 过程。"
     def __init__(self, parms, exp, env):
         self.parms, self.exp, self.env = parms, exp, env
     def __call__(self, *args):
         return eval(self.exp, Env(self.parms, args, self.env))
 
-################ parse, read, and user interaction
+################ parse、read 与用户交互
 
 def parse(inport):
-    "Parse a program: read and expand/error-check it."
-    # Backwards compatibility: given a str, convert it to an InPort
+    "解析一个程序：读取并进行展开/错误检查。"
+    # 向后兼容：若传入的是 str，将其转换为 InPort
     if isinstance(inport, str): inport = InPort(io.StringIO(inport))
     return expand(read(inport), toplevel=True)
 
-eof_object = Symbol('#<eof-object>') # Note: uninterned; can't be read
+eof_object = Symbol('#<eof-object>') # 注意：未驻留；不可被读取
 
 class InPort:
-    "An input port. Retains a line of chars."
+    "一个输入端口。保留一行字符。"
     tokenizer = r"""\s*(,@|[('`,)]|"(?:[\\].|[^\\"])*"|;.*|[^\s('"`,;)]*)(.*)"""
     def __init__(self, file):
         self.file = file; self.line = ''
     def next_token(self):
-        "Return the next token, reading new text into line buffer if needed."
+        "返回下一个词法单元，必要时读取新文本到行缓冲区。"
         while True:
             if self.line == '': self.line = self.file.readline()
             if self.line == '': return eof_object
@@ -51,7 +51,7 @@ class InPort:
                 return token
 
 def readchar(inport):
-    "Read the next character from an input port."
+    "从输入端口读取下一个字符。"
     if inport.line != '':
         ch, inport.line = inport.line[0], inport.line[1:]
         return ch
@@ -59,7 +59,7 @@ def readchar(inport):
         return inport.file.read(1) or eof_object
 
 def read(inport):
-    "Read a Scheme expression from an input port."
+    "从输入端口读取一个 Scheme 表达式。"
     def read_ahead(token):
         if '(' == token:
             L = []
@@ -71,14 +71,14 @@ def read(inport):
         elif token in quotes: return [quotes[token], read(inport)]
         elif token is eof_object: raise SyntaxError('unexpected EOF in list')
         else: return atom(token)
-    # body of read:
+    # read 函数体：
     token1 = inport.next_token()
     return eof_object if token1 is eof_object else read_ahead(token1)
 
 quotes = {"'":_quote, "`":_quasiquote, ",":_unquote, ",@":_unquotesplicing}
 
 def atom(token):
-    'Numbers become numbers; #t and #f are booleans; "..." string; otherwise Symbol.'
+    '数字转换为数字；#t 和 #f 是布尔值；"..." 是字符串；其余为 Symbol。'
     if token == '#t': return True
     elif token == '#f': return False
     elif token[0] == '"': return token[1:-1]
@@ -91,7 +91,7 @@ def atom(token):
                 return Sym(token)
 
 def to_string(x):
-    "Convert a Python object back into a Lisp-readable string."
+    "将 Python 对象转换回 Lisp 可读的字符串。"
     if x is True: return "#t"
     elif x is False: return "#f"
     elif isa(x, Symbol): return x
@@ -101,11 +101,11 @@ def to_string(x):
     else: return str(x)
 
 def load(filename):
-    "Eval every expression from a file."
+    "对文件中的每个表达式求值。"
     repl(None, InPort(open(filename)), None)
 
 def repl(prompt='lispy> ', inport=InPort(sys.stdin), out=sys.stdout):
-    "A prompt-read-eval-print loop."
+    "一个「提示—读取—求值—打印」循环。"
     sys.stderr.write("Lispy version 2.0\n")
     while True:
         try:
@@ -117,12 +117,12 @@ def repl(prompt='lispy> ', inport=InPort(sys.stdin), out=sys.stdout):
         except Exception as e:
             print('%s: %s' % (type(e).__name__, e))
 
-################ Environment class
+################ Environment 类
 
 class Env(dict):
-    "An environment: a dict of {'var':val} pairs, with an outer Env."
+    "一个环境：由 {'var':val} 组成的 dict，并带有一个外层 Env。"
     def __init__(self, parms=(), args=(), outer=None):
-        # Bind parm list to corresponding args, or single parm to list of args
+        # 将参数列表绑定到对应的实参，或将单个参数绑定到实参列表
         self.outer = outer
         if isa(parms, Symbol):
             self.update({parms:list(args)})
@@ -132,7 +132,7 @@ class Env(dict):
                                 % (to_string(parms), to_string(args)))
             self.update(zip(parms,args))
     def find(self, var):
-        "Find the innermost Env where var appears."
+        "找到 var 出现的最内层 Env。"
         if var in self: return self
         elif self.outer is None: raise LookupError(var)
         else: return self.outer.find(var)
@@ -141,7 +141,7 @@ def is_pair(x): return x != [] and isa(x, list)
 def cons(x, y): return [x]+y
 
 def callcc(proc):
-    "Call proc with current continuation; escape only"
+    "以当前续延调用 proc；仅用于逃逸"
     ball = RuntimeWarning("Sorry, can't continue this continuation any longer.")
     def throw(retval): ball.retval = retval; raise ball
     try:
@@ -151,7 +151,7 @@ def callcc(proc):
         else: raise w
 
 def add_globals(self):
-    "Add some Scheme standard procedures."
+    "添加一些 Scheme 标准过程。"
     import math, cmath, operator as op
     self.update(vars(math))
     self.update(vars(cmath))
@@ -176,14 +176,14 @@ isa = isinstance
 
 global_env = add_globals(Env())
 
-################ eval (tail recursive)
+################ eval（尾递归）
 
 def eval(x, env=global_env):
-    "Evaluate an expression in an environment."
+    "在环境中求值一个表达式。"
     while True:
-        if isa(x, Symbol):       # variable reference
+        if isa(x, Symbol):       # 变量引用
             return env.find(x)[x]
-        elif not isa(x, list):   # constant literal
+        elif not isa(x, list):   # 常量字面量
             return x
         elif x[0] is _quote:     # (quote exp)
             (_, exp) = x
@@ -218,9 +218,9 @@ def eval(x, env=global_env):
 ################ expand
 
 def expand(x, toplevel=False):
-    "Walk tree of x, making optimizations/fixes, and signaling SyntaxError."
+    "遍历 x 的树形结构，做优化/修正，并发出 SyntaxError。"
     require(x, x!=[])                    # () => Error
-    if not isa(x, list):                 # constant => unchanged
+    if not isa(x, list):                 # 常量 => 不变
         return x
     elif x[0] is _quote:                 # (quote exp)
         require(x, len(x)==2)
@@ -249,7 +249,7 @@ def expand(x, toplevel=False):
                 proc = eval(exp)
                 require(x, callable(proc), "macro must be a procedure")
                 macro_table[v] = proc    # (define-macro v proc)
-                return None              #  => None; add v:proc to macro_table
+                return None              #  => None；将 v:proc 加入 macro_table
             return [_define, v, exp]
     elif x[0] is _begin:
         if len(x)==1: return None        # (begin) => None
@@ -266,17 +266,17 @@ def expand(x, toplevel=False):
         return expand_quasiquote(x[1])
     elif isa(x[0], Symbol) and x[0] in macro_table:
         return expand(macro_table[x[0]](*x[1:]), toplevel) # (m arg...)
-    else:                                #        => macroexpand if m isa macro
-        return list(map(expand, x))            # (f arg...) => expand each
+    else:                                #        => 若 m 是宏则进行宏展开
+        return list(map(expand, x))            # (f arg...) => 对每项展开
 
 def require(x, predicate, msg="wrong length"):
-    "Signal a syntax error if predicate is false."
+    "若 predicate 为假，则发出语法错误。"
     if not predicate: raise SyntaxError(to_string(x)+': '+msg)
 
 _append, _cons, _let = map(Sym, "append cons let".split())
 
 def expand_quasiquote(x):
-    """Expand `x => 'x; `,x => x; `(,@x y) => (append x y) """
+    """展开 `x => 'x；`,x => x；`(,@x y) => (append x y) """
     if not is_pair(x):
         return [_quote, x]
     require(x, x[0] is not _unquotesplicing, "can't splice here")
@@ -299,7 +299,7 @@ def let(*args):
     vars, vals = zip(*bindings)
     return [[_lambda, list(vars)]+list(map(expand, body))] + list(map(expand, vals))
 
-macro_table = {_let:let} ## More macros can go here
+macro_table = {_let:let} ## 更多宏可以放在这里
 
 eval(parse("""(begin
 

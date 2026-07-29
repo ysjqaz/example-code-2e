@@ -1,36 +1,35 @@
-# Norvig's originals and updates
+# Norvig 的原版及更新版本
 
-This directory contains:
+本目录包含：
 
-* `original/`:
-Norvig's [`lis.py`](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lis.py),
-[`lispy.py`](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lispy.py), and the `lispytest.py` custom test script for testing both;
-* `py3.10/`: `lis.py` with type hints, pattern matching, and minor edits—requires Python 3.10.
+* `original/`：
+Norvig 的 [`lis.py`](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lis.py)、
+[`lispy.py`](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lispy.py)，以及用于测试这两者的 `lispytest.py` 自定义测试脚本；
+* `py3.10/`：带类型提示（type hint）、模式匹配（pattern matching）以及少量改动的 `lis.py`——需要 Python 3.10。
 
-The `py3.10/` directory also has `lis_test.py` to run with
-[pytest](https://docs.pytest.org), including the
-[`lis_tests` suite](https://github.com/norvig/pytudes/blob/60168bce8cdfacf57c92a5b2979f0b2e95367753/py/lispytest.py#L5)
-from `original/lispytest.py`,
-and additional separate tests for each expression and special form handled by `evaluate`.
-
-
-## Provenance, Copyright and License
-
-`lis.py` is
-[published](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lis.py)
-in the [norvig/pytudes](https://github.com/norvig/pytudes) repository on Github.
-The copyright holder is Peter Norvig and the code is licensed under the
-[MIT license](https://github.com/norvig/pytudes/blob/60168bce8cdfacf57c92a5b2979f0b2e95367753/LICENSE).
+`py3.10/` 目录还包含 `lis_test.py`，可用
+[pytest](https://docs.pytest.org) 运行，其中包含来自 `original/lispytest.py` 的
+[`lis_tests` 测试集](https://github.com/norvig/pytudes/blob/60168bce8cdfacf57c92a5b2979f0b2e95367753/py/lispytest.py#L5)，
+以及针对 `evaluate` 处理的每种表达式和特殊形式（special form）的额外独立测试。
 
 
-## Changes to Norvig's code
+## 出处、版权与许可
 
-I made small changes to the programs in `original/`:
+`lis.py`
+[发布](https://github.com/norvig/pytudes/blob/c33cd6835a506a57d9fe73e3a8317d49babb13e8/py/lis.py)
+在 Github 的 [norvig/pytudes](https://github.com/norvig/pytudes) 仓库中。
+版权所有者为 Peter Norvig，代码采用
+[MIT 许可证](https://github.com/norvig/pytudes/blob/60168bce8cdfacf57c92a5b2979f0b2e95367753/LICENSE) 授权。
 
-* In `lis.py`:
-  * The `Procedure` class accepts a list of expressions as the `body`, and `__call__` evaluates those expressions in order, and returns the value of the last. This is consistent with Scheme's `lambda` syntax and provided a useful example for pattern matching.
-  * In the `elif` block for `'lambda'`, I added the `*` in front of the `*body` variable in the tuple unpacking to capture the expressions as a list, before calling the `Procedure` constructor.
 
-* In `lispy.py` I made [changes and a pull request](https://github.com/norvig/pytudes/pull/106) to make it run on Python 3.
+## 对 Norvig 代码的改动
 
-_Luciano Ramalho<br/>June 29, 2021_
+我对 `original/` 中的程序做了少量改动：
+
+* 在 `lis.py` 中：
+  * `Procedure` 类接受一个表达式列表作为 `body`，`__call__` 会依次对这些表达式求值，并返回最后一个表达式的值。这与 Scheme 的 `lambda` 语法一致，也为模式匹配提供了一个有用的示例。
+  * 在 `'lambda'` 的 `elif` 分支中，我在元组解包时为 `*body` 变量加上了 `*`，以便将表达式收集为列表，再传给 `Procedure` 构造器。
+
+* 在 `lispy.py` 中，我做了一些[改动并提交了 pull request](https://github.com/norvig/pytudes/pull/106)，使其能在 Python 3 上运行。
+
+_Luciano Ramalho<br/>2021 年 6 月 29 日_

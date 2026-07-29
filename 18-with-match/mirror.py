@@ -1,8 +1,8 @@
 """
-A "mirroring" ``stdout`` context.
+一个「镜像」``stdout`` 的上下文管理器（context manager）。
 
-While active, the context manager reverses text output to
-``stdout``::
+当处于活动状态时，该上下文管理器会将写入 ``stdout`` 的
+文本反转输出::
 
 # tag::MIRROR_DEMO_1[]
 
@@ -21,7 +21,7 @@ While active, the context manager reverses text output to
 # end::MIRROR_DEMO_1[]
 
 
-This exposes the context manager operation::
+下面展示了上下文管理器的内部运作::
 
 # tag::MIRROR_DEMO_2[]
 
@@ -42,7 +42,7 @@ This exposes the context manager operation::
 
 # end::MIRROR_DEMO_2[]
 
-The context manager can handle and "swallow" exceptions.
+该上下文管理器可以处理并「吞掉」异常。
 
 # tag::MIRROR_DEMO_3[]
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-################ Lispy: Scheme Interpreter in Python 3.10
+################ Lispy：Python 3.10 中的 Scheme 解释器
 
-## (c) Peter Norvig, 2010-18; See http://norvig.com/lispy.html
-## Minor edits for Fluent Python, Second Edition (O'Reilly, 2021)
-## by Luciano Ramalho, adding type hints and pattern matching.
+## (c) Peter Norvig, 2010-18；参见 http://norvig.com/lispy.html
+## 为《流畅的 Python（第二版）》（O'Reilly, 2021）做了少量修改
+## 由 Luciano Ramalho 编写，添加了类型提示（type hint）和模式匹配（pattern matching）。
 
 
-################ Imports and Types
+################ 导入与类型
 
 # tag::IMPORTS[]
 import math
@@ -22,18 +22,18 @@ Expression: TypeAlias = Atom | list
 # end::IMPORTS[]
 
 
-################ Parsing: parse, tokenize, and read_from_tokens
+################ 解析：parse、tokenize 和 read_from_tokens
 
 def parse(program: str) -> Expression:
-    "Read a Scheme expression from a string."
+    "从字符串中读取一个 Scheme 表达式。"
     return read_from_tokens(tokenize(program))
 
 def tokenize(s: str) -> list[str]:
-    "Convert a string into a list of tokens."
+    "将字符串转换为词法单元（token）列表。"
     return s.replace('(', ' ( ').replace(')', ' ) ').split()
 
 def read_from_tokens(tokens: list[str]) -> Expression:
-    "Read an expression from a sequence of tokens."
+    "从词法单元序列中读取一个表达式。"
     if len(tokens) == 0:
         raise SyntaxError('unexpected EOF while reading')
     token = tokens.pop(0)
@@ -41,7 +41,7 @@ def read_from_tokens(tokens: list[str]) -> Expression:
         exp = []
         while tokens[0] != ')':
             exp.append(read_from_tokens(tokens))
-        tokens.pop(0)  # discard ')'
+        tokens.pop(0)  # 丢弃 ')'
         return exp
     elif ')' == token:
         raise SyntaxError('unexpected )')
@@ -49,7 +49,7 @@ def read_from_tokens(tokens: list[str]) -> Expression:
         return parse_atom(token)
 
 def parse_atom(token: str) -> Atom:
-    "Numbers become numbers; every other token is a symbol."
+    "数字转换为数字；其他所有词法单元都是符号。"
     try:
         return int(token)
     except ValueError:
@@ -59,14 +59,14 @@ def parse_atom(token: str) -> Atom:
             return Symbol(token)
 
 
-################ Global Environment
+################ 全局环境
 
 # tag::ENV_CLASS[]
 class Environment(ChainMap[Symbol, Any]):
-    "A ChainMap that allows changing an item in-place."
+    "一个允许就地修改元素的 ChainMap。"
 
     def change(self, key: Symbol, value: Any) -> None:
-        "Find where key is defined and change the value there."
+        "找到 key 定义的位置并在那里修改值。"
         for map in self.maps:
             if key in map:
                 map[key] = value  # type: ignore[index]
@@ -75,9 +75,9 @@ class Environment(ChainMap[Symbol, Any]):
 # end::ENV_CLASS[]
 
 def standard_env() -> Environment:
-    "An environment with some Scheme standard procedures."
+    "一个包含部分 Scheme 标准过程的环境。"
     env = Environment()
-    env.update(vars(math))   # sin, cos, sqrt, pi, ...
+    env.update(vars(math))   # sin、cos、sqrt、pi 等……
     env.update({
             '+': op.add,
             '-': op.sub,
@@ -116,11 +116,11 @@ def standard_env() -> Environment:
     return env
 
 
-################ Interaction: A REPL
+################ 交互：REPL
 
 # tag::REPL[]
 def repl(prompt: str = 'lis.py> ') -> NoReturn:
-    "A prompt-read-eval-print loop."
+    "一个「提示—读取—求值—打印」循环。"
     global_env = Environment({}, standard_env())
     while True:
         ast = parse(input(prompt))
@@ -129,7 +129,7 @@ def repl(prompt: str = 'lis.py> ') -> NoReturn:
             print(lispstr(val))
 
 def lispstr(exp: object) -> str:
-    "Convert a Python object back into a Lisp-readable string."
+    "将 Python 对象转换回 Lisp 可读的字符串。"
     if isinstance(exp, list):
         return '(' + ' '.join(map(lispstr, exp)) + ')'
     else:
@@ -137,13 +137,13 @@ def lispstr(exp: object) -> str:
 # end::REPL[]
 
 
-################ Evaluator
+################ 求值器
 
 # tag::EVALUATE[]
 KEYWORDS = ['quote', 'if', 'lambda', 'define', 'set!']
 
 def evaluate(exp: Expression, env: Environment) -> Any:
-    "Evaluate an expression in an environment."
+    "在环境中求值一个表达式。"
     match exp:
         case int(x) | float(x):
             return x
@@ -174,7 +174,7 @@ def evaluate(exp: Expression, env: Environment) -> Any:
 
 # tag::PROCEDURE[]
 class Procedure:
-    "A user-defined Scheme procedure."
+    "一个用户定义的 Scheme 过程。"
 
     def __init__(  # <1>
         self, parms: list[Symbol], body: list[Expression], env: Environment
@@ -192,7 +192,7 @@ class Procedure:
 # end::PROCEDURE[]
 
 
-################ command-line interface
+################ 命令行接口
 
 def run(source: str) -> Any:
     global_env = Environment({}, standard_env())

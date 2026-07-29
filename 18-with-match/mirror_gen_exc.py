@@ -1,8 +1,8 @@
 """
-A "mirroring" ``stdout`` context manager.
+一个「镜像」``stdout`` 的上下文管理器（context manager）。
 
-While active, the context manager reverses text output to
-``stdout``::
+当处于活动状态时，该上下文管理器会将写入 ``stdout`` 的
+文本反转输出::
 
 # tag::MIRROR_GEN_DEMO_1[]
 
@@ -19,7 +19,7 @@ While active, the context manager reverses text output to
 # end::MIRROR_GEN_DEMO_1[]
 
 
-This exposes the context manager operation::
+下面展示了上下文管理器的内部运作::
 
 # tag::MIRROR_GEN_DEMO_2[]
 
@@ -41,11 +41,10 @@ This exposes the context manager operation::
 
 # end::MIRROR_GEN_DEMO_2[]
 
-The context manager can handle and "swallow" exceptions.
-The following test does not pass under doctest (a
-ZeroDivisionError is reported by doctest) but passes
-if executed by hand in the Python 3 console (the exception
-is handled by the context manager):
+该上下文管理器可以处理并「吞掉」异常。
+下面的测试在 doctest 下无法通过（doctest 会报告
+ZeroDivisionError），但在 Python 3 控制台中
+手工执行则能通过（异常由上下文管理器处理）：
 
 # tag::MIRROR_GEN_DEMO_3[]
 

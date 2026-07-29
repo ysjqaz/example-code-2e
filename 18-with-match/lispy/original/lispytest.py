@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-################ Tests for lis.py and lispy.py
+################ lis.py 和 lispy.py 的测试
 
 lis_tests = [
     ("(quote (testing 1 (2.0) -3.14e159))", ['testing', 1, [2.0], -3.14e159]),
@@ -67,7 +67,7 @@ lispy_tests = [
          (define (sumsq-acc start end acc)
             (if (> start end) acc (sumsq-acc (+ start 1) end (+ (* start start) acc))))
          (sumsq-acc start end 0))""", None),
-    ("(sum-squares-range 1 3000)", 9004500500), ## Tests tail recursion
+    ("(sum-squares-range 1 3000)", 9004500500), ## 测试尾递归
     ("(call/cc (lambda (throw) (+ 5 (* 10 (throw 1))))) ;; throw", 1),
     ("(call/cc (lambda (throw) (+ 5 (* 10 1)))) ;; do not throw", 15),
     ("""(call/cc (lambda (throw) 
@@ -99,7 +99,7 @@ lispy_tests = [
     ]
 
 def test(tests, name=''):
-    "For each (exp, expected) test case, see if eval(parse(exp)) == expected."
+    "对每个 (exp, expected) 测试用例，检查 eval(parse(exp)) == expected 是否成立。"
     fails = 0
     for (x, expected) in tests:
         try:

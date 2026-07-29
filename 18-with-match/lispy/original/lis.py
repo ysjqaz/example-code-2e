@@ -1,31 +1,31 @@
-################ Lispy: Scheme Interpreter in Python 3.3+
+################ Lispy：Python 3.3+ 中的 Scheme 解释器
 
-## (c) Peter Norvig, 2010-18; See http://norvig.com/lispy.html
+## (c) Peter Norvig, 2010-18；参见 http://norvig.com/lispy.html
 
-################ Imports and Types
+################ 导入与类型
 
 import math
 import operator as op
 from collections import ChainMap as Environment
 
-Symbol = str          # A Lisp Symbol is implemented as a Python str
-List   = list         # A Lisp List   is implemented as a Python list
-Number = (int, float) # A Lisp Number is implemented as a Python int or float
+Symbol = str          # Lisp 的 Symbol 用 Python 的 str 实现
+List   = list         # Lisp 的 List   用 Python 的 list 实现
+Number = (int, float) # Lisp 的 Number 用 Python 的 int 或 float 实现
 
 class Procedure(object):
-    "A user-defined Scheme procedure."
+    "一个用户定义的 Scheme 过程。"
     def __init__(self, parms, body, env):
         self.parms, self.body, self.env = parms, body, env
     def __call__(self, *args):
         env =  Environment(dict(zip(self.parms, args)), self.env)
         return eval(self.body, env)
 
-################ Global Environment
+################ 全局环境
 
 def standard_env():
-    "An environment with some Scheme standard procedures."
+    "一个包含部分 Scheme 标准过程的环境。"
     env = {}
-    env.update(vars(math)) # sin, cos, sqrt, pi, ...
+    env.update(vars(math)) # sin、cos、sqrt、pi 等……
     env.update({
         '+':op.add, '-':op.sub, '*':op.mul, '/':op.truediv, 
         '>':op.gt, '<':op.lt, '>=':op.ge, '<=':op.le, '=':op.eq, 
@@ -55,18 +55,18 @@ def standard_env():
 
 global_env = standard_env()
 
-################ Parsing: parse, tokenize, and read_from_tokens
+################ 解析：parse、tokenize 和 read_from_tokens
 
 def parse(program):
-    "Read a Scheme expression from a string."
+    "从字符串中读取一个 Scheme 表达式。"
     return read_from_tokens(tokenize(program))
 
 def tokenize(s):
-    "Convert a string into a list of tokens."
+    "将字符串转换为词法单元（token）列表。"
     return s.replace('(',' ( ').replace(')',' ) ').split()
 
 def read_from_tokens(tokens):
-    "Read an expression from a sequence of tokens."
+    "从词法单元序列中读取一个表达式。"
     if len(tokens) == 0:
         raise SyntaxError('unexpected EOF while reading')
     token = tokens.pop(0)
@@ -74,7 +74,7 @@ def read_from_tokens(tokens):
         L = []
         while tokens[0] != ')':
             L.append(read_from_tokens(tokens))
-        tokens.pop(0) # pop off ')'
+        tokens.pop(0) # 弹出 ')'
         return L
     elif ')' == token:
         raise SyntaxError('unexpected )')
@@ -82,24 +82,24 @@ def read_from_tokens(tokens):
         return atom(token)
 
 def atom(token):
-    "Numbers become numbers; every other token is a symbol."
+    "数字转换为数字；其他所有词法单元都是符号。"
     try: return int(token)
     except ValueError:
         try: return float(token)
         except ValueError:
             return Symbol(token)
 
-################ Interaction: A REPL
+################ 交互：REPL
 
 def repl(prompt='lis.py> '):
-    "A prompt-read-eval-print loop."
+    "一个「提示—读取—求值—打印」循环。"
     while True:
         val = eval(parse(input(prompt)))
         if val is not None:
             print(lispstr(val))
 
 def lispstr(exp):
-    "Convert a Python object back into a Lisp-readable string."
+    "将 Python 对象转换回 Lisp 可读的字符串。"
     if isinstance(exp, List):
         return '(' + ' '.join(map(lispstr, exp)) + ')' 
     else:
@@ -108,11 +108,11 @@ def lispstr(exp):
 ################ eval
 
 def eval(x, env=global_env):
-    "Evaluate an expression in an environment."
-    if isinstance(x, Symbol):      # variable reference
+    "在环境中求值一个表达式。"
+    if isinstance(x, Symbol):      # 变量引用
         return env[x]
-    elif not isinstance(x, List):  # constant literal
-        return x                
+    elif not isinstance(x, List):  # 常量字面量
+        return x
     elif x[0] == 'quote':          # (quote exp)
         (_, exp) = x
         return exp

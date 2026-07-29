@@ -1,25 +1,25 @@
 """
-vector2d.py: a simplistic class demonstrating some special methods
+vector2d.py：一个用于演示若干特殊方法的简化类
 
-It is simplistic for didactic reasons. It lacks proper error handling,
-especially in the ``__add__`` and ``__mul__`` methods.
+出于教学目的，此处做了简化。它缺少恰当的错误处理，
+尤其是 ``__add__`` 和 ``__mul__`` 方法。
 
-This example is greatly expanded later in the book.
+本示例在书后会有大幅扩展。
 
-Addition::
+加法运算::
 
     >>> v1 = Vector(2, 4)
     >>> v2 = Vector(2, 1)
     >>> v1 + v2
     Vector(4, 5)
 
-Absolute value::
+绝对值::
 
     >>> v = Vector(3, 4)
     >>> abs(v)
     5.0
 
-Scalar multiplication::
+标量乘法::
 
     >>> v * 3
     Vector(9, 12)

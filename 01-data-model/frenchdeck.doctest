@@ -36,7 +36,7 @@ Card(rank='Q', suit='hearts')
 ...     rank_value = FrenchDeck.ranks.index(card.rank)
 ...     return rank_value * len(suit_values) + suit_values[card.suit]
 
-Rank test:
+牌值测试：
 
 >>> spades_high(Card('2', 'clubs'))
 0

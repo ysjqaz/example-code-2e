@@ -33,7 +33,7 @@ True
 
 # tag::HAUNTED_BUS_CLASS[]
 class HauntedBus:
-    """A bus model haunted by ghost passengers"""
+    """一个被幽灵乘客纠缠的公交车模型"""
 
     def __init__(self, passengers=[]):  # <1>
         self.passengers = passengers  # <2>

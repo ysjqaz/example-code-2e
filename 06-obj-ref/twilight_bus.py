@@ -9,7 +9,7 @@
 
 # tag::TWILIGHT_BUS_CLASS[]
 class TwilightBus:
-    """A bus model that makes passengers vanish"""
+    """一个会让乘客消失的公交车模型"""
 
     def __init__(self, passengers=None):
         if passengers is None:

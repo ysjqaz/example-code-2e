@@ -1,7 +1,7 @@
 # spinner_proc.py
 
-# credits: Adapted from Michele Simionato's
-# multiprocessing example in the python-list:
+# 致谢：改编自 Michele Simionato 在 python-list 中给出的
+# multiprocessing 示例：
 # https://mail.python.org/pipermail/python-list/2009-February/675659.html
 
 # tag::SPINNER_PROC_IMPORTS[]

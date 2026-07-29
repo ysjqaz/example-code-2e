@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 """
-threads.py: shows that Python threads are slower
-than sequential code for CPU-intensive work.
+threads.py：演示对于 CPU 密集型任务，Python 线程比顺序代码更慢。
 """
 
 import os

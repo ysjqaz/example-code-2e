@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-sequential.py: baseline for comparing sequential, multiprocessing,
-and threading code for CPU-intensive work.
+sequential.py：用于比较 CPU 密集型任务下顺序执行、multiprocessing
+和 threading 代码的基线。
 """
 
 from time import perf_counter

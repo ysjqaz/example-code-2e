@@ -1,7 +1,7 @@
 # spinner_prime_async_nap.py
 
-# credits: Example by Luciano Ramalho inspired by
-# Michele Simionato's multiprocessing example in the python-list:
+# 致谢：示例由 Luciano Ramalho 编写，灵感来自
+# Michele Simionato 在 python-list 中给出的 multiprocessing 示例：
 # https://mail.python.org/pipermail/python-list/2009-February/675659.html
 
 import asyncio

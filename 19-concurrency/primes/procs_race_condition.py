@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-procs.py: shows that multiprocessing on a multicore machine
-can be faster than sequential code for CPU-intensive work.
+procs.py：演示在多核机器上，对于 CPU 密集型任务，
+multiprocessing 可以比顺序代码更快。
 """
 
 # tag::PRIMES_PROC_TOP[]

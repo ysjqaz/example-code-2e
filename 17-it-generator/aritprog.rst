@@ -1,8 +1,8 @@
 ===========================================
-Tests for arithmetic progression generators
+等差数列生成器测试
 ===========================================
 
-Tests with built-in numeric types::
+使用内置数值类型进行测试::
 
     >>> ap = aritprog_gen(1, .5, 3)
     >>> list(ap)
@@ -12,7 +12,7 @@ Tests with built-in numeric types::
     [0.0, 0.3333333333333333, 0.6666666666666666]
 
 
-Tests with standard library numeric types::
+使用标准库数值类型进行测试::
 
     >>> from fractions import Fraction
     >>> ap = aritprog_gen(0, Fraction(1, 3), 1)
@@ -24,7 +24,7 @@ Tests with standard library numeric types::
     [Decimal('0'), Decimal('0.1'), Decimal('0.2')]
 
 
-Test producing an empty series::
+测试生成空序列::
 
     >>> ap = aritprog_gen(0, 1, 0)
     >>> list(ap)

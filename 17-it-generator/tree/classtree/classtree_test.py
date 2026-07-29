@@ -12,18 +12,16 @@ def test_subclasses():
 
 def test_subclasses_of_type():
     """
-    The `type` class is a special case because `type.__subclasses__()`
-    is an unbound method when called on it, so we must call it as
-    `type.__subclasses__(type)` just for `type`.
+    `type` 类是一个特例，因为对它调用 `type.__subclasses__()` 时
+    得到的是一个未绑定方法，所以仅针对 `type` 必须写作
+    `type.__subclasses__(type)`。
 
-    This test does not verify the full list of results, but just
-    checks that `abc.ABCMeta` is included, because that's the only
-    subclass of `type` (i.e. metaclass) I we get when I run
-    `$ classtree.py type` at the command line.
+    本测试不校验完整的结果列表，只检查 `abc.ABCMeta` 是否包含其中，
+    因为那是我在命令行运行 `$ classtree.py type` 时唯一得到的
+    `type` 子类（即元类（metaclass））。
 
-    However, the Python console and `pytest` both load other modules,
-    so `subclasses` may find more subclasses of `type`—for example,
-    `enum.EnumMeta`.
+    不过，Python 控制台和 `pytest` 都会加载其他模块，因此 `subclasses`
+    可能会发现更多 `type` 的子类——例如 `enum.EnumMeta`。
     """
     result = subclasses(type)
     assert ABCMeta in result

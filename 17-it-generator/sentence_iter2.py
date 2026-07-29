@@ -1,8 +1,8 @@
 """
-Sentence: iterate over words using the Iterator Pattern, take #2
+Sentence：使用迭代器模式（Iterator Pattern）逐词迭代，第 2 版
 
-WARNING: the Iterator Pattern is much simpler in idiomatic Python;
-see: sentence_gen*.py.
+警告：在惯用 Python 中，迭代器模式要简单得多；
+参见 sentence_gen*.py。
 """
 
 import re

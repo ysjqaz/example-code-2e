@@ -1,8 +1,8 @@
 """
-Sentence: iterate over words using the Iterator Pattern, take #1
+Sentence：使用迭代器模式（Iterator Pattern）逐词迭代，第 1 版
 
-WARNING: the Iterator Pattern is much simpler in idiomatic Python;
-see: sentence_gen*.py.
+警告：在惯用 Python 中，迭代器模式要简单得多；
+参见 sentence_gen*.py。
 """
 
 # tag::SENTENCE_ITER[]
@@ -51,7 +51,7 @@ def main():
         word_number = int(sys.argv[2])
     except (IndexError, ValueError):
         print(f'Usage: {sys.argv[0]} <file-name> <word-number>')
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     with open(filename, 'rt', encoding='utf-8') as text_file:
         s = Sentence(text_file.read())
     for n, word in enumerate(s, 1):

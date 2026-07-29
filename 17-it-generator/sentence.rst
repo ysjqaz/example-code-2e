@@ -1,9 +1,8 @@
 ==============================
-Tests for a ``Sentence`` class
+``Sentence`` 类测试
 ==============================
 
-A ``Sentence`` is built from a ``str`` and allows iteration
-word-by-word.
+``Sentence`` 由一个 ``str`` 构造，支持逐词迭代。
 
 ::
     >>> s = Sentence('The time has come')
@@ -26,7 +25,7 @@ word-by-word.
     StopIteration
 
 
-Any punctuation is skipped while iterating::
+迭代时会跳过任何标点符号::
 
     >>> s = Sentence('"The time has come," the Walrus said,')
     >>> s
@@ -35,7 +34,7 @@ Any punctuation is skipped while iterating::
     ['The', 'time', 'has', 'come', 'the', 'Walrus', 'said']
 
 
-White space including line breaks are also ignored::
+包含换行符的空白字符也会被忽略::
 
     >>> s = Sentence('''"The time has come," the Walrus said,
     ...                 "To talk of many things:"''')
@@ -45,7 +44,7 @@ White space including line breaks are also ignored::
     ['The', 'time', 'has', 'come', 'the', 'Walrus', 'said', 'To', 'talk', 'of', 'many', 'things']
 
 
-Accented Latin characters are also recognized as word characters::
+带重音的拉丁字母也会被识别为单词字符::
 
     >>> s = Sentence('Agora vou-me. Ou me vão?')
     >>> s

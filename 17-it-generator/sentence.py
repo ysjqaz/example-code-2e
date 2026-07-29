@@ -1,5 +1,5 @@
 """
-Sentence: access words by index
+Sentence：通过索引访问单词
 
     >>> text = 'To be, or not to be, that is the question'
     >>> s = Sentence(text)

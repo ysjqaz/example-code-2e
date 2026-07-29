@@ -1,12 +1,11 @@
-""" Example from `Python: The Full Monty`__ -- A Tested Semantics for the
+""" 示例摘自 `Python: The Full Monty`__ —— A Tested Semantics for the
 Python Programming Language
 
 __ http://cs.brown.edu/~sk/Publications/Papers/Published/pmmwplck-python-full-monty/
 
-"The following program, [...] seems to perform a simple abstraction over the
-process of yielding:"
+「下面这段程序……似乎对 yield 的过程做了一个简单的抽象：」
 
-Citation:
+引文：
 
 Joe Gibbs Politz, Alejandro Martinez, Matthew Milano, Sumner Warren,
 Daniel Patterson, Junsong Li, Anand Chitipothu, and Shriram Krishnamurthi.

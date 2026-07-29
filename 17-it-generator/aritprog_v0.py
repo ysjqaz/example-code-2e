@@ -1,5 +1,5 @@
 """
-Arithmetic progression class
+等差数列类
 
     >>> ap = ArithmeticProgression(1, .5, 3)
     >>> list(ap)
@@ -14,7 +14,7 @@ class ArithmeticProgression:
     def __init__(self, begin, step, end=None):
         self.begin = begin
         self.step = step
-        self.end = end  # None -> "infinite" series
+        self.end = end  # None -> 「无限」序列
 
     def __iter__(self):
         result_type = type(self.begin + self.step)

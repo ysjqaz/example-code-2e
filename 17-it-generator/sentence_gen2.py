@@ -1,5 +1,5 @@
 """
-Sentence: iterate over words using a generator function
+Sentence：使用生成器函数逐词迭代
 """
 
 # tag::SENTENCE_GEN2[]

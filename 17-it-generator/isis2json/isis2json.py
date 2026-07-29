@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-# isis2json.py: convert ISIS and ISO-2709 files to JSON
+# isis2json.py：将 ISIS 和 ISO-2709 文件转换为 JSON
 #
 # Copyright (C) 2010 BIREME/PAHO/WHO
 #
@@ -20,7 +20,7 @@
 
 ############################
 # BEGIN ISIS2JSON
-# this script works with Python or Jython (versions >=2.5 and <3)
+# 本脚本可在 Python 或 Jython（版本 >=2.5 且 <3）上运行
 
 import sys
 import argparse
@@ -30,7 +30,7 @@ import os
 try:
     import json
 except ImportError:
-    if os.name == 'java':  # running Jython
+    if os.name == 'java':  # 运行于 Jython
         from com.xhaus.jyson import JysonCodec as json
     else:
         import simplejson as json
@@ -51,7 +51,7 @@ def iter_iso_records(iso_file_name, isis_json_type):  # <1>
     for record in iso:
         fields = {}
         for field in record.directory:
-            field_key = str(int(field.tag))  # remove leading zeroes
+            field_key = str(int(field.tag))  # 去除前导零
             field_occurrences = fields.setdefault(field_key, [])
             content = field.value.decode(INPUT_ENCODING, 'replace')
             if isis_json_type == 1:
@@ -81,7 +81,7 @@ def iter_mst_records(master_file_name, isis_json_type):  # <2>
         if SKIP_INACTIVE:
             if record.getStatus() != Record.Status.ACTIVE:
                 continue
-        else:  # save status only there are non-active records
+        else:  # 仅当存在非 active 记录时才保存状态
             fields[ISIS_ACTIVE_KEY] = (record.getStatus() ==
                                        Record.Status.ACTIVE)
         fields[ISIS_MFN_KEY] = record.getMfn()
@@ -165,12 +165,12 @@ def write_json(input_gen, file_name, output, qty, skip, id_tag,  # <3>
             elif mfn:
                 record['_id'] = record[ISIS_MFN_KEY]
             if prefix:
-                # iterate over a fixed sequence of tags
+                # 遍历固定的标签序列
                 for tag in tuple(record):
                     if str(tag).isdigit():
                         record[prefix+tag] = record[tag]
-                        del record[tag]  # this is why we iterate over a tuple
-                        # with the tags, and not directly on the record dict
+                        del record[tag]  # 这就是为何我们遍历的是元组
+                        # 标签，而不是直接在 record 字典上遍历
             if constant:
                 constant_key, constant_value = constant.split(':')
                 record[constant_key] = constant_value
@@ -181,11 +181,11 @@ def write_json(input_gen, file_name, output, qty, skip, id_tag,  # <3>
 
 
 def main():  # <4>
-    # create the parser
+    # 创建解析器
     parser = argparse.ArgumentParser(
         description='Convert an ISIS .mst or .iso file to a JSON array')
 
-    # add the arguments
+    # 添加参数
     parser.add_argument(
         'file_name', metavar='INPUT.(mst|iso)',
         help='.mst or .iso file to read')
@@ -232,13 +232,13 @@ def main():  # <4>
         help='Include a constant tag:value in every record (ex. -k type:AS)')
 
     '''
-    # TODO: implement this to export large quantities of records to CouchDB
+    # TODO: 实现此功能以将大量记录导出到 CouchDB
     parser.add_argument(
         '-r', '--repeat', type=int, default=1,
         help='repeat operation, saving multiple JSON files'
              ' (default=1, use -r 0 to repeat until end of input)')
     '''
-    # parse the command line
+    # 解析命令行
     args = parser.parse_args()
     if args.file_name.lower().endswith('.mst'):
         input_gen_func = iter_mst_records  # <5>

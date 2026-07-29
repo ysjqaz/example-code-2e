@@ -1,5 +1,5 @@
 """
-Sentence: iterate over words using a generator expression
+Sentence：使用生成器表达式逐词迭代
 """
 
 # tag::SENTENCE_GENEXP[]
@@ -30,7 +30,7 @@ def main():
         word_number = int(sys.argv[2])
     except (IndexError, ValueError):
         print(f'Usage: {sys.argv[0]} <file-name> <word-number>')
-        sys.exit(2)  # command line usage error
+        sys.exit(2)  # 命令行用法错误
     with open(filename, 'rt', encoding='utf-8') as text_file:
         s = Sentence(text_file.read())
     for n, word in enumerate(s, 1):

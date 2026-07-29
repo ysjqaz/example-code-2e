@@ -1,5 +1,5 @@
 """
-A coroutine to compute a running average
+用于计算移动平均值的协程（coroutine）
 
 # tag::CORO_AVERAGER_TEST[]
     >>> coro_avg = averager()  # <1>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-# ISIS-DM: the ISIS Data Model API
+# ISIS-DM：ISIS 数据模型 API
 #
 # Copyright (C) 2010 BIREME/PAHO/WHO
 #
@@ -27,7 +27,7 @@ SUBFIELD_MARKER_RE = re.compile(r'\^([a-z0-9])', re.IGNORECASE)
 DEFAULT_ENCODING = u'utf-8'
 
 def expand(content, subkeys=None):
-    ''' Parse a field into an association list of keys and subfields
+    ''' 将字段解析为由键和子字段组成的关联列表
 
         >>> expand('zero^1one^2two^3three')
         [('_', 'zero'), ('1', 'one'), ('2', 'two'), ('3', 'three')]
@@ -54,8 +54,7 @@ def expand(content, subkeys=None):
 
 
 class CompositeString(object):
-    ''' Represent an Isis field, with subfields, using
-    Python native datastructures
+    ''' 使用 Python 原生数据结构表示带子字段的 Isis 字段
 
     >>> author = CompositeString('John Tenniel^xillustrator',
     ... subkeys='x')
@@ -91,8 +90,7 @@ class CompositeString(object):
 
 
 class CompositeField(object):
-    ''' Represent an Isis field, with subfields, using
-        Python native datastructures
+    ''' 使用 Python 原生数据结构表示带子字段的 Isis 字段
 
         >>> author = CompositeField( [('name','Braz, Marcelo'),('role','writer')] )
         >>> print author['name']

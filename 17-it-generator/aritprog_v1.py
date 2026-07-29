@@ -1,5 +1,5 @@
 """
-Arithmetic progression class
+等差数列类
 
 # tag::ARITPROG_CLASS_DEMO[]
 
@@ -31,7 +31,7 @@ class ArithmeticProgression:
     def __init__(self, begin, step, end=None):       # <1>
         self.begin = begin
         self.step = step
-        self.end = end  # None -> "infinite" series
+        self.end = end  # None -> 「无限」序列
 
     def __iter__(self):
         result_type = type(self.begin + self.step)   # <2>

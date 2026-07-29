@@ -1,12 +1,10 @@
 isis2json.py
 ============
 
-This directory contains a copy of the ``isis2json.py`` script, with
-minimal dependencies, just to allow the O'Reilly Atlas toolchain to
-render the listing of the script in appendix A of the book.
+本目录包含 ``isis2json.py`` 脚本的一个副本，依赖极简，
+仅为了让 O'Reilly Atlas 工具链能在书附录 A 中渲染该脚本的代码清单。
 
-If you want to use or contribute to this script, please get the full
-source code with all dependencies from the main ``isis2json``
-repository:
+如果你想使用或为该脚本做贡献，请从主 ``isis2json`` 仓库获取包含
+全部依赖的完整源码：
 
 https://github.com/fluentpython/isis2json

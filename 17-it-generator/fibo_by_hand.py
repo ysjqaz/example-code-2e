@@ -1,5 +1,5 @@
 """
-Fibonacci generator implemented "by hand" without generator objects
+「手工」实现的斐波那契生成器（generator），不使用生成器对象
 
     >>> from itertools import islice
     >>> list(islice(Fibonacci(), 15))
@@ -30,8 +30,7 @@ class FibonacciGenerator:
         return self
 # end::FIBO_BY_HAND[]
 
-# for comparison, this is the usual implementation of a Fibonacci
-# generator in Python:
+# 作为对比，下面是 Python 中常见的斐波那契生成器实现：
 
 
 def fibonacci():

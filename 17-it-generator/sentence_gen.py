@@ -1,5 +1,5 @@
 """
-Sentence: iterate over words using a generator function
+Sentence：使用生成器函数逐词迭代
 """
 
 # tag::SENTENCE_GEN[]
@@ -23,6 +23,6 @@ class Sentence:
             yield word  # <2>
         # <3>
 
-# done! <4>
+# 完成！<4>
 
 # end::SENTENCE_GEN[]

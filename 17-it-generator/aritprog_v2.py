@@ -1,5 +1,5 @@
 """
-Arithmetic progression generator function::
+等差数列生成器函数::
 
     >>> ap = aritprog_gen(1, .5, 3)
     >>> list(ap)

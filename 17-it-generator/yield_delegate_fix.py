@@ -1,7 +1,6 @@
-""" Example adapted from ``yield_delegate_fail.py``
+""" 示例改编自 ``yield_delegate_fail.py``
 
-The following program performs a simple abstraction over the process of
-yielding.
+下面这段程序对 yield 的过程做了一个简单的抽象。
 
 """
 

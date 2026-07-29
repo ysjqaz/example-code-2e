@@ -1,7 +1,7 @@
 """
-Demonstrate difference between Arithmetic Progression calculated
-as a series of increments accumulating errors versus one addition
-and one multiplication.
+演示两种等差数列计算方式的差异：
+一种通过反复累加增量（会累积误差），
+另一种通过一次加法和一次乘法计算。
 """
 
 from fractions import Fraction

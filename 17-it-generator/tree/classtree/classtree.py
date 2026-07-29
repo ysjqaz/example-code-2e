@@ -14,7 +14,7 @@ ELBOW = '\N{BOX DRAWINGS LIGHT UP AND RIGHT}' + HLIN        # └──
 def subclasses(cls):
     try:
         return cls.__subclasses__()
-    except TypeError:  # handle the `type` type
+    except TypeError:  # 处理 `type` 类型
         return cls.__subclasses__(cls)
 
 

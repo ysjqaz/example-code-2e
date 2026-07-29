@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-# ISO-2709 file reader
+# ISO-2709 文件读取器
 #
 # Copyright (C) 2010 BIREME/PAHO/WHO
 #
@@ -22,9 +22,9 @@ from struct import unpack
 
 CR =  '\x0D' # \r
 LF =  '\x0A' # \n
-IS1 = '\x1F' # ECMA-48 Unit Separator
-IS2 = '\x1E' # ECMA-48 Record Separator / ISO-2709 field separator
-IS3 = '\x1D' # ECMA-48 Group Separator / ISO-2709 record separator
+IS1 = '\x1F' # ECMA-48 单元分隔符
+IS2 = '\x1E' # ECMA-48 记录分隔符 / ISO-2709 字段分隔符
+IS3 = '\x1D' # ECMA-48 组分隔符 / ISO-2709 记录分隔符
 LABEL_LEN = 24
 LABEL_FORMAT = '5s c 4s c c 5s 3s c c c c'
 TAG_LEN = 3
@@ -43,13 +43,13 @@ class IsoFile(object):
     def next(self):
         return IsoRecord(self)
 
-    __next__ = next # Python 3 compatibility
+    __next__ = next # Python 3 兼容
 
     def read(self, size):
-        ''' read and drop all CR and LF characters '''
-        # TODO: this is inneficient but works, patches accepted!
-        # NOTE: our fixtures include files which have no linebreaks,
-        # files with CR-LF linebreaks and files with LF linebreaks
+        ''' 读取并丢弃所有 CR 和 LF 字符 '''
+        # TODO：这种做法效率不高但能用，欢迎提交补丁！
+        # NOTE：我们的测试夹具既包含没有换行符的文件，
+        # 也包含以 CR-LF 换行和以 LF 换行的文件
         chunks = []
         count = 0
         while count < size:
@@ -71,7 +71,7 @@ class IsoFile(object):
 class IsoRecord(object):
     label_part_names = ('rec_len rec_status impl_codes indicator_len identifier_len'
                         ' base_addr user_defined'
-                        # directory map:
+                        # 目录结构：
                         ' fld_len_len start_len impl_len reserved').split()
     rec_len = 0
 
@@ -117,17 +117,17 @@ class IsoRecord(object):
         for field in self.directory:
             if self.indicator_len > 0:
                 field.indicator = self.iso_file.read(self.indicator_len)
-            # XXX: lilacs30.iso has an identifier_len == 2,
-            # but we need to ignore it to succesfully read the field contents
-            # TODO: find out when to ignore the idenfier_len,
-            # or fix the lilacs30.iso fixture
+            # XXX: lilacs30.iso 的 identifier_len == 2，
+            # 但我们必须忽略它才能成功读出字段内容
+            # TODO: 搞清楚何时该忽略 identifier_len，
+            # 或者修复 lilacs30.iso 测试夹具
             #
             ##if self.identifier_len > 0: #
             ##    field.identifier = self.iso_file.read(self.identifier_len)
             value = self.iso_file.read(len(field))
             assert len(value) == len(field)
-            field.value = value[:-1] # remove trailing field separator
-        self.iso_file.read(1) # discard record separator
+            field.value = value[:-1] # 去除末尾的字段分隔符
+        self.iso_file.read(1) # 丢弃记录分隔符
 
     def __iter__(self):
         return self
@@ -136,7 +136,7 @@ class IsoRecord(object):
         for field in self.directory:
             yield(field)
 
-    __next__ = next # Python 3 compatibility
+    __next__ = next # Python 3 兼容
 
     def dump(self):
         for field in self.directory:

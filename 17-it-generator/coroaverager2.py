@@ -1,7 +1,7 @@
 """
-A coroutine to compute a running average.
+用于计算移动平均值的协程（coroutine）。
 
-Testing ``averager2`` by itself::
+单独测试 ``averager2``::
 
 # tag::RETURNING_AVERAGER_DEMO_1[]
 
@@ -14,8 +14,7 @@ Testing ``averager2`` by itself::
 
 # end::RETURNING_AVERAGER_DEMO_1[]
 
-Catching `StopIteration` to extract the value returned by
-the coroutine::
+捕获 `StopIteration` 以提取协程（coroutine）返回的值::
 
 # tag::RETURNING_AVERAGER_DEMO_2[]
 
@@ -34,7 +33,7 @@ the coroutine::
 
 # end::RETURNING_AVERAGER_DEMO_2[]
 
-Using `yield from`:
+使用 `yield from`：
 
 
 # tag::RETURNING_AVERAGER_DEMO_3[]

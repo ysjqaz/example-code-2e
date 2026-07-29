@@ -1,8 +1,8 @@
 """
-Short demos
+简短示例
 ===========
 
-``UpperDict`` behaves like a case-insensitive mapping`::
+``UpperDict`` 的行为类似一个不区分大小写的映射（mapping）::
 
 # tag::UPPERDICT_DEMO[]
     >>> d = UpperDict([('a', 'letter A'), (2, 'digit two')])
@@ -18,7 +18,7 @@ Short demos
 
 # end::UPPERDICT_DEMO[]
 
-And ``UpperCounter`` is also case-insensitive::
+而 ``UpperCounter`` 也不区分大小写::
 
 # tag::UPPERCOUNTER_DEMO[]
     >>> c = UpperCounter('BaNanA')
@@ -27,15 +27,15 @@ And ``UpperCounter`` is also case-insensitive::
 
 # end::UPPERCOUNTER_DEMO[]
 
-Detailed tests
+详细测试
 ==============
 
-UpperDict uppercases all string keys.
+UpperDict 将所有字符串键转换为大写。
 
     >>> d = UpperDict([('a', 'letter A'), ('B', 'letter B'), (2, 'digit two')])
 
 
-Tests for item retrieval using `d[key]` notation::
+使用 `d[key]` 表示法获取元素的测试::
 
     >>> d['A']
     'letter A'
@@ -45,7 +45,7 @@ Tests for item retrieval using `d[key]` notation::
     'digit two'
 
 
-Tests for missing key::
+缺失键的测试::
 
     >>> d['z']
     Traceback (most recent call last):
@@ -57,7 +57,7 @@ Tests for missing key::
     KeyError: 99
 
 
-Tests for item retrieval using `d.get(key)` notation::
+使用 `d.get(key)` 表示法获取元素的测试::
 
     >>> d.get('a')
     'letter A'
@@ -68,18 +68,18 @@ Tests for item retrieval using `d.get(key)` notation::
     >>> d.get('z', '(not found)')
     '(not found)'
 
-Tests for the `in` operator::
+`in` 运算符的测试::
 
     >>> ('a' in d, 'B' in d, 'z' in d)
     (True, True, False)
 
-Test for item assignment using lowercase key::
+使用小写键赋值元素的测试::
 
     >>> d['c'] = 'letter C'
     >>> d['C']
     'letter C'
 
-Tests for update using a `dict` or a sequence of pairs::
+使用 `dict` 或键值对序列进行 update 的测试::
 
     >>> d.update({'D': 'letter D', 'e': 'letter E'})
     >>> list(d.keys())
@@ -92,15 +92,15 @@ Tests for update using a `dict` or a sequence of pairs::
     'C': 'letter C', 'D': 'letter D', 'E': 'letter E',
     'F': 'letter F', 'G': 'letter G'}
 
-UpperCounter uppercases all `str` keys.
+UpperCounter 将所有 `str` 键转换为大写。
 
-Test for initializer: keys are uppercased.
+初始化器测试：键被转换为大写。
 
     >>> d = UpperCounter('AbracAdaBrA')
     >>> sorted(d.keys())
     ['A', 'B', 'C', 'D', 'R']
 
-Tests for count retrieval using `d[key]` notation::
+使用 `d[key]` 表示法获取计数的测试::
 
     >>> d['a']
     5
@@ -136,5 +136,5 @@ class UpperDict(UpperCaseMixin, collections.UserDict):  # <1>
     pass
 
 class UpperCounter(UpperCaseMixin, collections.Counter):  # <2>
-    """Specialized 'Counter' that uppercases string keys"""  # <3>
+    """专用的 'Counter'，会将字符串键转换为大写"""  # <3>
 # end::UPPERDICT[]

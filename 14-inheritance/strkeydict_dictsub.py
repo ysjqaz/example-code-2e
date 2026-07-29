@@ -1,15 +1,15 @@
-"""StrKeyDict always converts non-string keys to `str`
+"""StrKeyDict 总是将非字符串键转换为 `str`
 
-This is a variation of `strkeydict.StrKeyDict` implemented
-as a `dict` built-in subclass (instead of a `UserDict` subclass)
+这是 `strkeydict.StrKeyDict` 的一个变体，
+作为 `dict` 内置类型的子类实现（而不是 `UserDict` 的子类）
 
-Test for initializer: keys are converted to `str`.
+初始化器测试：键被转换为 `str`。
 
     >>> d = StrKeyDict([(2, 'two'), ('4', 'four')])
     >>> sorted(d.keys())
     ['2', '4']
 
-Tests for item retrieval using `d[key]` notation::
+使用 `d[key]` 表示法获取元素的测试::
 
     >>> d['2']
     'two'
@@ -20,7 +20,7 @@ Tests for item retrieval using `d[key]` notation::
       ...
     KeyError: '1'
 
-Tests for item retrieval using `d.get(key)` notation::
+使用 `d.get(key)` 表示法获取元素的测试::
 
     >>> d.get('2')
     'two'
@@ -29,20 +29,20 @@ Tests for item retrieval using `d.get(key)` notation::
     >>> d.get(1, 'N/A')
     'N/A'
 
-Tests for the `in` operator::
+`in` 运算符的测试::
 
     >>> 2 in d
     True
     >>> 1 in d
     False
 
-Test for item assignment using non-string key::
+使用非字符串键赋值元素的测试::
 
     >>> d[0] = 'zero'
     >>> d['0']
     'zero'
 
-Tests for update using a `dict` or a sequence of pairs::
+使用 `dict` 或键值对序列进行 update 的测试::
 
     >>> d.update({6:'six', '8':'eight'})
     >>> sorted(d.keys())
@@ -83,7 +83,7 @@ class StrKeyDict(dict):
 
     def update(self, iterable=None, **kwds):
         if iterable is not None:
-            try:  # duck typing FTW!
+            try:  # 鸭子类型（duck typing）大胜利！
                 pairs = iterable.items()
             except AttributeError:
                 pairs = iterable

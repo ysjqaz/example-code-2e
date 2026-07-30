@@ -30,11 +30,11 @@ class Validated(abc.ABC, AutoStorage):
 
     @abc.abstractmethod
     def validate(self, instance, value):
-        """return validated value or raise ValueError"""
+        """返回验证后的值，或抛出 ValueError"""
 
 
 class Quantity(Validated):
-    """a number greater than zero"""
+    """大于零的数字"""
 
     def validate(self, instance, value):
         if value <= 0:
@@ -43,7 +43,7 @@ class Quantity(Validated):
 
 
 class NonBlank(Validated):
-    """a string with at least one non-space character"""
+    """至少包含一个非空白字符的字符串"""
 
     def validate(self, instance, value):
         value = value.strip()
@@ -53,7 +53,7 @@ class NonBlank(Validated):
 
 # tag::MODEL_V8[]
 class EntityMeta(type):
-    """Metaclass for business entities with validated fields"""
+    """带有验证字段的业务实体的元类（metaclass）"""
 
     @classmethod
     def __prepare__(cls, name, bases):
@@ -70,7 +70,7 @@ class EntityMeta(type):
 
 
 class Entity(metaclass=EntityMeta):
-    """Business entity with validated fields"""
+    """带有验证字段的业务实体"""
 
     @classmethod
     def field_names(cls):  # <5>

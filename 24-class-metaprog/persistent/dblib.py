@@ -1,6 +1,6 @@
-# SQLite3 does not support parameterized table and field names,
-# for CREATE TABLE and PRAGMA so we must use Python string formatting.
-# Applying `check_identifier` to parameters prevents SQL injection.
+# SQLite3 不支持对 CREATE TABLE 和 PRAGMA 中的表名与字段名使用参数化，
+# 因此必须使用 Python 字符串格式化。
+# 对参数施加 `check_identifier` 可防止 SQL 注入。
 
 import sqlite3
 from typing import NamedTuple, Optional, Iterator, Any
@@ -10,25 +10,25 @@ CONNECTION: Optional[sqlite3.Connection] = None
 
 
 class NoConnection(Exception):
-    """Call connect() to open connection."""
+    """请调用 connect() 来打开连接。"""
 
 
 class SchemaMismatch(ValueError):
-    """The table schema doesn't match the class."""
+    """表结构与类不匹配。"""
 
     def __init__(self, table_name):
         self.table_name = table_name
 
 
 class NoSuchRecord(LookupError):
-    """The given primary key does not exist."""
+    """给定的主键不存在。"""
 
     def __init__(self, pk):
         self.pk = pk
 
 
 class UnexpectedMultipleResults(Exception):
-    """Query returned more than 1 row."""
+    """查询返回了多于 1 行。"""
 
 
 SQLType = str

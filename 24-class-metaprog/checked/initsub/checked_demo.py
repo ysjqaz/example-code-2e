@@ -13,7 +13,7 @@ if __name__ == '__main__':
     print(movie.title)
     print(movie)
     try:
-        # remove the "type: ignore" comment to see Mypy error
+        # 去掉 "type: ignore" 注释即可看到 Mypy 报错
         movie.year = 'MCMLXXII'  # type: ignore
     except TypeError as e:
         print(e)

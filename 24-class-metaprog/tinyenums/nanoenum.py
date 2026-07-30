@@ -1,8 +1,8 @@
-# This is a simplification of an idea by João S. O. Bueno (@gwidion)
-# shared privately with me, with permission to use in Fluent Python 2e.
+# 这是 João S. O. Bueno (@gwidion) 一个想法的简化版，
+# 他私下分享给我，并允许在《Fluent Python 2e》中使用。
 
 """
-Testing ``KeyIsValueDict``::
+测试 ``KeyIsValueDict``::
 
     >>> adict = KeyIsValueDict()
     >>> len(adict)

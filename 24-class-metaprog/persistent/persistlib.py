@@ -1,12 +1,12 @@
 """
-A ``Persistent`` class definition::
+``Persistent`` 类的定义方式::
 
     >>> class Movie(Persistent):
     ...     title: str
     ...     year: int
     ...     box_office: float
 
-Implemented behavior::
+实现的行为::
 
     >>> Movie._connect()  # doctest: +ELLIPSIS
     <sqlite3.Connection object at 0x...>
@@ -16,8 +16,7 @@ Implemented behavior::
     >>> movie.box_office
     137.0
 
-Instances always have a ``._pk`` attribute, but it is ``None`` until the
-object is saved::
+实例（instance）总是带有 ``._pk`` 属性，但在对象被保存之前它为 ``None``::
 
     >>> movie._pk is None
     True
@@ -26,22 +25,20 @@ object is saved::
     >>> movie._pk
     1
 
-Delete the in-memory ``movie``, and fetch the record from the database,
-using ``Movie[pk]``—item access on the class itself::
+删掉内存中的 ``movie``，再用 ``Movie[pk]``——直接在类上下标访问——
+从数据库取回记录::
 
     >>> del movie
     >>> film = Movie[1]
     >>> film
     Movie(title='The Godfather', year=1972, box_office=137.0, _pk=1)
 
-By default, the table name is the class name lowercased, with an appended
-"s" for plural::
+默认情况下，表名是类名的小写形式，并在末尾加 "s" 表示复数::
 
     >>> Movie._TABLE_NAME
     'movies'
 
-If needed, a custom table name can be given as a keyword argument in the
-class declaration::
+如有需要，可以在类声明的关键字参数中指定自定义表名::
 
     >>> class Aircraft(Persistent, table='aircraft'):
     ...     registration: str
@@ -116,7 +113,7 @@ class Persistent:
         }
 
 
-    # database methods
+    # 数据库相关方法
 
     @staticmethod
     def _connect(db_path: str = db.DEFAULT_DB_PATH):

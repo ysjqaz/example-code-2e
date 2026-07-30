@@ -1,8 +1,8 @@
-# This is an implementation of an idea by João S. O. Bueno (@gwidion)
-# shared privately with me, with permission to use in Fluent Python 2e.
+# 这是 João S. O. Bueno (@gwidion) 一个想法的实现，
+# 他私下分享给我，并允许在《Fluent Python 2e》中使用。
 
 """
-Testing ``WilyDict``::
+测试 ``WilyDict``::
 
     >>> adict = WilyDict()
     >>> len(adict)
@@ -24,7 +24,7 @@ Testing ``WilyDict``::
       ...
     KeyError: '__magic__'
 
-Testing ``MicroEnum``::
+测试 ``MicroEnum``::
 
     >>> class Flavor(MicroEnum):
     ...     cocoa

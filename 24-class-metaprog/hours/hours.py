@@ -1,8 +1,7 @@
 """
-Abusing ``__class_getitem__`` to make a nano-DSL for working
-with hours, minutes, and seconds--these last two in base 60.
+滥用 ``__class_getitem__`` 来造一个处理小时、分钟、秒（后两者按 60 进制）的微型 DSL。
 
-``H`` is an alias for the ``Hours`` class::
+``H`` 是 ``Hours`` 类的别名::
 
     >>> H[1]
     1:00
@@ -13,7 +12,7 @@ with hours, minutes, and seconds--these last two in base 60.
     >>> H[::5]
     0:00:05
 
-An ``H`` instance can be converted to a float number of hours::
+``H`` 实例可以转换为以小时为单位的浮点数::
 
     >>> float(H[1:15])
     1.25
@@ -22,7 +21,7 @@ An ``H`` instance can be converted to a float number of hours::
     >>> float(H[1::5])     # doctest: +ELLIPSIS
     1.0013888...
 
-The ``H`` constructor accepts hours, minutes, and/or seconds::
+``H`` 构造器接受小时、分钟和/或秒::
 
     >>> H(1.5)
     1:30
@@ -37,7 +36,7 @@ The ``H`` constructor accepts hours, minutes, and/or seconds::
     >>> H(1/1000)
     0:00:03.6
 
-An ``H`` instance is iterable, for convenient unpacking::
+``H`` 实例是可迭代对象（iterable），便于解包::
 
     >>> hms = H[1:22:33]
     >>> h, m, s = hms
@@ -47,7 +46,7 @@ An ``H`` instance is iterable, for convenient unpacking::
     (1, 22, 33)
 
 
-``H`` instances can be added::
+``H`` 实例可以相加::
 
     >>> H[1:45:12] + H[2:15:50]
     4:01:02

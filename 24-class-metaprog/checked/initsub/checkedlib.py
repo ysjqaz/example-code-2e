@@ -1,6 +1,6 @@
 """
-A ``Checked`` subclass definition requires that keyword arguments are
-used to create an instance, and provides a nice ``__repr__``::
+``Checked`` 子类在定义时要求用关键字参数创建实例（instance），
+并提供友好的 ``__repr__``::
 
 # tag::MOVIE_DEFINITION[]
 
@@ -17,8 +17,7 @@ used to create an instance, and provides a nice ``__repr__``::
 
 # end::MOVIE_DEFINITION[]
 
-The type of arguments is runtime checked during instantiation
-and when an attribute is set::
+实例化时以及设置属性时都会对参数类型做运行时检查::
 
 # tag::MOVIE_TYPE_VALIDATION[]
 
@@ -33,8 +32,7 @@ and when an attribute is set::
 
 # end::MOVIE_TYPE_VALIDATION[]
 
-Attributes not passed as arguments to the constructor are initialized with
-default values::
+未作为参数传给构造器的属性会以默认值初始化::
 
 # tag::MOVIE_DEFAULTS[]
 
@@ -43,7 +41,7 @@ default values::
 
 # end::MOVIE_DEFAULTS[]
 
-Providing extra arguments to the constructor is not allowed::
+不允许向构造器传入多余的参数::
 
     >>> blockbuster = Movie(title='Avatar', year=2009, box_office=2000,
     ...                     director='James Cameron')
@@ -51,15 +49,14 @@ Providing extra arguments to the constructor is not allowed::
       ...
     AttributeError: 'Movie' object has no attribute 'director'
 
-Creating new attributes at runtime is restricted as well::
+运行时也不允许创建新属性::
 
     >>> movie.director = 'Francis Ford Coppola'
     Traceback (most recent call last):
       ...
     AttributeError: 'Movie' object has no attribute 'director'
 
-The `_asdict` instance method creates a `dict` from the attributes
-of a `Movie` object::
+实例方法 `_asdict` 用 `Movie` 对象的属性构造一个 `dict`::
 
     >>> movie._asdict()
     {'title': 'The Godfather', 'year': 1972, 'box_office': 137.0}

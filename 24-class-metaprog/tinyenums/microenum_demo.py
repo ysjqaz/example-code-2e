@@ -1,5 +1,5 @@
 """
-Testing ``Flavor``::
+测试 ``Flavor``::
 
     >>> Flavor.cocoa, Flavor.coconut, Flavor.vanilla
     (0, 1, 2)

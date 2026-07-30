@@ -1,11 +1,9 @@
 """
-The `MetaBunch` metaclass is a simplified version of the
-last example in the _How a Metaclass Creates a Class_ section
-of _Chapter 4: Object Oriented Python_ from
-[_Python in a Nutshell, 3rd edition_](https://learning.oreilly.com/library/view/python-in-a/9781491913833)
-by Alex Martelli, Anna Ravenscroft, and Steve Holden.
+`MetaBunch` 元类（metaclass）是 Alex Martelli、Anna Ravenscroft、Steve Holden
+所著《Python in a Nutshell, 3rd edition》第 4 章「Object Oriented Python」
+中「How a Metaclass Creates a Class」一节最后一个示例的简化版本。
 
-Here are a few tests. ``bunch_test.py`` has a few more.
+这里给出几条测试。``bunch_test.py`` 里还有几条。
 
 # tag::BUNCH_POINT_DEMO_1[]
     >>> class Point(Bunch):

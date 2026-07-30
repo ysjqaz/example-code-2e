@@ -3,10 +3,9 @@ import pytest
 from bunch import Bunch
 
 class Point(Bunch):
-    """ A point has x and y coordinates, defaulting to 0.0,
-        and a color, defaulting to 'gray'—and nothing more,
-        except what Python and the metaclass conspire to add,
-        such as __init__ and __repr__
+    """ 一个点有 x、y 坐标（默认 0.0）和颜色（默认 'gray'）——
+        除此之外什么也没有，只有 Python 和元类（metaclass）暗中加上的东西，
+        比如 __init__ 和 __repr__
     """
     x = 0.0
     y = 0.0

@@ -122,7 +122,7 @@ def test_persistent_valid_table(create_movies_sql):
 
 
 def test_persistent_valid_table_false(create_movies_sql):
-    # year field not in movies_sql
+    # year 字段不在 movies_sql 中
     fields = dict(title=str, revenue=float, year=int)
 
     with connect() as con:

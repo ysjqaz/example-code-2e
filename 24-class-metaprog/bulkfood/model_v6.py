@@ -29,11 +29,11 @@ class Validated(abc.ABC, AutoStorage):
 
     @abc.abstractmethod
     def validate(self, instance, value):
-        """return validated value or raise ValueError"""
+        """返回验证后的值，或抛出 ValueError"""
 
 
 class Quantity(Validated):
-    """a number greater than zero"""
+    """大于零的数字"""
 
     def validate(self, instance, value):
         if value <= 0:
@@ -42,7 +42,7 @@ class Quantity(Validated):
 
 
 class NonBlank(Validated):
-    """a string with at least one non-space character"""
+    """至少包含一个非空白字符的字符串"""
 
     def validate(self, instance, value):
         value = value.strip()

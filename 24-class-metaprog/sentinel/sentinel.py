@@ -1,15 +1,15 @@
 """
-This module provides a ``Sentinel`` class that can be used directly as a
-sentinel singleton, or subclassed if a distinct sentinel singleton is needed.
+本模块提供一个 ``Sentinel`` 类，可以直接作为哨兵单例使用，
+也可以子类化以获得一个独立的哨兵单例。
 
-The ``repr`` of a ``Sentinel`` class is its name::
+``Sentinel`` 类的 ``repr`` 是它的名字::
 
     >>> class Missing(Sentinel): pass
     >>> Missing
     Missing
 
-If a different ``repr`` is required,
-you can define it as a class attribute::
+如果需要不同的 ``repr``，
+可以把它定义为类属性（attribute）::
 
     >>> class CustomRepr(Sentinel):
     ...     repr = '<CustomRepr>'
@@ -17,7 +17,7 @@ you can define it as a class attribute::
     >>> CustomRepr
     <CustomRepr>
 
-``Sentinel`` classes cannot be instantiated::
+``Sentinel`` 类不能被实例化::
 
     >>> Missing()
     Traceback (most recent call last):

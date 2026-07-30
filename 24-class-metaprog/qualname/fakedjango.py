@@ -1,5 +1,5 @@
 class models:
     class Model:
-        "nothing to see here"
+        "这里没什么可看的"
     class IntegerField:
-        "nothing to see here"
+        "这里没什么可看的"

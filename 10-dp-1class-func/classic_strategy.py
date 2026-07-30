@@ -68,10 +68,10 @@ class Order(NamedTuple):  # 上下文（Context）
         return f'<Order total: {self.total():.2f} due: {self.due():.2f}>'
 
 
-class Promotion(ABC):  # 策略（Strategy）：抽象基类（abstract base class）
+class Promotion(ABC):  # 策略（Strategy）：一个抽象基类（abstract base class）
     @abstractmethod
     def discount(self, order: Order) -> Decimal:
-        """返回折扣金额（正数表示）"""
+        """返回折扣金额（正数，以美元计）"""
 
 
 class FidelityPromo(Promotion):  # 第一个具体策略（Concrete Strategy）

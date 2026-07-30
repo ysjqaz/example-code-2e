@@ -1,9 +1,9 @@
 #!/usr/bin/env jython
-# NOTE: Jython is still Python 2.7 in late2020
+# 注意：截至 2020 年底，Jython 仍是 Python 2.7
 
 import Confidential
 
 message = Confidential('top secret text')
 secret_field = Confidential.getDeclaredField('secret')
-secret_field.setAccessible(True)  # break the lock!
+secret_field.setAccessible(True)  # 破除访问限制！
 print 'message.secret =', secret_field.get(message)

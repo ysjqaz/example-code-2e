@@ -1,13 +1,13 @@
 #!/usr/bin/env jython
-# NOTE: Jython is still Python 2.7 in late2020
+# 注意：截至 2020 年底，Jython 仍是 Python 2.7
 
 """
-In the Jython registry file there is this line:
+在 Jython 注册表文件中有这样一行：
 
 python.security.respectJavaAccessibility = true
 
-Set this to false and Jython provides access to non-public
-fields, methods, and constructors of Java objects.
+将其设为 false 后，Jython 就能访问 Java 对象的非公共
+字段、方法和构造器。
 """
 
 import Confidential
@@ -15,5 +15,5 @@ import Confidential
 message = Confidential('top secret text')
 for name in dir(message):
     attr = getattr(message, name)
-    if not callable(attr):  # non-methods only
+    if not callable(attr):  # 仅非方法
         print name + '\t=', attr

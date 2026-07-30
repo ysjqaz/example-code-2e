@@ -12,13 +12,13 @@ public class Expose {
             System.err.println(e);
             System.exit(1);
         }
-        secretField.setAccessible(true); // break the lock!
+        secretField.setAccessible(true); // 破除访问限制！
         try {
             String wasHidden = (String) secretField.get(message);
             System.out.println("message.secret = " + wasHidden);
         }
         catch (IllegalAccessException e) { 
-            // this will not happen after setAccessible(true)
+            // 调用 setAccessible(true) 之后不会发生
             System.err.println(e);
         }   
     }

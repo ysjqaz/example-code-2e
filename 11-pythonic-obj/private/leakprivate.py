@@ -1,5 +1,5 @@
 #!/usr/bin/env jython
-# NOTE: Jython is still Python 2.7 in late2020
+# 注意：截至 2020 年底，Jython 仍是 Python 2.7
 
 from java.lang.reflect import Modifier
 import Confidential
@@ -7,8 +7,8 @@ import Confidential
 message = Confidential('top secret text')
 fields = Confidential.getDeclaredFields()
 for field in fields:
-    # list private fields only
+    # 仅列出私有字段
     if Modifier.isPrivate(field.getModifiers()):
-        field.setAccessible(True) # break the lock
+        field.setAccessible(True) # 破除访问限制
         print 'field:', field
         print '\t', field.getName(), '=', field.get(message)

@@ -55,7 +55,7 @@
     True
 
 
-Tests of ``format()`` with polar coordinates:
+使用极坐标的 ``format()`` 测试：
 
     >>> format(Vector2d(1, 1), 'p')  # doctest:+ELLIPSIS
     '<1.414213..., 0.785398...>'

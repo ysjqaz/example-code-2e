@@ -34,8 +34,8 @@ def test_SupportsAbs_Vector2d_argument() -> None:
 def test_SupportsAbs_object_argument() -> None:
     with pytest.raises(TypeError):
         magnitude(object())
-        # mypy error:
-        # Argument 1 to "magnitude" has incompatible type "object"; expected "SupportsAbs[Any]"
+        # mypy 错误：
+        # 传给 "magnitude" 的第 1 个参数类型不兼容："object"；期望 "SupportsAbs[Any]"
 
 def polar(datum: SupportsComplex) -> Tuple[float, float]:
     c = complex(datum)
